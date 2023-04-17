@@ -31,6 +31,13 @@ struct AssetIcon {
     static var icSearch: String = "ic_search"
     static var icShopping: String = "ic_shopping"
     static var icWallet: String = "ic_wallet"
+    static var icHome: String = "ic_home"
+    static var icSetting: String = "ic_setting"
+    static var icReport: String = "ic_report"
+    static var icHomeActive: String = "ic_home_active"
+    static var icSettingActive: String = "ic_setting_active"
+    static var icReportActive: String = "ic_report_active"
+    
 }
 /// Type 2
 /// How to use :  UIFont.CustomFontStyle(.semibold,size:12)

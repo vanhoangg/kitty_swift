@@ -20,6 +20,14 @@
 		7EA34CA129ED1868001B51C9 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CA029ED1868001B51C9 /* StringUtils.swift */; };
 		7EA34CB229ED25E5001B51C9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CB029ED25E5001B51C9 /* LoginViewController.swift */; };
 		7EA34CB329ED25E5001B51C9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA34CB129ED25E5001B51C9 /* LoginViewController.xib */; };
+		7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CBF29ED26F5001B51C9 /* HomeViewController.swift */; };
+		7EA34CC229ED26F5001B51C9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA34CC029ED26F5001B51C9 /* HomeViewController.xib */; };
+		7EA34CC529ED2703001B51C9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CC329ED2703001B51C9 /* SettingViewController.swift */; };
+		7EA34CC629ED2703001B51C9 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA34CC429ED2703001B51C9 /* SettingViewController.xib */; };
+		7EA34CCB29ED271A001B51C9 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CC929ED271A001B51C9 /* ReportViewController.swift */; };
+		7EA34CCC29ED271A001B51C9 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA34CCA29ED271A001B51C9 /* ReportViewController.xib */; };
+		7EA34CD029ED2D86001B51C9 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CCF29ED2D86001B51C9 /* CustomNavigationBar.swift */; };
+		7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +46,14 @@
 		7EA34CA029ED1868001B51C9 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		7EA34CB029ED25E5001B51C9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7EA34CB129ED25E5001B51C9 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		7EA34CBF29ED26F5001B51C9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7EA34CC029ED26F5001B51C9 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		7EA34CC329ED2703001B51C9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		7EA34CC429ED2703001B51C9 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		7EA34CC929ED271A001B51C9 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		7EA34CCA29ED271A001B51C9 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
+		7EA34CCF29ED2D86001B51C9 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +110,7 @@
 		7E99F84929ECE8AF00BDDF92 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				7EA34CAF29ED25BD001B51C9 /* Report */,
+				7EA34CC729ED2706001B51C9 /* Report */,
 				7EA34CAE29ED25A5001B51C9 /* Setting */,
 				7EA34CA229ED2081001B51C9 /* Home */,
 				7E99F84A29ECE8C700BDDF92 /* Login */,
@@ -114,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				7EA34C9B29ECFEF3001B51C9 /* CustomButton.swift */,
+				7EA34CCF29ED2D86001B51C9 /* CustomNavigationBar.swift */,
+				7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -150,6 +168,9 @@
 		7EA34CA229ED2081001B51C9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				7EA34CBE29ED26DA001B51C9 /* View */,
+				7EA34CBD29ED26D6001B51C9 /* Model */,
+				7EA34CBC29ED26D2001B51C9 /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -157,6 +178,8 @@
 		7EA34CA329ED2087001B51C9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7EA34CC329ED2703001B51C9 /* SettingViewController.swift */,
+				7EA34CC429ED2703001B51C9 /* SettingViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,11 +208,44 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		7EA34CAF29ED25BD001B51C9 /* Report */ = {
+		7EA34CBC29ED26D2001B51C9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7EA34CBD29ED26D6001B51C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7EA34CBE29ED26DA001B51C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7EA34CBF29ED26F5001B51C9 /* HomeViewController.swift */,
+				7EA34CC029ED26F5001B51C9 /* HomeViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7EA34CC729ED2706001B51C9 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				7EA34CC829ED270D001B51C9 /* View */,
+			);
 			path = Report;
+			sourceTree = "<group>";
+		};
+		7EA34CC829ED270D001B51C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7EA34CC929ED271A001B51C9 /* ReportViewController.swift */,
+				7EA34CCA29ED271A001B51C9 /* ReportViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,13 +306,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA34CCC29ED271A001B51C9 /* ReportViewController.xib in Resources */,
 				7EA34CB329ED25E5001B51C9 /* LoginViewController.xib in Resources */,
+				7EA34CC629ED2703001B51C9 /* SettingViewController.xib in Resources */,
 				7E99F84129ECE84400BDDF92 /* LaunchScreen.storyboard in Resources */,
 				7E99F83E29ECE84400BDDF92 /* Assets.xcassets in Resources */,
 				7E99F85829ECEFA700BDDF92 /* Inter-Bold.ttf in Resources */,
 				7E99F85929ECEFA900BDDF92 /* Inter-Medium.ttf in Resources */,
 				7E99F85A29ECEFAB00BDDF92 /* Inter-Regular.ttf in Resources */,
 				7E99F85B29ECEFB000BDDF92 /* Inter-SemiBold.ttf in Resources */,
+				7EA34CC229ED26F5001B51C9 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,8 +329,13 @@
 				7EA34CB229ED25E5001B51C9 /* LoginViewController.swift in Sources */,
 				7EA34CA129ED1868001B51C9 /* StringUtils.swift in Sources */,
 				7EA34C9F29ED1604001B51C9 /* AssetUtils.swift in Sources */,
+				7EA34CC529ED2703001B51C9 /* SettingViewController.swift in Sources */,
+				7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */,
+				7EA34CD029ED2D86001B51C9 /* CustomNavigationBar.swift in Sources */,
 				7EA34C9C29ECFEF4001B51C9 /* CustomButton.swift in Sources */,
+				7EA34CCB29ED271A001B51C9 /* ReportViewController.swift in Sources */,
 				7E99F83529ECE83F00BDDF92 /* AppDelegate.swift in Sources */,
+				7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */,
 				7E99F83729ECE83F00BDDF92 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
