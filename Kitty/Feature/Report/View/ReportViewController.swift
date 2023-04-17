@@ -11,7 +11,17 @@ class ReportViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        let customNavigationBar = CustomNavigationBar(titleText: StringUtils.reportLabel)
+        
+        view.addSubview(customNavigationBar)
+        customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            customNavigationBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            customNavigationBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            customNavigationBar.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,multiplier: 48/780,constant: 1)
+        ])
         // Do any additional setup after loading the view.
     }
 

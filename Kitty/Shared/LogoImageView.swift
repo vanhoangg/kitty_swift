@@ -17,37 +17,28 @@ class LogoView : UIView {
         buildLogoView()
     }
     private func buildLogoView(){
-        let logoImageView = LogoImageView(frame: CGRect(x:0,y:0,width:24,height: 24))
+        let logoImageView = UIImageView()
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.clipsToBounds = true
+        logoImageView.image = UIImage(named: AssetIcon.icLogo)
         let logoLabel = LogoLabel()
         addSubview(logoImageView)
         addSubview(logoLabel)
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.layoutMargins = UIEdgeInsets(top: 4,
-                                                   left: 4,
-                                                   bottom: 4,
-                                                   right: 4)
+
         NSLayoutConstraint.activate([
+            logoImageView.heightAnchor.constraint(equalToConstant: 24),
+            logoImageView.widthAnchor.constraint(equalTo: logoImageView.heightAnchor,multiplier: 1,constant: 0),
             logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             logoLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            logoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 16),
+            
+            logoLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor,constant: 4)
         ])
         
     }
 }
-class LogoImageView: UIImageView {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        contentMode = .scaleAspectFill
-        clipsToBounds = true
-        self.frame = frame
-        image = UIImage(named: AssetIcon.icLogo)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-}
 
 class LogoLabel: UILabel {
 

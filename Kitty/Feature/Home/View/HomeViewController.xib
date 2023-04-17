@@ -3,10 +3,16 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Bold.ttf">
+            <string>Inter-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Kitty" customModuleProvider="target">
             <connections>
@@ -18,28 +24,68 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-kQ-YCG" customClass="CustomNavigationBar" customModule="Kitty" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="59.5"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pj-ly-iFU">
+                    <rect key="frame" x="0.0" y="44" width="414" height="55"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="DQ6-7H-lY5">
+                            <rect key="frame" x="16" y="17" width="21.5" height="21.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="DQ6-7H-lY5" secondAttribute="height" multiplier="1:1" id="oXn-ej-Cgz"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kitty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXs-xG-6Jm">
+                            <rect key="frame" x="45.5" y="15.5" width="47.5" height="24.5"/>
+                            <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="20"/>
+                            <color key="textColor" name="42"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="ip2-9e-TLV">
+                            <rect key="frame" x="317.5" y="14" width="27.5" height="27.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ip2-9e-TLV" secondAttribute="height" multiplier="1:1" id="I1v-PK-JPx"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_google" translatesAutoresizingMaskIntoConstraints="NO" id="wYV-VZ-UyM">
+                            <rect key="frame" x="361" y="9" width="37" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="wYV-VZ-UyM" secondAttribute="height" multiplier="1:1" id="Dio-BE-YSA"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ip2-9e-TLV" firstAttribute="width" secondItem="6pj-ly-iFU" secondAttribute="width" multiplier="24:360" id="3bn-Ub-ZiX"/>
+                        <constraint firstItem="DQ6-7H-lY5" firstAttribute="width" secondItem="6pj-ly-iFU" secondAttribute="width" multiplier="24:460" id="42H-aL-ms7"/>
+                        <constraint firstItem="ip2-9e-TLV" firstAttribute="centerY" secondItem="6pj-ly-iFU" secondAttribute="centerY" id="BFS-50-njS"/>
+                        <constraint firstItem="wYV-VZ-UyM" firstAttribute="width" secondItem="6pj-ly-iFU" secondAttribute="width" multiplier="32:360" id="EHZ-iM-qhR"/>
+                        <constraint firstItem="DQ6-7H-lY5" firstAttribute="centerY" secondItem="6pj-ly-iFU" secondAttribute="centerY" id="ETs-kn-8L7"/>
+                        <constraint firstItem="wYV-VZ-UyM" firstAttribute="centerY" secondItem="6pj-ly-iFU" secondAttribute="centerY" id="Fzc-2s-wVZ"/>
+                        <constraint firstItem="wYV-VZ-UyM" firstAttribute="leading" secondItem="ip2-9e-TLV" secondAttribute="trailing" constant="16" id="Rif-Ys-6KX"/>
+                        <constraint firstItem="bXs-xG-6Jm" firstAttribute="centerY" secondItem="6pj-ly-iFU" secondAttribute="centerY" id="YMt-l6-F5E"/>
+                        <constraint firstItem="bXs-xG-6Jm" firstAttribute="leading" secondItem="DQ6-7H-lY5" secondAttribute="trailing" constant="8" id="neg-Xa-UH0"/>
+                        <constraint firstAttribute="trailing" secondItem="wYV-VZ-UyM" secondAttribute="trailing" constant="16" id="ocn-5C-kpv"/>
+                        <constraint firstItem="DQ6-7H-lY5" firstAttribute="leading" secondItem="6pj-ly-iFU" secondAttribute="leading" constant="16" id="zrn-O1-lqf"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1Ww-kQ-YCG" secondAttribute="trailing" id="55K-gA-AoL"/>
-                <constraint firstItem="1Ww-kQ-YCG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BPz-wU-Jes"/>
-                <constraint firstItem="1Ww-kQ-YCG" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="48:720" id="Rdt-16-xYk"/>
-                <constraint firstItem="1Ww-kQ-YCG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Wlm-Sm-aLF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6pj-ly-iFU" secondAttribute="trailing" id="4HL-wW-cR2"/>
+                <constraint firstItem="6pj-ly-iFU" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="48:780" id="NLz-P8-Kql"/>
+                <constraint firstItem="6pj-ly-iFU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="XrA-pb-D2P"/>
+                <constraint firstItem="6pj-ly-iFU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aLO-0Q-Z33"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="1Ww-kQ-YCG"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="139" y="151"/>
         </view>
     </objects>
     <resources>
+        <image name="ic_google" width="18" height="18"/>
+        <image name="ic_logo" width="86" height="86"/>
+        <image name="ic_search" width="24" height="24"/>
+        <namedColor name="42">
+            <color red="0.25882352941176473" green="0.25882352941176473" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
