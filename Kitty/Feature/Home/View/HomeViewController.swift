@@ -39,17 +39,17 @@ extension HomeViewController {
         
         let expenseTableView = ExpenseTableView()
         expenseTableView.items = homeViewModel.listItem
-        
-        print(" expenseTableView.rowHeight \(expenseTableView.sectionHeaderHeight)")
-        print("count \(CGFloat(homeViewModel.listItem.count))")
+        expenseTableView.bounces = false
+
+
+
         view.addSubview(expenseTableView)
         expenseTableView.translatesAutoresizingMaskIntoConstraints = false
-        expenseTableView.backgroundColor = .systemBlue
+        
         NSLayoutConstraint.activate([
-            expenseTableView.topAnchor.constraint(equalTo: homeStatStackView.bottomAnchor,constant: 16),
-            expenseTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            expenseTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            expenseTableView.heightAnchor.constraint(equalToConstant: (50 * CGFloat(homeViewModel.listItem.count)))
+            expenseTableView.topAnchor.constraint(equalTo: homeStatStackView.bottomAnchor,constant: 32),
+            expenseTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
+            expenseTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
         ])
     }
 }

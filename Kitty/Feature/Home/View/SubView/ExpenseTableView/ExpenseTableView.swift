@@ -8,7 +8,9 @@
 import UIKit
 
 class ExpenseTableView: UITableView , UITableViewDelegate , UITableViewDataSource {
-    
+    var maxHeight: CGFloat = .infinity
+        
+   
     
     var items = ["a","b","c","d","e","f","g","hh","t","x","y","z","s","a"]
     
@@ -16,17 +18,46 @@ class ExpenseTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         return items.count
     }
     
-    func tableView(_ tableView: UITableView, sectionHeaderHeight section: Int) -> Int {
-        return 50
+//    func tableView(_ tableView: UITableView, sectionHeaderHeight section: Int) -> Int {
+//        return 50
+//    }
+    
+    override var contentSize: CGSize {
+            didSet {
+                invalidateIntrinsicContentSize()
+                setNeedsLayout()
+            }
     }
-  
+        
+        override var intrinsicContentSize: CGSize {
+            let height = min(maxHeight, contentSize.height)
+            print("height : \(height)")
+            print("contentSize.width : \(contentSize.width)")
+            return CGSize(width: contentSize.width, height: height)
+            
+        }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 12
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect.zero)
+        
+        headerView.backgroundColor = .none
+        return headerView
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : UITableViewCell = (tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath))
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 5
+        cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
+        cell.clipsToBounds = true
         cell.textLabel?.text = items[indexPath.section]
+        
         return cell
     }
     
@@ -49,7 +80,7 @@ class ExpenseTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
 
 }
