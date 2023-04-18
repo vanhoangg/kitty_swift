@@ -14,7 +14,10 @@ struct AssetColor {
     static var PrimaryTextColor: String = "21"
     static var SecondaryTextColor: String = "42"
     static var ThirdTextColor: String = "61"
-    static var borderColor: String = "Border"
+    static var borderColor: String = "border"
+    static var red: String = "red"
+    static var gray: String = "gray"
+    
 }
 
 struct AssetIcon {

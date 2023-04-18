@@ -8,34 +8,48 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    var homeViewModel  = HomeViewModel()
+    @IBOutlet weak var incomeStatView: ItemHomeStatView!
+    @IBOutlet weak var balanceStatView: ItemHomeStatView!
+    @IBOutlet weak var paymentStatView: ItemHomeStatView!
+    @IBOutlet weak var homeStatStackView: UIStackView!
+    @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
+//        configCalendarView()
+        configHomeStatView()
+        buildExpenseTableView()
         
-//        let customNavigationBar = CustomNavigationBar()
-//
-//        view.addSubview(customNavigationBar)
-//        customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            customNavigationBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//            customNavigationBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//            customNavigationBar.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,multiplier: 48/780,constant: 1)
-//        ])
         
         // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+extension HomeViewController {
+    private func configHomeStatView(){
+     
+        paymentStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icPayment, value: "12000", title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
+        
+        balanceStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icWallet, value: "48000", title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
+       
+        incomeStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icBank, value: "60000", title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
     }
-    */
-
+    private func buildExpenseTableView(){
+        
+        let expenseTableView = ExpenseTableView()
+        expenseTableView.items = homeViewModel.listItem
+        
+        print(" expenseTableView.rowHeight \(expenseTableView.sectionHeaderHeight)")
+        print("count \(CGFloat(homeViewModel.listItem.count))")
+        view.addSubview(expenseTableView)
+        expenseTableView.translatesAutoresizingMaskIntoConstraints = false
+        expenseTableView.backgroundColor = .systemBlue
+        NSLayoutConstraint.activate([
+            expenseTableView.topAnchor.constraint(equalTo: homeStatStackView.bottomAnchor,constant: 16),
+            expenseTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            expenseTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            expenseTableView.heightAnchor.constraint(equalToConstant: (50 * CGFloat(homeViewModel.listItem.count)))
+        ])
+    }
 }
