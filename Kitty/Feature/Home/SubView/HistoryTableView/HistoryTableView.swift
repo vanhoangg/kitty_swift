@@ -7,34 +7,26 @@
 
 import UIKit
 
-class ExpenseTableView: UITableView , UITableViewDelegate , UITableViewDataSource {
-    var maxHeight: CGFloat = .infinity
+class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSource {
         
    
     
     var items = ["a","b","c","d","e","f","g","hh","t","x","y","z","s","a"]
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return items.count
+        return 10
     }
     
-//    func tableView(_ tableView: UITableView, sectionHeaderHeight section: Int) -> Int {
-//        return 50
-//    }
     
     override var contentSize: CGSize {
             didSet {
                 invalidateIntrinsicContentSize()
-                setNeedsLayout()
             }
     }
         
         override var intrinsicContentSize: CGSize {
-            let height = min(maxHeight, contentSize.height)
-            print("height : \(height)")
-            print("contentSize.width : \(contentSize.width)")
-            return CGSize(width: contentSize.width, height: height)
-            
+            layoutIfNeeded()
+            return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
         }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -51,12 +43,12 @@ class ExpenseTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         return headerView
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : UITableViewCell = (tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath))
+        let cell : HistoryTableViewCell = (tableView.dequeueReusableCell(withIdentifier:HistoryTableViewCell.identifer,for: indexPath)) as! HistoryTableViewCell
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 5
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
-        cell.textLabel?.text = items[indexPath.section]
+        
         
         return cell
     }
@@ -72,15 +64,18 @@ class ExpenseTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: CGRect.zero, style: .plain)
-        register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        delegate = self
-        dataSource = self
-        separatorStyle = .none
-         // Frame là zero cũng không sao vì mình sẽ autolayout cho nó sau, và set style là grouped
+        initTableView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        initTableView()
     }
-
+        
+    private func initTableView() {
+        register(HistoryTableViewCell.nib(), forCellReuseIdentifier: HistoryTableViewCell.identifer)
+        delegate = self
+        dataSource = self
+        separatorStyle = .none
+    }
 }

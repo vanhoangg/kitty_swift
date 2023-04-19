@@ -15,12 +15,16 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var homeStatStackView: UIStackView!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var historyTableView: HistoryTableView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
 //        configCalendarView()
         configHomeStatView()
-        buildExpenseTableView()
+        configHistoryTableView()
         
         
         // Do any additional setup after loading the view.
@@ -35,21 +39,11 @@ extension HomeViewController {
        
         incomeStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icBank, value: "60000", title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
     }
-    private func buildExpenseTableView(){
-        
-        let expenseTableView = ExpenseTableView()
-        expenseTableView.items = homeViewModel.listItem
-        expenseTableView.bounces = false
-
-
-
-        view.addSubview(expenseTableView)
-        expenseTableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            expenseTableView.topAnchor.constraint(equalTo: homeStatStackView.bottomAnchor,constant: 32),
-            expenseTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
-            expenseTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
-        ])
+    private func configHistoryTableView(){
+        historyTableView.items = homeViewModel.listItem
+        historyTableView.bounces = false
+        historyTableView.rowHeight = UITableView.automaticDimension
+        historyTableView.estimatedRowHeight = 300
+        historyTableView.sizeToFit()
     }
 }

@@ -21,6 +21,7 @@
             <connections>
                 <outlet property="balanceStatView" destination="3rZ-4P-Me5" id="h7s-lQ-8ya"/>
                 <outlet property="calendarView" destination="W0j-Zj-7kk" id="cZ9-Av-e79"/>
+                <outlet property="historyTableView" destination="Qv6-ko-luU" id="4Dv-3L-eoU"/>
                 <outlet property="homeStatStackView" destination="391-fI-hk5" id="vFW-EI-5Wu"/>
                 <outlet property="incomeStatView" destination="kbr-GC-M0w" id="HXq-cW-Atd"/>
                 <outlet property="paymentStatView" destination="3CX-RX-sjD" id="IIw-GU-En5"/>
@@ -179,6 +180,10 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qv6-ko-luU" customClass="HistoryTableView" customModule="Kitty" customModuleProvider="target">
+                    <rect key="frame" x="16" y="304" width="382" height="558"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -187,10 +192,14 @@
                 <constraint firstItem="3HD-Lu-xAX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="DSm-KT-9Sc"/>
                 <constraint firstItem="FlV-DN-S8r" firstAttribute="top" secondItem="6pj-ly-iFU" secondAttribute="bottom" id="EdQ-Me-z30"/>
                 <constraint firstItem="6pj-ly-iFU" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="48:780" id="NLz-P8-Kql"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qv6-ko-luU" secondAttribute="trailing" constant="16" id="Vcx-7e-1bn"/>
                 <constraint firstItem="6pj-ly-iFU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="XrA-pb-D2P"/>
                 <constraint firstItem="3HD-Lu-xAX" firstAttribute="top" secondItem="FlV-DN-S8r" secondAttribute="bottom" constant="8" id="Y8c-gx-tbK"/>
                 <constraint firstItem="6pj-ly-iFU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aLO-0Q-Z33"/>
+                <constraint firstItem="Qv6-ko-luU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="aXh-ad-Xl2"/>
                 <constraint firstItem="FlV-DN-S8r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="axm-AS-baP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qv6-ko-luU" secondAttribute="bottom" id="fbU-Tx-awl"/>
+                <constraint firstItem="Qv6-ko-luU" firstAttribute="top" secondItem="3HD-Lu-xAX" secondAttribute="bottom" constant="32" id="hyi-8L-GhR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FlV-DN-S8r" secondAttribute="trailing" id="nYK-qH-82w"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3HD-Lu-xAX" secondAttribute="trailing" constant="16" id="uZ2-vl-Pqg"/>
                 <constraint firstItem="FlV-DN-S8r" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="48:780" id="yR3-Fr-lfj"/>
