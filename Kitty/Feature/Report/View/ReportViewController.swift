@@ -9,7 +9,7 @@ import UIKit
 
 class ReportViewController: UIViewController {
     var listItems: [Int] = [20,30,30,10,10]
-    var listColors: [UIColor] = [.systemRed,.systemBlue,.systemFill,.systemCyan,.systemPink]
+    
     
     var overviewLabel = UILabel()
     var chartStackView = UIStackView()
@@ -42,30 +42,38 @@ class ReportViewController: UIViewController {
     private func configureChartStackView(){
         
         chartStackView.axis = .horizontal
-//        chartStackView.distribution = .fill
+        chartStackView.distribution = .fill
         chartStackView.spacing = 0
+        chartStackView.autoresizesSubviews = true
+        
         chartView.addSubview(chartStackView)
         chartStackView.translatesAutoresizingMaskIntoConstraints = false
-        
+        chartStackView.layer.cornerRadius = 8
+        chartStackView.layer.borderWidth
+        = 1
+        chartStackView.layer.borderColor = UIColor(named:"B2EBF2")?.cgColor
+        chartStackView.clipsToBounds = true
         NSLayoutConstraint.activate([
             chartStackView.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor,constant: 8),
             chartStackView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
             chartStackView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
-            chartStackView.bottomAnchor.constraint(equalTo: chartView.bottomAnchor,constant: 8)
-            ])
+            chartStackView.heightAnchor.constraint(equalTo: chartStackView.widthAnchor,multiplier: 36/328,constant: 8)
+        ])
         for index in 0...listItems.count-1 {
-//            let itemView = UIView(frame: CGRect(x: 0, y: 0, width:chartStackView.bounds.width * (Double(listItems[index])/100), height: chartStackView.bounds.height))
+            //            let itemView = UIView(frame: CGRect(x: 0, y: 0, width:chartStackView.bounds.width * (Double(listItems[index])/100), height: chartStackView.bounds.height))
             
             
             
-        let    itemView = UIView()
+            let    itemView = UIView(frame: CGRect.zero)
+            chartStackView.addArrangedSubview(itemView)
             
+            itemView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                itemView.widthAnchor.constraint(equalToConstant: chartView.frame.width * (Double(listItems[index])/100)),
+                itemView.widthAnchor.constraint(equalTo: chartView.widthAnchor,multiplier:  (Double(listItems[index])/100),constant: 0),
                 
             ])
-            itemView.backgroundColor = listColors[index]
-//                chartStackView.addSubview(itemView)
+            itemView.backgroundColor = .random()
+            //                chartStackView.addSubview(itemView)
             
             print("======= \(chartView.frame.width)")
             print("======= \(index)")
@@ -73,9 +81,9 @@ class ReportViewController: UIViewController {
             
             
             print("======= \(Double(listItems[index])/100)")
-            chartStackView.addArrangedSubview(itemView)
+            
         }
         
     }
-
+    
 }
