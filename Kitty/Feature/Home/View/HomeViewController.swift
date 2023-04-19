@@ -14,7 +14,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var paymentStatView: ItemHomeStatView!
     @IBOutlet weak var homeStatStackView: UIStackView!
     @IBOutlet weak var calendarView: UIView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var historyTableView: HistoryTableView!
     
     

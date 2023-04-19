@@ -8,32 +8,74 @@
 import UIKit
 
 class ReportViewController: UIViewController {
-
+    var listItems: [Int] = [20,30,30,10,10]
+    var listColors: [UIColor] = [.systemRed,.systemBlue,.systemFill,.systemCyan,.systemPink]
+    
+    var overviewLabel = UILabel()
+    var chartStackView = UIStackView()
+    
+    
+    @IBOutlet weak var chartView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
-        let customNavigationBar = CustomNavigationBar(titleText: StringUtils.reportLabel)
+        configureChartView()
+        configureChartStackView()
         
-        view.addSubview(customNavigationBar)
-        customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            customNavigationBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            customNavigationBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            customNavigationBar.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,multiplier: 48/780,constant: 1)
-        ])
         // Do any additional setup after loading the view.
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func configureChartView(){
+        overviewLabel.text = "Overview"
+        overviewLabel.font = UIFont.CustomFont(.medium, size: 10)
+        chartView.addSubview(overviewLabel)
+        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            overviewLabel.topAnchor.constraint(equalTo: chartView.topAnchor),
+            overviewLabel.leadingAnchor
+                .constraint(equalTo: chartView.leadingAnchor
+                           )])
+        
+        
     }
-    */
+    private func configureChartStackView(){
+        
+        chartStackView.axis = .horizontal
+//        chartStackView.distribution = .fill
+        chartStackView.spacing = 0
+        chartView.addSubview(chartStackView)
+        chartStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            chartStackView.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor,constant: 8),
+            chartStackView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
+            chartStackView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
+            chartStackView.bottomAnchor.constraint(equalTo: chartView.bottomAnchor,constant: 8)
+            ])
+        for index in 0...listItems.count-1 {
+//            let itemView = UIView(frame: CGRect(x: 0, y: 0, width:chartStackView.bounds.width * (Double(listItems[index])/100), height: chartStackView.bounds.height))
+            
+            
+            
+        let    itemView = UIView()
+            
+            NSLayoutConstraint.activate([
+                itemView.widthAnchor.constraint(equalToConstant: chartView.frame.width * (Double(listItems[index])/100)),
+                
+            ])
+            itemView.backgroundColor = listColors[index]
+//                chartStackView.addSubview(itemView)
+            
+            print("======= \(chartView.frame.width)")
+            print("======= \(index)")
+            print("======= \(itemView.bounds.width)")
+            
+            
+            print("======= \(Double(listItems[index])/100)")
+            chartStackView.addArrangedSubview(itemView)
+        }
+        
+    }
 
 }

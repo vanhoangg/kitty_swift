@@ -79,6 +79,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FlV-DN-S8r" userLabel="Header View">
                     <rect key="frame" x="0.0" y="99" width="414" height="55.5"/>
                     <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_forward" translatesAutoresizingMaskIntoConstraints="NO" id="450-Vq-q2m">
+                            <rect key="frame" x="366" y="15.5" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="450-Vq-q2m" secondAttribute="height" multiplier="1:1" id="Mhy-Hf-CH9"/>
+                            </constraints>
+                        </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_back" translatesAutoresizingMaskIntoConstraints="NO" id="ve8-3H-tZ5">
                             <rect key="frame" x="24" y="15.5" width="24" height="24"/>
                             <constraints>
@@ -122,11 +128,13 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="450-Vq-q2m" firstAttribute="centerY" secondItem="FlV-DN-S8r" secondAttribute="centerY" id="Ffo-yJ-If2"/>
                         <constraint firstItem="W0j-Zj-7kk" firstAttribute="centerX" secondItem="FlV-DN-S8r" secondAttribute="centerX" id="Jaq-IE-qaO"/>
                         <constraint firstItem="W0j-Zj-7kk" firstAttribute="top" secondItem="FlV-DN-S8r" secondAttribute="top" constant="8" id="Kv9-AM-sBn"/>
                         <constraint firstAttribute="bottom" secondItem="W0j-Zj-7kk" secondAttribute="bottom" constant="8" id="SPH-Vx-Wt7"/>
                         <constraint firstItem="W0j-Zj-7kk" firstAttribute="centerY" secondItem="FlV-DN-S8r" secondAttribute="centerY" id="big-Ag-np8"/>
                         <constraint firstItem="ve8-3H-tZ5" firstAttribute="leading" secondItem="FlV-DN-S8r" secondAttribute="leading" constant="24" id="c9l-zs-0wM"/>
+                        <constraint firstAttribute="trailing" secondItem="450-Vq-q2m" secondAttribute="trailing" constant="24" id="gAA-Mj-oMB"/>
                         <constraint firstItem="ve8-3H-tZ5" firstAttribute="centerY" secondItem="FlV-DN-S8r" secondAttribute="centerY" id="vmg-Xv-gkZ"/>
                     </constraints>
                 </view>
@@ -209,6 +217,7 @@
     </objects>
     <resources>
         <image name="ic_arrow_back" width="24" height="24"/>
+        <image name="ic_arrow_forward" width="24" height="24"/>
         <image name="ic_calendar" width="16" height="16"/>
         <image name="ic_google" width="18" height="18"/>
         <image name="ic_logo" width="86" height="86"/>
