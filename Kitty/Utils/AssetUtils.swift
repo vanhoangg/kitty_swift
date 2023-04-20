@@ -40,6 +40,9 @@ struct AssetIcon {
     static var icHomeActive: String = "ic_home_active"
     static var icSettingActive: String = "ic_setting_active"
     static var icReportActive: String = "ic_report_active"
+    static var icTransportation: String = "ic_transportation"
+    static var icGift: String = "ic_gift"
+    static var icElectronic: String = "ic_electronic"
     
 }
 /// Type 2

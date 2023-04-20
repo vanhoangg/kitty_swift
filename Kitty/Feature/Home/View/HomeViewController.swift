@@ -32,14 +32,14 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func configHomeStatView(){
      
-        paymentStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icPayment, value: "12000", title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
+        paymentStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icPayment, value: String(-(homeViewModel.listStatisticMonth?.monthExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
         
-        balanceStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icWallet, value: "48000", title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
+        balanceStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icWallet, value: String(homeViewModel.listStatisticMonth?.monthBalance ?? 0 ), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
        
-        incomeStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icBank, value: "60000", title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
+        incomeStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icBank, value: String(homeViewModel.listStatisticMonth?.monthIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
     }
     private func configHistoryTableView(){
-        historyTableView.items = homeViewModel.listItem
+        historyTableView.monthlyData = homeViewModel.listStatisticMonth
         historyTableView.bounces = false
         historyTableView.rowHeight = UITableView.automaticDimension
         historyTableView.estimatedRowHeight = 300

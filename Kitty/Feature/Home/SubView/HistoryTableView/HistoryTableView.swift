@@ -9,25 +9,24 @@ import UIKit
 
 class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSource {
         
-   
     
-    var items = ["a","b","c","d","e","f","g","hh","t","x","y","z","s","a"]
+    var monthlyData:StatisticMonth?;
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return monthlyData?.listStatisticDay.count ?? 0
     }
     
     
     override var contentSize: CGSize {
-            didSet {
-                invalidateIntrinsicContentSize()
-            }
-    }
-        
-        override var intrinsicContentSize: CGSize {
-            layoutIfNeeded()
-            return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
-        }
+               didSet {
+                   invalidateIntrinsicContentSize()
+                   setNeedsLayout()
+               }
+       }
+       override var intrinsicContentSize: CGSize {
+           return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
+       }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -48,6 +47,7 @@ class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         cell.layer.cornerRadius = 5
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
+        cell.configureData(with: monthlyData?.listStatisticDay[indexPath.section])
         
         
         return cell

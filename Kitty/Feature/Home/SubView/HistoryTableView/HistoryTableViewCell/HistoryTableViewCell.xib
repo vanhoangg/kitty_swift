@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,47 +17,46 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="3fc-jf-IRe">
-                        <rect key="frame" x="8" y="8" width="320" height="20.5"/>
+                        <rect key="frame" x="16" y="8" width="304" height="32"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msv-YT-BiJ">
-                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msv-YT-BiJ" userLabel="day Label">
+                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IO-97-EdU">
-                                <rect key="frame" x="278.5" y="0.0" width="41.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IO-97-EdU" userLabel="totalExpense Label">
+                                <rect key="frame" x="262.5" y="0.0" width="41.5" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="U5T-dE-XO4"/>
+                        </constraints>
                     </stackView>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8Nw-5m-Du0" customClass="ExpenseDetailTableView" customModule="Kitty" customModuleProvider="target">
-                        <rect key="frame" x="8" y="36.5" width="320" height="708.5"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </tableView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ3-HE-Hq6">
+                        <rect key="frame" x="8" y="40" width="320" height="694"/>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="8Nw-5m-Du0" secondAttribute="trailing" constant="8" id="0yA-b3-tVz"/>
-                    <constraint firstItem="8Nw-5m-Du0" firstAttribute="top" secondItem="3fc-jf-IRe" secondAttribute="bottom" constant="8" id="4Wp-DH-z2U"/>
-                    <constraint firstItem="8Nw-5m-Du0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="CcD-rF-qIq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ZQ3-HE-Hq6" secondAttribute="bottom" id="3J6-fP-II3"/>
+                    <constraint firstItem="ZQ3-HE-Hq6" firstAttribute="top" secondItem="3fc-jf-IRe" secondAttribute="bottom" id="MBQ-Ty-Q1q"/>
                     <constraint firstItem="3fc-jf-IRe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Uod-Zc-fqP"/>
-                    <constraint firstAttribute="trailing" secondItem="3fc-jf-IRe" secondAttribute="trailing" constant="8" id="ZHy-eY-tC0"/>
-                    <constraint firstItem="3fc-jf-IRe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="b6F-ss-2XG"/>
-                    <constraint firstAttribute="bottom" secondItem="8Nw-5m-Du0" secondAttribute="bottom" id="tCV-bn-xsY"/>
+                    <constraint firstAttribute="trailing" secondItem="3fc-jf-IRe" secondAttribute="trailing" constant="16" id="ZHy-eY-tC0"/>
+                    <constraint firstItem="3fc-jf-IRe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="b6F-ss-2XG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <constraints>
+                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="ZQ3-HE-Hq6" secondAttribute="trailing" constant="8" id="70j-Eh-ycL"/>
+                <constraint firstItem="ZQ3-HE-Hq6" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="8" id="pdw-lb-iha"/>
+            </constraints>
             <connections>
-                <outlet property="expenseDetailTableView" destination="8Nw-5m-Du0" id="ZM8-fM-KNX"/>
+                <outlet property="listItemExpenseStackView" destination="ZQ3-HE-Hq6" id="9K1-hI-95I"/>
             </connections>
             <point key="canvasLocation" x="120.28985507246378" y="245.42410714285714"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
