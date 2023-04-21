@@ -9,7 +9,7 @@ import Foundation
 
 class HomeViewModel :ObservableObject {
     
-    @Published    var monthlyStatistics: StatisticMonth?
+    @Published    var monthlyStatistics: MonthlyStatistic?
     
     init(){
         loadApi()

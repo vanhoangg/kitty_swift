@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ItemHomeStatView: UIView {
+class ItemMonthlyReportView: UIView {
     
     
     // MARK: - Properties
@@ -65,7 +65,7 @@ class ItemHomeStatView: UIView {
 
     }
 }
-extension ItemHomeStatView {
+extension ItemMonthlyReportView {
     
   
     

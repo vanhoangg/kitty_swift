@@ -39,7 +39,7 @@ class ItemExpenseViewController: UIViewController {
             itemNameLabel.text = itemCategoryDescription
         } else {itemNameLabel.removeFromSuperview()}
         
-        self.itemExpenseValueLabel.text = data.itemExpenseValueText
+        self.itemExpenseValueLabel.text = data.itemExpenseValueText?.currencyFormatting()
         self.itemCategoryLabel.text = data.itemCategoryText
     }
 }

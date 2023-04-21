@@ -7,27 +7,27 @@
 
 import Foundation
 
-struct StatisticDay {
+struct DailyStatistic {
     let dayId,dayName:String
     
-    let dayIncome ,dayBalance,dayExpense :Float
-    let expenses:[Expenses]
+    let dailyIncome ,dailyBalance, dailyExpense :Float
+    let listExpenseReport:[Expenses]
     
 }
 struct User{
     
     let userId,userName :String
-    let listStatisticYear :[StatisticYear]
+    let listYearlyStatistic :[YearlyStatistic]
 }
-struct StatisticMonth{
+struct MonthlyStatistic{
     let monthId,monthName:String
-    let monthIncome ,monthBalance,monthExpense :Float
-    let listStatisticDay: [StatisticDay]
+    let monthlyIncome ,monthlyBalance,monthlyExpense :Float
+    let listDailyStatistic: [DailyStatistic]
 }
-struct StatisticYear{
+struct YearlyStatistic{
     let yearId, yearName:String
     let yearIncome ,yearBalance,yearExpense :Float
-    let listStatisticMonth:[StatisticMonth]
+    let listMonthlyStatistic:[MonthlyStatistic]
 }
 struct Expenses{
     let category:ExpenseCategory
@@ -55,17 +55,17 @@ struct DummyData {
         
 
     ]
-    static let listStatisticDay:[StatisticDay] =
+    static let listDailyStatistic:[DailyStatistic] =
     [
-        StatisticDay(dayId: "1/1/2023",dayName: "1", dayIncome: 500, dayBalance: 250, dayExpense: 250, expenses: listExpense),
-        StatisticDay(dayId: "2/1/2023",dayName: "2", dayIncome: 500, dayBalance: 250, dayExpense: 250, expenses: listExpense)
+        DailyStatistic(dayId: "1/1/2023",dayName: "1", dailyIncome: 500, dailyBalance: 250, dailyExpense: 250, listExpenseReport: listExpense),
+        DailyStatistic(dayId: "2/1/2023",dayName: "2", dailyIncome: 500, dailyBalance: 250, dailyExpense: 250, listExpenseReport: listExpense)
     ]
-    static let listMonthlyStatistic:[StatisticMonth] =
+    static let listMonthlyStatistic:[MonthlyStatistic] =
     [
-        StatisticMonth(monthId: "1/2023", monthName: "1", monthIncome: 1000, monthBalance: 500, monthExpense: 500, listStatisticDay: listStatisticDay),
-        StatisticMonth(monthId: "2/2023", monthName: "2", monthIncome: 1000, monthBalance: 500, monthExpense: 500, listStatisticDay: listStatisticDay)
+        MonthlyStatistic(monthId: "1/2023", monthName: "1", monthlyIncome: 1000, monthlyBalance: 500, monthlyExpense: 500, listDailyStatistic: listDailyStatistic),
+        MonthlyStatistic(monthId: "2/2023", monthName: "2", monthlyIncome: 1000, monthlyBalance: 500, monthlyExpense: 500, listDailyStatistic: listDailyStatistic)
     ]
-    static let listStatisticYear: [StatisticYear] = [StatisticYear(yearId: "2023", yearName: "2023", yearIncome: 4000, yearBalance: 2000, yearExpense: 2000, listStatisticMonth: listMonthlyStatistic)]
-    static let user = User(userId: "userId1", userName: "UserName1", listStatisticYear: listStatisticYear)
+    static let listYearlyStatistic: [YearlyStatistic] = [YearlyStatistic(yearId: "2023", yearName: "2023", yearIncome: 4000, yearBalance: 2000, yearExpense: 2000, listMonthlyStatistic: listMonthlyStatistic)]
+    static let user = User(userId: "userId1", userName: "UserName1", listYearlyStatistic: listYearlyStatistic)
     
 }

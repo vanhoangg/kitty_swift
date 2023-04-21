@@ -3,4 +3,114 @@
    uuid = "99A99D6E-CFCC-4999-87BA-5594F36C1AD3"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3AB20E5-941F-4333-AAA2-2DDBBF1757C8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Kitty/Feature/Home/View/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "HomeViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "E3AB20E5-941F-4333-AAA2-2DDBBF1757C8 - 99a7f2ada0cf18bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kitty.HomeViewController.incomeMonthlyReportView.getter : Swift.Optional&lt;Kitty.ItemMonthlyReportView&gt;"
+                  moduleName = "Kitty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bivshin/Coder/Swift/Kitty/Kitty/Feature/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  uuid = "E3AB20E5-941F-4333-AAA2-2DDBBF1757C8 - acaf99841338dacf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kitty.HomeViewController.incomeMonthlyReportView.setter : Swift.Optional&lt;Kitty.ItemMonthlyReportView&gt;"
+                  moduleName = "Kitty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bivshin/Coder/Swift/Kitty/Kitty/Feature/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "E3AB20E5-941F-4333-AAA2-2DDBBF1757C8 - 29998d562d3098de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kitty.HomeViewController.incomeMonthlyReportView.modify : Swift.Optional&lt;Kitty.ItemMonthlyReportView&gt;"
+                  moduleName = "Kitty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bivshin/Coder/Swift/Kitty/Kitty/Feature/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "E3AB20E5-941F-4333-AAA2-2DDBBF1757C8 - a0d09791e4ab5ddc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kitty.HomeViewController.incomeMonthlyReportView.modify : Swift.Optional&lt;Kitty.ItemMonthlyReportView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Kitty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bivshin/Coder/Swift/Kitty/Kitty/Feature/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  uuid = "E3AB20E5-941F-4333-AAA2-2DDBBF1757C8 - 4e07acdd7f7a46fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kitty.HomeViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Kitty.HomeViewController"
+                  moduleName = "Kitty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bivshin/Coder/Swift/Kitty/Kitty/Feature/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "393">
+               </Location>
+               <Location
+                  uuid = "E3AB20E5-941F-4333-AAA2-2DDBBF1757C8 - 2ee60e38902733f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Kitty.HomeViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Kitty.HomeViewController&gt;"
+                  moduleName = "Kitty"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bivshin/Coder/Swift/Kitty/Kitty/Feature/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "350">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

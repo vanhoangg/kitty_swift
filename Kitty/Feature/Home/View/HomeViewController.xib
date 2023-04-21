@@ -19,12 +19,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Kitty" customModuleProvider="target">
             <connections>
-                <outlet property="balanceStatView" destination="3rZ-4P-Me5" id="h7s-lQ-8ya"/>
+                <outlet property="balanceMonthlyReportView" destination="3rZ-4P-Me5" id="M0V-wI-ce9"/>
                 <outlet property="calendarView" destination="W0j-Zj-7kk" id="cZ9-Av-e79"/>
+                <outlet property="expenseMonthlyReportView" destination="3CX-RX-sjD" id="8O7-O8-sjF"/>
                 <outlet property="historyTableView" destination="Qv6-ko-luU" id="4Dv-3L-eoU"/>
                 <outlet property="homeStatStackView" destination="391-fI-hk5" id="vFW-EI-5Wu"/>
-                <outlet property="incomeStatView" destination="kbr-GC-M0w" id="HXq-cW-Atd"/>
-                <outlet property="paymentStatView" destination="3CX-RX-sjD" id="IIw-GU-En5"/>
+                <outlet property="incomeMonthlyReportView" destination="kbr-GC-M0w" id="pfr-rT-KZP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -144,15 +144,15 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="391-fI-hk5">
                             <rect key="frame" x="24" y="16" width="334" height="77.5"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-RX-sjD" customClass="ItemHomeStatView" customModule="Kitty" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-RX-sjD" customClass="ItemMonthlyReportView" customModule="Kitty" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="90" height="77.5"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rZ-4P-Me5" customClass="ItemHomeStatView" customModule="Kitty" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rZ-4P-Me5" customClass="ItemMonthlyReportView" customModule="Kitty" customModuleProvider="target">
                                     <rect key="frame" x="122" y="0.0" width="90" height="77.5"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbr-GC-M0w" customClass="ItemHomeStatView" customModule="Kitty" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbr-GC-M0w" customClass="ItemMonthlyReportView" customModule="Kitty" customModuleProvider="target">
                                     <rect key="frame" x="244" y="0.0" width="90" height="77.5"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>

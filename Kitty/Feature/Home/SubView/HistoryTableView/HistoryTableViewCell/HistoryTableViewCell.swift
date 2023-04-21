@@ -11,7 +11,7 @@ class HistoryTableViewCell: UITableViewCell {
     
     struct ViewData{
         let dayId:String?
-        let dayExpenseText:String?
+        let dailyExpenseText:String?
         let listItemExpenseViewData: [Expenses]?
     }
     //MARK: - IBOutlet
@@ -44,7 +44,7 @@ class HistoryTableViewCell: UITableViewCell {
     func loadData(viewData:HistoryTableViewCell.ViewData){
         
         dayLabel.text = viewData.dayId
-        dayTotalExpenseLabel.text = viewData.dayExpenseText
+        dayTotalExpenseLabel.text = viewData.dailyExpenseText
         
         configureListItem(listItemExpenseViewData: viewData.listItemExpenseViewData)
     }

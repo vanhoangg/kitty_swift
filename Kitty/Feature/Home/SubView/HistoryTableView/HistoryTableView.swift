@@ -10,13 +10,13 @@ import UIKit
 class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSource {
     
     struct ViewData{
-        let listDayStatistic:[StatisticDay]?;
+        let listDailyStatistic:[DailyStatistic]?;
     }
-    var viewData = ViewData(listDayStatistic: []);
+    var viewData = ViewData(listDailyStatistic: []);
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewData.listDayStatistic?.count ?? 0
+        return viewData.listDailyStatistic?.count ?? 0
     }
     
     
@@ -51,7 +51,7 @@ class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         cell.clipsToBounds = true
         
         cell.loadData(viewData: HistoryTableViewCell.ViewData(
-            dayId: viewData.listDayStatistic?[indexPath.section].dayId, dayExpenseText: String(viewData.listDayStatistic?[indexPath.section].dayExpense ?? 0), listItemExpenseViewData: viewData.listDayStatistic?[indexPath.section].expenses))
+            dayId: viewData.listDailyStatistic?[indexPath.section].dayId, dailyExpenseText: String(viewData.listDailyStatistic?[indexPath.section].dailyExpense ?? 0), listItemExpenseViewData: viewData.listDailyStatistic?[indexPath.section].listExpenseReport))
         
         
         

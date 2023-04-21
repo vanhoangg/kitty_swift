@@ -19,7 +19,7 @@
 		7E99F85929ECEFA900BDDF92 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E99F85429ECEF9800BDDF92 /* Inter-Medium.ttf */; };
 		7E99F85A29ECEFAB00BDDF92 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E99F85629ECEF9800BDDF92 /* Inter-Regular.ttf */; };
 		7E99F85B29ECEFB000BDDF92 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E99F85729ECEF9800BDDF92 /* Inter-SemiBold.ttf */; };
-		7E9A745129EE51F00002051C /* ItemHomeStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745029EE51F00002051C /* ItemHomeStatView.swift */; };
+		7E9A745129EE51F00002051C /* ItemMonthlyReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745029EE51F00002051C /* ItemMonthlyReportView.swift */; };
 		7E9A745929EE6E2A0002051C /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745829EE6E2A0002051C /* Money.swift */; };
 		7E9A745B29EE705C0002051C /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745A29EE705C0002051C /* HistoryTableView.swift */; };
 		7E9A745D29EE7A010002051C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745C29EE7A010002051C /* HomeViewModel.swift */; };
@@ -56,7 +56,7 @@
 		7E99F85529ECEF9800BDDF92 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		7E99F85629ECEF9800BDDF92 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		7E99F85729ECEF9800BDDF92 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
-		7E9A745029EE51F00002051C /* ItemHomeStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemHomeStatView.swift; sourceTree = "<group>"; };
+		7E9A745029EE51F00002051C /* ItemMonthlyReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMonthlyReportView.swift; sourceTree = "<group>"; };
 		7E9A745829EE6E2A0002051C /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		7E9A745A29EE705C0002051C /* HistoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableView.swift; sourceTree = "<group>"; };
 		7E9A745C29EE7A010002051C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -193,17 +193,17 @@
 			children = (
 				7E1798C229F0EE1E0003C20E /* ItemExpenseView */,
 				7E9A745329EE6DBB0002051C /* HistoryTableView */,
-				7E9A745229EE6DAD0002051C /* itemHomeStat */,
+				7E9A745229EE6DAD0002051C /* ItemMonthlyReportView */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
 		};
-		7E9A745229EE6DAD0002051C /* itemHomeStat */ = {
+		7E9A745229EE6DAD0002051C /* ItemMonthlyReportView */ = {
 			isa = PBXGroup;
 			children = (
-				7E9A745029EE51F00002051C /* ItemHomeStatView.swift */,
+				7E9A745029EE51F00002051C /* ItemMonthlyReportView.swift */,
 			);
-			path = itemHomeStat;
+			path = ItemMonthlyReportView;
 			sourceTree = "<group>";
 		};
 		7E9A745329EE6DBB0002051C /* HistoryTableView */ = {
@@ -416,7 +416,7 @@
 				7E9A745B29EE705C0002051C /* HistoryTableView.swift in Sources */,
 				7EA34C9C29ECFEF4001B51C9 /* CustomButton.swift in Sources */,
 				7EA34CCB29ED271A001B51C9 /* ReportViewController.swift in Sources */,
-				7E9A745129EE51F00002051C /* ItemHomeStatView.swift in Sources */,
+				7E9A745129EE51F00002051C /* ItemMonthlyReportView.swift in Sources */,
 				7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */,
 				7E99F83529ECE83F00BDDF92 /* AppDelegate.swift in Sources */,
 				7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */,
