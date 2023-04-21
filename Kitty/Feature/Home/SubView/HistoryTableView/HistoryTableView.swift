@@ -46,7 +46,7 @@ class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : HistoryTableViewCell = (tableView.dequeueReusableCell(withIdentifier:HistoryTableViewCell.identifer,for: indexPath)) as! HistoryTableViewCell
         cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 5
+        cell.layer.cornerRadius = 8
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
         

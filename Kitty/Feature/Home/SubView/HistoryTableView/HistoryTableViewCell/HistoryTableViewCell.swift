@@ -64,7 +64,7 @@ extension HistoryTableViewCell {
         for index in 0...(listItemExpenseViewData?.count ?? 0)-1 {
             let itemExpenseController = ItemExpenseViewController()
             listItemExpenseStackView.addArrangedSubview(itemExpenseController.view)
-            itemExpenseController.bindData(viewData: ItemExpenseViewController.ViewData(itemCategoryIconText: listItemExpenseViewData?[index].category.iconUrl, itemExpenseValue: (listItemExpenseViewData?[index].expenseValue ?? 0), itemCategoryText: listItemExpenseViewData?[index].category.categoryName, itemNameText: listItemExpenseViewData?[index].expenseDescription, itemCategoryIconBackgroundColor: listItemExpenseViewData?[index].category.colorBackground))
+            itemExpenseController.bindData(viewData: ItemExpenseViewController.ViewData(itemCategoryIconText: listItemExpenseViewData?[index].category.iconUrl, itemTitleValue: (listItemExpenseViewData?[index].expenseValue ?? 0), itemSubText: listItemExpenseViewData?[index].category.categoryName, itemTitleText: listItemExpenseViewData?[index].expenseDescription, itemCategoryIconBackgroundColor: listItemExpenseViewData?[index].category.colorBackground))
             itemExpenseController.view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 itemExpenseController.view.heightAnchor.constraint(equalToConstant: 56),

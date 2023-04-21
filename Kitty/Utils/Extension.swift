@@ -31,6 +31,7 @@ extension String {
                       // Cache this, NumberFormatter creation is expensive.
             formatter.locale = Locale(identifier: "en_IN") // Here indian locale with english language is used
             formatter.numberStyle = .currency
+            formatter.currencySymbol = " ₹"
             formatter.minimumFractionDigits = 0
             formatter.maximumFractionDigits = 0
             // Change to `.currency` if needed

@@ -14,8 +14,8 @@
             filePath = "Kitty/Feature/Home/SubView/ItemExpenseView/ItemExpenseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "bindData(viewData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Kitty/Feature/Home/SubView/ItemExpenseView/ItemExpenseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "bindData(viewData:)"
             landmarkType = "7">
          </BreakpointContent>
