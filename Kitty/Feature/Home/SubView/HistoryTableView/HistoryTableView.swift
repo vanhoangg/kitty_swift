@@ -51,7 +51,7 @@ class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         cell.clipsToBounds = true
         
         cell.loadData(viewData: HistoryTableViewCell.ViewData(
-            dayId: viewData.listDailyStatistic?[indexPath.section].dayId, dailyExpenseText: String(viewData.listDailyStatistic?[indexPath.section].dailyExpense ?? 0), listItemExpenseViewData: viewData.listDailyStatistic?[indexPath.section].listExpenseReport))
+            dayId: viewData.listDailyStatistic?[indexPath.section].dayId, dailyExpense: viewData.listDailyStatistic?[indexPath.section].dailyExpense , listItemExpenseViewData: viewData.listDailyStatistic?[indexPath.section].listExpenseReport))
         
         
         

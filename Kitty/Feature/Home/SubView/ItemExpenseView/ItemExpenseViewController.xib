@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
                 <outlet property="itemExpenseValueLabel" destination="Y4H-fD-E3l" id="l54-F1-idZ"/>
                 <outlet property="itemIconImageView" destination="CNu-5Q-5Gn" id="0SR-SO-EBq"/>
                 <outlet property="itemNameLabel" destination="eOi-gt-3YA" id="4Dh-5E-MzH"/>
+                <outlet property="itemRoundIconView" destination="jl9-ei-YAZ" id="en4-fJ-zUd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,30 +23,39 @@
             <rect key="frame" x="0.0" y="0.0" width="312" height="56"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CNu-5Q-5Gn" userLabel="Item Icon Image View">
-                    <rect key="frame" x="0.0" y="8" width="40" height="40"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jl9-ei-YAZ" customClass="RoundedUIView" customModule="Kitty" customModuleProvider="target">
+                    <rect key="frame" x="8" y="8" width="40" height="40"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CNu-5Q-5Gn" userLabel="Item Icon Image View">
+                            <rect key="frame" x="8" y="8" width="24" height="24"/>
+                        </imageView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="8Ok-UE-iMW"/>
-                        <constraint firstAttribute="width" secondItem="CNu-5Q-5Gn" secondAttribute="height" id="Bt7-ep-umJ"/>
+                        <constraint firstItem="CNu-5Q-5Gn" firstAttribute="leading" secondItem="jl9-ei-YAZ" secondAttribute="leading" constant="8" id="DEk-7R-DRf"/>
+                        <constraint firstItem="CNu-5Q-5Gn" firstAttribute="top" secondItem="jl9-ei-YAZ" secondAttribute="top" constant="8" id="Jme-lB-g7R"/>
+                        <constraint firstAttribute="width" secondItem="jl9-ei-YAZ" secondAttribute="height" multiplier="1:1" id="L2P-rp-wpd"/>
+                        <constraint firstAttribute="trailing" secondItem="CNu-5Q-5Gn" secondAttribute="trailing" constant="8" id="l15-rM-FAd"/>
+                        <constraint firstAttribute="bottom" secondItem="CNu-5Q-5Gn" secondAttribute="bottom" constant="8" id="lWC-KB-i7o"/>
+                        <constraint firstAttribute="width" constant="40" id="pM0-82-PAc"/>
                     </constraints>
-                </imageView>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4H-fD-E3l" userLabel="Expense Value Label">
                     <rect key="frame" x="262.5" y="18" width="41.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" name="red"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UWx-ur-wXU">
-                    <rect key="frame" x="48" y="8" width="41.5" height="40"/>
+                    <rect key="frame" x="56" y="7.5" width="41.5" height="41"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOi-gt-3YA" userLabel="Description Label">
-                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="20"/>
+                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9v-4r-bg8" userLabel="Category Label">
-                            <rect key="frame" x="0.0" y="20" width="41.5" height="20"/>
+                            <rect key="frame" x="0.0" y="20.5" width="41.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -53,22 +63,23 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="UWx-ur-wXU" firstAttribute="height" secondItem="CNu-5Q-5Gn" secondAttribute="height" id="9Ow-83-eMb"/>
-                <constraint firstItem="CNu-5Q-5Gn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Jli-1E-U2I"/>
-                <constraint firstItem="CNu-5Q-5Gn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mbg-f7-ehH"/>
-                <constraint firstItem="UWx-ur-wXU" firstAttribute="leading" secondItem="CNu-5Q-5Gn" secondAttribute="trailing" constant="8" id="ZiC-IU-SNR"/>
+                <constraint firstItem="jl9-ei-YAZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="X3S-u2-ILL"/>
+                <constraint firstItem="jl9-ei-YAZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="ecX-jl-5NI"/>
                 <constraint firstItem="UWx-ur-wXU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="fLl-Ss-IYf"/>
                 <constraint firstAttribute="trailing" secondItem="Y4H-fD-E3l" secondAttribute="trailing" constant="8" id="l8B-xR-zyb"/>
                 <constraint firstItem="Y4H-fD-E3l" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ue2-wa-4LH"/>
+                <constraint firstItem="UWx-ur-wXU" firstAttribute="leading" secondItem="jl9-ei-YAZ" secondAttribute="trailing" constant="8" id="vL1-h5-eoR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="137.68115942028987" y="150"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="red">
+            <color red="0.89803921568627454" green="0.22352941176470589" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

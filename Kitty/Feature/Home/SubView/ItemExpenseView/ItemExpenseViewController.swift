@@ -17,29 +17,43 @@ class ItemExpenseViewController: UIViewController {
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemCategoryLabel: UILabel!
     
+    @IBOutlet weak var itemRoundIconView: RoundedUIView!
     //MARK: Properties
     struct ViewData
     {
         let itemCategoryIconText : String?
-        let itemExpenseValueText : String?
+        let itemExpenseValue : Float?
         let itemCategoryText : String?
         let itemNameText :String?
+        let itemCategoryIconBackgroundColor:String?
     }
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        build()
     }
     // MARK: - Method
-    func bindData(data:ViewData){
+    
+    func build(){
+        itemExpenseValueLabel.font = UIFont.CustomFont(.regular,size: 14)
+        itemExpenseValueLabel.textColor = UIColor(named:AssetColor.red)
+        itemNameLabel.font = UIFont.CustomFont(.regular,size: 14)
+        itemNameLabel.textColor = UIColor(named:AssetColor.PrimaryTextColor)
+        itemCategoryLabel.font = UIFont.CustomFont(.regular,size: 12)
+        itemCategoryLabel.textColor = UIColor(named:AssetColor.ThirdTextColor)
+    }
+    func bindData(viewData:ViewData){
         
-        if let itemCategoryIcon = data.itemCategoryIconText {
+        if let itemCategoryIcon = viewData.itemCategoryIconText {
             self.itemIconImageView.image = UIImage(named: itemCategoryIcon )
         }
-        if let itemCategoryDescription = data.itemNameText {
+        if let itemCategoryDescription = viewData.itemNameText {
             itemNameLabel.text = itemCategoryDescription
         } else {itemNameLabel.removeFromSuperview()}
         
-        self.itemExpenseValueLabel.text = data.itemExpenseValueText?.currencyFormatting()
-        self.itemCategoryLabel.text = data.itemCategoryText
+        self.itemExpenseValueLabel.text = String(-(viewData.itemExpenseValue ?? 0)).currencyFormatting()
+        self.itemCategoryLabel.text = viewData.itemCategoryText
+        if let  backgroundColor = viewData.itemCategoryIconBackgroundColor  {itemRoundIconView.backgroundColor = UIColor(named: backgroundColor ) }
+        
     }
 }

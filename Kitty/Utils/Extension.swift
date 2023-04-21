@@ -41,8 +41,17 @@ extension String {
         return ""
     }
 }
+@IBDesignable public class RoundedUIView: UIView {
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.layer.cornerRadius = self.frame.width / 2;
+        self.layer.masksToBounds = true
+    }
+}
 extension UIView {
-    
+   
     @IBInspectable
     var cornerRadius: CGFloat {
         get {

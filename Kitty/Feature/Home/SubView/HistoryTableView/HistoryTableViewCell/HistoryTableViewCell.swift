@@ -11,13 +11,16 @@ class HistoryTableViewCell: UITableViewCell {
     
     struct ViewData{
         let dayId:String?
-        let dailyExpenseText:String?
+        let dailyExpense:Float?
         let listItemExpenseViewData: [Expenses]?
     }
     //MARK: - IBOutlet
     @IBOutlet weak var listItemExpenseStackView: UIStackView!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var dayTotalExpenseLabel: UILabel!
+    
+    
+    
     //MARK: - Properties
     static let identifer = "HistoryTableViewCell"
     
@@ -25,7 +28,7 @@ class HistoryTableViewCell: UITableViewCell {
     //MARK: - ViewLifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        build()
         
     }
     
@@ -33,10 +36,19 @@ class HistoryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    private func build(){
+        dayLabel.font = UIFont.CustomFont(.medium,size:10)
+        dayLabel.textColor = UIColor(named: AssetColor.SecondaryTextColor)
+        dayTotalExpenseLabel.font = UIFont.CustomFont(.medium,size: 10)
+        dayTotalExpenseLabel.textColor = UIColor(named: AssetColor.SecondaryTextColor)
+    }
+    
+    
+    
+}
+
+extension HistoryTableViewCell {
     //MARK: - Methods
-    
-    
-    
     static func nib() -> UINib {
         return UINib(nibName: "HistoryTableViewCell", bundle: nil)
     }
@@ -44,20 +56,15 @@ class HistoryTableViewCell: UITableViewCell {
     func loadData(viewData:HistoryTableViewCell.ViewData){
         
         dayLabel.text = viewData.dayId
-        dayTotalExpenseLabel.text = viewData.dailyExpenseText
+        dayTotalExpenseLabel.text = String(-(viewData.dailyExpense ?? 0)).currencyFormatting()
         
         configureListItem(listItemExpenseViewData: viewData.listItemExpenseViewData)
     }
-    
-    
-}
-extension HistoryTableViewCell {
-    
     func configureListItem(listItemExpenseViewData:[Expenses]?){
         for index in 0...(listItemExpenseViewData?.count ?? 0)-1 {
             let itemExpenseController = ItemExpenseViewController()
             listItemExpenseStackView.addArrangedSubview(itemExpenseController.view)
-            itemExpenseController.bindData(data: ItemExpenseViewController.ViewData(itemCategoryIconText: FunctionUtils.getIconUrl(listItemExpenseViewData?[index].category), itemExpenseValueText: String(listItemExpenseViewData?[index].expenseValue ?? 0), itemCategoryText: listItemExpenseViewData?[index].category.categoryName, itemNameText: listItemExpenseViewData?[index].expenseDescription))
+            itemExpenseController.bindData(viewData: ItemExpenseViewController.ViewData(itemCategoryIconText: listItemExpenseViewData?[index].category.iconUrl, itemExpenseValue: (listItemExpenseViewData?[index].expenseValue ?? 0), itemCategoryText: listItemExpenseViewData?[index].category.categoryName, itemNameText: listItemExpenseViewData?[index].expenseDescription, itemCategoryIconBackgroundColor: listItemExpenseViewData?[index].category.colorBackground))
             itemExpenseController.view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 itemExpenseController.view.heightAnchor.constraint(equalToConstant: 56),

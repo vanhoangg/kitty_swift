@@ -43,17 +43,39 @@ struct Expenses{
 struct ExpenseCategory{
     let categoryId,categoryName:String
 }
+extension ExpenseCategory {
+    var iconUrl:String  {
+        switch  categoryId {
+        case "healthCategory":
+            return AssetIcon.icHealth
+        case "giftsCategory":
+            return AssetIcon.icGift
+        default:
+            return AssetIcon.icHealth
+        }
+    }
+    var colorBackground: String {
+        switch  categoryId {
+        case "healthCategory":
+            return AssetColor.healthBackgroundColor
+        case "giftsCategory":
+            return AssetColor.giftBackgroundColor
+        default:
+            return AssetColor.transportationBackgroundColor
+        }
+    }
+}
 
 
 
 struct DummyData {
-    static let healthCategory:ExpenseCategory = ExpenseCategory(categoryId: "category1", categoryName: "Heath")
-    static let giftsCategory:ExpenseCategory = ExpenseCategory(categoryId: "category2", categoryName: "Gifts")
+    static let healthCategory:ExpenseCategory = ExpenseCategory(categoryId: "healthCategory", categoryName: "Heath")
+    static let giftsCategory:ExpenseCategory = ExpenseCategory(categoryId: "giftsCategory", categoryName: "Gifts")
     static let listExpense:[Expenses] =
     [
-        Expenses(category: healthCategory, expenseValue: 150),Expenses(category: giftsCategory, expenseValue: 100)
+        Expenses(category: healthCategory, expenseValue: 150 , expenseDescription: "Hangouts with Sujay"),Expenses(category: giftsCategory, expenseValue: 100,expenseDescription: "Egg & veggies")
         
-
+        
     ]
     static let listDailyStatistic:[DailyStatistic] =
     [
