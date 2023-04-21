@@ -9,60 +9,61 @@ import UIKit
 
 class HistoryTableViewCell: UITableViewCell {
     
-    
-    var statisticDay:StatisticDay?;
+    struct ViewData{
+        let dayId:String?
+        let dayExpenseText:String?
+        let listItemExpenseViewData: [Expenses]?
+    }
+    //MARK: - IBOutlet
+    @IBOutlet weak var listItemExpenseStackView: UIStackView!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var dayTotalExpenseLabel: UILabel!
+    //MARK: - Properties
     static let identifer = "HistoryTableViewCell"
+    
+    
+    //MARK: - ViewLifeCycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    //MARK: - Methods
+    
+    
+    
     static func nib() -> UINib {
         return UINib(nibName: "HistoryTableViewCell", bundle: nil)
     }
     
-    @IBOutlet weak var listItemExpenseStackView: UIStackView!
+    func loadData(viewData:HistoryTableViewCell.ViewData){
+        
+        dayLabel.text = viewData.dayId
+        dayTotalExpenseLabel.text = viewData.dayExpenseText
+        
+        configureListItem(listItemExpenseViewData: viewData.listItemExpenseViewData)
+    }
     
-    
-    var expenseDetailViewModel = ExpenseDetailViewModel()
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    func configureData(with data:StatisticDay?){
-        self.statisticDay = data
-        
-        configureListItem()
-        
-    }
     
 }
 extension HistoryTableViewCell {
     
-    func configureListItem(){
-//
-//        let listDataExpense: [Expense] : [ Expense(),]
-        
-        for index in 0...(statisticDay?.expenses.count ?? 0)-1 {
+    func configureListItem(listItemExpenseViewData:[Expenses]?){
+        for index in 0...(listItemExpenseViewData?.count ?? 0)-1 {
             let itemExpenseController = ItemExpenseViewController()
-//            let view: UIView = UIView()
-//
-//            listItemExpenseStackView.addArrangedSubview(view)
-//            view.backgroundColor = UIColor.random()
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//            NSLayoutConstraint.activate([
-//                view.heightAnchor.constraint(equalToConstant: 50),
-//                view.widthAnchor.constraint(equalTo: listItemExpenseStackView.widthAnchor)])
             listItemExpenseStackView.addArrangedSubview(itemExpenseController.view)
-            
-            itemExpenseController.configure(with:statisticDay?.expenses[index])
+            itemExpenseController.bindData(data: ItemExpenseViewController.ViewData(itemCategoryIconText: FunctionUtils.getIconUrl(listItemExpenseViewData?[index].category), itemExpenseValueText: String(listItemExpenseViewData?[index].expenseValue ?? 0), itemCategoryText: listItemExpenseViewData?[index].category.categoryName, itemNameText: listItemExpenseViewData?[index].expenseDescription))
             itemExpenseController.view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-//                itemExpenseController.view.heightAnchor.constraint(equalTo: listItemExpenseStackView.heightAnchor,multiplier:  56/216,constant: 0),
                 itemExpenseController.view.heightAnchor.constraint(equalToConstant: 56),
                 itemExpenseController.view.widthAnchor.constraint(equalTo: listItemExpenseStackView.widthAnchor)
             ])
-            print("height : \(itemExpenseController.view.frame)")
-
+            
         }
     }
 }

@@ -10,6 +10,7 @@
 		7E1798C529F0EE5F0003C20E /* ItemExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1798C329F0EE5F0003C20E /* ItemExpenseViewController.swift */; };
 		7E1798C629F0EE5F0003C20E /* ItemExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1798C429F0EE5F0003C20E /* ItemExpenseViewController.xib */; };
 		7E1798C829F0F7FA0003C20E /* FunctionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1798C729F0F7FA0003C20E /* FunctionUtils.swift */; };
+		7E834F5529F269E500F3363E /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E834F5429F269E500F3363E /* CustomTableView.swift */; };
 		7E99F83529ECE83F00BDDF92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E99F83429ECE83F00BDDF92 /* AppDelegate.swift */; };
 		7E99F83729ECE83F00BDDF92 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E99F83629ECE83F00BDDF92 /* SceneDelegate.swift */; };
 		7E99F83E29ECE84400BDDF92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E99F83D29ECE84400BDDF92 /* Assets.xcassets */; };
@@ -22,7 +23,6 @@
 		7E9A745929EE6E2A0002051C /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745829EE6E2A0002051C /* Money.swift */; };
 		7E9A745B29EE705C0002051C /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745A29EE705C0002051C /* HistoryTableView.swift */; };
 		7E9A745D29EE7A010002051C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A745C29EE7A010002051C /* HomeViewModel.swift */; };
-		7E9B4A8329EF8AD300A58CA2 /* ExpenseDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B4A8229EF8AD300A58CA2 /* ExpenseDetailViewModel.swift */; };
 		7EA34C9C29ECFEF4001B51C9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34C9B29ECFEF3001B51C9 /* CustomButton.swift */; };
 		7EA34C9F29ED1604001B51C9 /* AssetUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34C9E29ED1604001B51C9 /* AssetUtils.swift */; };
 		7EA34CA129ED1868001B51C9 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CA029ED1868001B51C9 /* StringUtils.swift */; };
@@ -45,6 +45,7 @@
 		7E1798C329F0EE5F0003C20E /* ItemExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemExpenseViewController.swift; sourceTree = "<group>"; };
 		7E1798C429F0EE5F0003C20E /* ItemExpenseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemExpenseViewController.xib; sourceTree = "<group>"; };
 		7E1798C729F0F7FA0003C20E /* FunctionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionUtils.swift; sourceTree = "<group>"; };
+		7E834F5429F269E500F3363E /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		7E99F83129ECE83F00BDDF92 /* Kitty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kitty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E99F83429ECE83F00BDDF92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E99F83629ECE83F00BDDF92 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		7E9A745829EE6E2A0002051C /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		7E9A745A29EE705C0002051C /* HistoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableView.swift; sourceTree = "<group>"; };
 		7E9A745C29EE7A010002051C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		7E9B4A8229EF8AD300A58CA2 /* ExpenseDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailViewModel.swift; sourceTree = "<group>"; };
 		7EA34C9B29ECFEF3001B51C9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		7EA34C9E29ED1604001B51C9 /* AssetUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetUtils.swift; sourceTree = "<group>"; };
 		7EA34CA029ED1868001B51C9 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 				7EA34C9B29ECFEF3001B51C9 /* CustomButton.swift */,
 				7EA34CCF29ED2D86001B51C9 /* CustomNavigationBar.swift */,
 				7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */,
+				7E834F5429F269E500F3363E /* CustomTableView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -282,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				7E9A745C29EE7A010002051C /* HomeViewModel.swift */,
-				7E9B4A8229EF8AD300A58CA2 /* ExpenseDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -404,7 +404,6 @@
 				7EA34CB229ED25E5001B51C9 /* LoginViewController.swift in Sources */,
 				7EA34CA129ED1868001B51C9 /* StringUtils.swift in Sources */,
 				7EA34C9F29ED1604001B51C9 /* AssetUtils.swift in Sources */,
-				7E9B4A8329EF8AD300A58CA2 /* ExpenseDetailViewModel.swift in Sources */,
 				7E1798C829F0F7FA0003C20E /* FunctionUtils.swift in Sources */,
 				7ECC579A29EE3B1C00C09F30 /* Extension.swift in Sources */,
 				7EA34CC529ED2703001B51C9 /* SettingViewController.swift in Sources */,
@@ -412,6 +411,7 @@
 				7E9A745929EE6E2A0002051C /* Money.swift in Sources */,
 				7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */,
 				7EA34CD029ED2D86001B51C9 /* CustomNavigationBar.swift in Sources */,
+				7E834F5529F269E500F3363E /* CustomTableView.swift in Sources */,
 				7E1798C529F0EE5F0003C20E /* ItemExpenseViewController.swift in Sources */,
 				7E9A745B29EE705C0002051C /* HistoryTableView.swift in Sources */,
 				7EA34C9C29ECFEF4001B51C9 /* CustomButton.swift in Sources */,

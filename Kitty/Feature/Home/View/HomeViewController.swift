@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     var homeViewModel  = HomeViewModel()
+    // MARK: - IBoutlet
     @IBOutlet weak var incomeStatView: ItemHomeStatView!
     @IBOutlet weak var balanceStatView: ItemHomeStatView!
     @IBOutlet weak var paymentStatView: ItemHomeStatView!
@@ -17,29 +18,34 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var historyTableView: HistoryTableView!
     
     
-    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
+        bindData()
+    }
+    
+    // MARK: -Method
+    private func bindData(){
+        
 //        configCalendarView()
         configHomeStatView()
         configHistoryTableView()
-        
-        
-        // Do any additional setup after loading the view.
     }
 }
+
+// MARK: - Extension
 extension HomeViewController {
     private func configHomeStatView(){
      
-        paymentStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icPayment, value: String(-(homeViewModel.listStatisticMonth?.monthExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
+        paymentStatView.loadData(viewData: ItemHomeStatView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyStatistics?.monthExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
         
-        balanceStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icWallet, value: String(homeViewModel.listStatisticMonth?.monthBalance ?? 0 ), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
+        balanceStatView.loadData(viewData: ItemHomeStatView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyStatistics?.monthBalance ?? 0 ), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
        
-        incomeStatView.config(with: ItemHomeStatViewModel(icon: AssetIcon.icBank, value: String(homeViewModel.listStatisticMonth?.monthIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
+        incomeStatView.loadData(viewData: ItemHomeStatView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyStatistics?.monthIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
     }
     private func configHistoryTableView(){
-        historyTableView.monthlyData = homeViewModel.listStatisticMonth
+        historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDayStatistic: homeViewModel.monthlyStatistics?.listStatisticDay))
         historyTableView.bounces = false
         historyTableView.rowHeight = UITableView.automaticDimension
         historyTableView.estimatedRowHeight = 300

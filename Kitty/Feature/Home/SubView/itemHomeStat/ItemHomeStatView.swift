@@ -8,24 +8,28 @@
 import UIKit
 
 
-struct ItemHomeStatViewModel {
-    let icon: String?
-    let value: String?
-    let title: String?
-    let valueColor: UIColor?
-}
+
 
 class ItemHomeStatView: UIView {
-
-   
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        build()
+    
+    
+    // MARK: - Properties
+    struct ViewData {
+        let icon: String?
+        let value: String?
+        let title: String?
+        let valueColor: UIColor?
     }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        build()
+    private var viewData : ViewData?{
+        didSet{
+            iconImageView.image = UIImage(named: viewData?.icon ?? AssetIcon.icWallet)
+            valueLabel
+                .text = viewData?.value?.currencyFormatting()
+            titleLabel.text = viewData?.title
+            valueLabel.textColor = viewData?.valueColor
+        }
     }
+    
     private let iconImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -45,6 +49,30 @@ class ItemHomeStatView: UIView {
         label.font     = UIFont(name: "Inter-Regular", size: 12)
         return label
     }()
+    
+    
+    // MARK: - LifeCycle
+    override init(frame: CGRect) {
+        
+        super.init(frame: frame)
+        build()
+        
+        
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        build()
+
+    }
+}
+extension ItemHomeStatView {
+    
+  
+    
+    // MARK: - Method
+    func loadData(viewData:ViewData){
+        self.viewData = viewData
+    }
     private func build() {
         
         addSubview(iconImageView)
@@ -73,14 +101,5 @@ class ItemHomeStatView: UIView {
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
         ])
     }
-    func config(with viewModel : ItemHomeStatViewModel){
-        iconImageView.image = UIImage(named: viewModel.icon ?? AssetIcon.icWallet)
-        valueLabel
-            .text = viewModel.value?.currencyFormatting()
-        titleLabel.text = viewModel.title
-        valueLabel.textColor = viewModel.valueColor
-        
-    }
     
-
 }

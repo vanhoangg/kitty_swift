@@ -8,25 +8,27 @@
 import UIKit
 
 class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSource {
-        
     
-    var monthlyData:StatisticMonth?;
+    struct ViewData{
+        let listDayStatistic:[StatisticDay]?;
+    }
+    var viewData = ViewData(listDayStatistic: []);
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return monthlyData?.listStatisticDay.count ?? 0
+        return viewData.listDayStatistic?.count ?? 0
     }
     
     
     override var contentSize: CGSize {
-               didSet {
-                   invalidateIntrinsicContentSize()
-                   setNeedsLayout()
-               }
-       }
-       override var intrinsicContentSize: CGSize {
-           return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
-       }
+        didSet {
+            invalidateIntrinsicContentSize()
+            setNeedsLayout()
+        }
+    }
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -47,22 +49,25 @@ class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         cell.layer.cornerRadius = 5
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
-        cell.configureData(with: monthlyData?.listStatisticDay[indexPath.section])
+        
+        cell.loadData(viewData: HistoryTableViewCell.ViewData(
+            dayId: viewData.listDayStatistic?[indexPath.section].dayId, dayExpenseText: String(viewData.listDayStatistic?[indexPath.section].dayExpense ?? 0), listItemExpenseViewData: viewData.listDayStatistic?[indexPath.section].expenses))
+        
         
         
         return cell
     }
     
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
-    override init(frame: CGRect, style: UITableView.Style) {
+    /*
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
+    
+    override init(frame: CGRect, style: UITableView.Style ) {
         super.init(frame: CGRect.zero, style: .plain)
         initTableView()
     }
@@ -71,11 +76,16 @@ class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         super.init(coder: aDecoder)
         initTableView()
     }
-        
+    //MARK: Method
+    
     private func initTableView() {
         register(HistoryTableViewCell.nib(), forCellReuseIdentifier: HistoryTableViewCell.identifer)
         delegate = self
         dataSource = self
         separatorStyle = .none
+    }
+    func loadData(viewData:HistoryTableView.ViewData){
+        self.viewData = viewData;
+        reloadData()
     }
 }

@@ -9,13 +9,13 @@ import Foundation
 
 class HomeViewModel :ObservableObject {
     
-    @Published    var listStatisticMonth: StatisticMonth?
+    @Published    var monthlyStatistics: StatisticMonth?
     
     init(){
         loadApi()
     }
     func loadApi(){
         
-        self.listStatisticMonth = DummyData.listStatisticMonth.first
+        self.monthlyStatistics = DummyData.listMonthlyStatistic.first
     }
 }

@@ -54,6 +54,8 @@
                 <constraint firstItem="ZQ3-HE-Hq6" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="8" id="pdw-lb-iha"/>
             </constraints>
             <connections>
+                <outlet property="dayLabel" destination="Msv-YT-BiJ" id="jcQ-IU-E7U"/>
+                <outlet property="dayTotalExpenseLabel" destination="9IO-97-EdU" id="PeF-ym-qpY"/>
                 <outlet property="listItemExpenseStackView" destination="ZQ3-HE-Hq6" id="9K1-hI-95I"/>
             </connections>
             <point key="canvasLocation" x="120.28985507246378" y="245.42410714285714"/>

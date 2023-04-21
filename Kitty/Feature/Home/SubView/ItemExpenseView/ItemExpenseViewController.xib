@@ -10,10 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemExpenseViewController" customModule="Kitty" customModuleProvider="target">
             <connections>
-                <outlet property="itemCategoryLabel" destination="TI8-hW-03A" id="SfE-fm-5l1"/>
+                <outlet property="itemCategoryLabel" destination="c9v-4r-bg8" id="FOr-5E-yPW"/>
                 <outlet property="itemExpenseValueLabel" destination="Y4H-fD-E3l" id="l54-F1-idZ"/>
                 <outlet property="itemIconImageView" destination="CNu-5Q-5Gn" id="0SR-SO-EBq"/>
-                <outlet property="itemNameLabel" destination="ouS-cl-wRs" id="76p-cv-LNv"/>
+                <outlet property="itemNameLabel" destination="eOi-gt-3YA" id="4Dh-5E-MzH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,23 +29,23 @@
                         <constraint firstAttribute="width" secondItem="CNu-5Q-5Gn" secondAttribute="height" id="Bt7-ep-umJ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4H-fD-E3l" userLabel="Expense Value Label">
-                    <rect key="frame" x="111.5" y="18" width="200.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4H-fD-E3l" userLabel="Expense Value Label">
+                    <rect key="frame" x="262.5" y="18" width="41.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="UWx-ur-wXU">
-                    <rect key="frame" x="48" y="8" width="63.5" height="40"/>
+                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UWx-ur-wXU">
+                    <rect key="frame" x="48" y="8" width="41.5" height="40"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sakdasd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouS-cl-wRs" userLabel="Item Name Label">
-                            <rect key="frame" x="0.0" y="0.0" width="63.5" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOi-gt-3YA" userLabel="Description Label">
+                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TI8-hW-03A" userLabel="Item Category Label">
-                            <rect key="frame" x="0.0" y="20.5" width="63.5" height="19.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9v-4r-bg8" userLabel="Category Label">
+                            <rect key="frame" x="0.0" y="20" width="41.5" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -60,9 +60,8 @@
                 <constraint firstItem="CNu-5Q-5Gn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Jli-1E-U2I"/>
                 <constraint firstItem="CNu-5Q-5Gn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mbg-f7-ehH"/>
                 <constraint firstItem="UWx-ur-wXU" firstAttribute="leading" secondItem="CNu-5Q-5Gn" secondAttribute="trailing" constant="8" id="ZiC-IU-SNR"/>
-                <constraint firstItem="Y4H-fD-E3l" firstAttribute="leading" secondItem="UWx-ur-wXU" secondAttribute="trailing" id="bF7-Ye-9uw"/>
                 <constraint firstItem="UWx-ur-wXU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="fLl-Ss-IYf"/>
-                <constraint firstAttribute="trailing" secondItem="Y4H-fD-E3l" secondAttribute="trailing" id="l8B-xR-zyb"/>
+                <constraint firstAttribute="trailing" secondItem="Y4H-fD-E3l" secondAttribute="trailing" constant="8" id="l8B-xR-zyb"/>
                 <constraint firstItem="Y4H-fD-E3l" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ue2-wa-4LH"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -10,28 +10,36 @@ import UIKit
 
 
 class ItemExpenseViewController: UIViewController {
-    static func nib() -> UINib {
-        return UINib(nibName: "ItemExpenseViewController", bundle: nil)
-    }
-    static func instanceFromNib() -> UIView {
-        return UINib(nibName: "ItemExpenseViewController", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    }
-
+    //MARK: - IBOutlet
     @IBOutlet weak var itemExpenseValueLabel: UILabel!
     @IBOutlet weak var itemIconImageView: UIImageView!
     
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var itemCategoryLabel: UILabel!
     
+    //MARK: Properties
+    struct ViewData
+    {
+        let itemCategoryIconText : String?
+        let itemExpenseValueText : String?
+        let itemCategoryText : String?
+        let itemNameText :String?
+    }
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-
-    func configure(with item:Expenses?){
-        itemIconImageView.image = UIImage(named: FunctionUtils.getIconUrl(item?.category))
-        itemExpenseValueLabel.text = String(item?.expenseValue ?? 0)
-        itemNameLabel.text = item?.expenseDescription
-        itemCategoryLabel.text = item?.category.categoryName
+    // MARK: - Method
+    func bindData(data:ViewData){
+        
+        if let itemCategoryIcon = data.itemCategoryIconText {
+            self.itemIconImageView.image = UIImage(named: itemCategoryIcon )
+        }
+        if let itemCategoryDescription = data.itemNameText {
+            itemNameLabel.text = itemCategoryDescription
+        } else {itemNameLabel.removeFromSuperview()}
+        
+        self.itemExpenseValueLabel.text = data.itemExpenseValueText
+        self.itemCategoryLabel.text = data.itemCategoryText
     }
 }

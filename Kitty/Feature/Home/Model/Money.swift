@@ -60,12 +60,12 @@ struct DummyData {
         StatisticDay(dayId: "1/1/2023",dayName: "1", dayIncome: 500, dayBalance: 250, dayExpense: 250, expenses: listExpense),
         StatisticDay(dayId: "2/1/2023",dayName: "2", dayIncome: 500, dayBalance: 250, dayExpense: 250, expenses: listExpense)
     ]
-    static let listStatisticMonth:[StatisticMonth] =
+    static let listMonthlyStatistic:[StatisticMonth] =
     [
         StatisticMonth(monthId: "1/2023", monthName: "1", monthIncome: 1000, monthBalance: 500, monthExpense: 500, listStatisticDay: listStatisticDay),
         StatisticMonth(monthId: "2/2023", monthName: "2", monthIncome: 1000, monthBalance: 500, monthExpense: 500, listStatisticDay: listStatisticDay)
     ]
-    static let listStatisticYear: [StatisticYear] = [StatisticYear(yearId: "2023", yearName: "2023", yearIncome: 4000, yearBalance: 2000, yearExpense: 2000, listStatisticMonth: listStatisticMonth)]
+    static let listStatisticYear: [StatisticYear] = [StatisticYear(yearId: "2023", yearName: "2023", yearIncome: 4000, yearBalance: 2000, yearExpense: 2000, listStatisticMonth: listMonthlyStatistic)]
     static let user = User(userId: "userId1", userName: "UserName1", listStatisticYear: listStatisticYear)
     
 }
