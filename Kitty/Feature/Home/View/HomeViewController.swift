@@ -59,7 +59,10 @@ extension HomeViewController {
         incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyStatistics?.monthlyIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
     }
     private func configHistoryTableView(){
-        historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyStatistic: homeViewModel.monthlyStatistics?.listDailyStatistic))
+        if let listDaily = homeViewModel.monthlyStatistics?.listDailyStatistic {
+            historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyStatistic: Array(listDaily)  ))
+        }
+        
         historyTableView.bounces = false
         historyTableView.rowHeight = UITableView.automaticDimension
         historyTableView.estimatedRowHeight = 300

@@ -16,6 +16,15 @@ class HomeViewModel :ObservableObject {
     }
     func loadApi(){
         
-        self.monthlyStatistics = DummyData.listMonthlyStatistic.first
+        DataManager.instance().fetchData{
+            (results) in
+            
+            
+            monthlyStatistics = results?[0].listMonthlyStatistic.first(where: { MonthlyStatistic in
+                MonthlyStatistic.monthName == "1/2023"
+            })
+        
+          
+        }
     }
 }

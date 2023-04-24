@@ -6,59 +6,141 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct DailyStatistic {
-    let dayId,dayName:String
+class DailyStatistic : Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+
     
-    let dailyIncome ,dailyBalance, dailyExpense :Float
-    let listExpenseReport:[Expenses]
+    @Persisted var dayName:String?
     
-}
-struct User{
+    @Persisted var dailyExpense:Float?
+    @Persisted var listExpenseReport:List<Expenses> = List<Expenses>()
     
-    let userId,userName :String
-    let listYearlyStatistic :[YearlyStatistic]
+    
+    
+    
+    convenience init(dayName: String?,expenseReports:[Expenses]?) {
+        self.init()
+    
+        self.dayName = dayName
+
+        
+        if let expenseReports = expenseReports {
+            var sum:Float = 0;
+            for expense in expenseReports {
+                 sum = sum + (expense.expenseValue ?? 0)
+            }
+            self.dailyExpense = sum
+            self.listExpenseReport.append(objectsIn: expenseReports)
+        }
+     
+        
+    }
 }
-struct MonthlyStatistic{
-    let monthId,monthName:String
-    let monthlyIncome ,monthlyBalance,monthlyExpense :Float
-    let listDailyStatistic: [DailyStatistic]
-}
-struct YearlyStatistic{
-    let yearId, yearName:String
-    let yearIncome ,yearBalance,yearExpense :Float
-    let listMonthlyStatistic:[MonthlyStatistic]
-}
-struct Expenses{
-    let category:ExpenseCategory
-    let expenseValue :Float
-    let expenseDescription:String?
-    init(category: ExpenseCategory, expenseValue: Float, expenseDescription: String? = nil) {
-        self.category = category
-        self.expenseValue = expenseValue
-        self.expenseDescription = expenseDescription
+class  User :Object{
+    @Persisted(primaryKey: true) var _id: ObjectId
+
+    @Persisted var userName :String?
+    @Persisted var  listMonthlyStatistic = List<MonthlyStatistic>()
+    convenience init(userName:String?,monthlyStatistics:[MonthlyStatistic]?)
+    {
+        self.init()
+        self.userName = userName
+        if let monthlyStatistics = monthlyStatistics {
+            self.listMonthlyStatistic.append(objectsIn:monthlyStatistics)
+        }
+        
     }
 }
 
-struct ExpenseCategory{
-    let categoryId,categoryName:String
+class MonthlyStatistic : Object{
+    @Persisted(primaryKey: true) var _id: ObjectId
+
+    @Persisted var yearName:String?
+    @Persisted var  monthName:String?
+    @Persisted var  monthlyIncome:Float?
+    @Persisted var  monthlyBalance:Float?
+    @Persisted var  monthlyExpense:Float?
+    @Persisted var  listDailyStatistic: List<DailyStatistic> = List<DailyStatistic>()
+    convenience init(yearName:String?,monthName:String?,monthlyIncome:Float?,dailyStatistics:[DailyStatistic]?)
+    {
+        self.init()
+        
+        self.monthName = monthName
+        self.monthlyIncome = monthlyIncome
+        self.yearName = yearName
+        if let dailyStatistics = dailyStatistics {
+            self.listDailyStatistic.append(objectsIn: dailyStatistics)
+            var sum:Float = 0
+             dailyStatistics.forEach({ dailyStatistic in
+                 
+                 sum = sum + (dailyStatistic.dailyExpense ?? 0)
+            })
+            
+            self.monthlyExpense = sum
+            self.monthlyBalance = (monthlyIncome ?? 0) - sum
+        }
+        
+    }
+    
+}
+
+class  Expenses : Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+
+    
+    
+    @Persisted var category:ExpenseCategory? = ExpenseCategory()
+    @Persisted var expenseValue :Float?
+    @Persisted var expenseDescription:String?
+    convenience init(expenseDescription:String? = "" ,category:ExpenseCategory?,expenseValue:Float?)
+    {
+        self.init()
+        self.expenseValue = expenseValue
+        self.expenseDescription = expenseDescription
+        if let category = category {
+            self.category = category
+        }
+    }
+}
+
+class ExpenseCategory :Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var categoryName:String?
+    @Persisted var type:CategoryEnum = CategoryEnum.unknow
+    convenience init(categoryName:String? = "" ,type:CategoryEnum?)
+    {
+        self.init()
+        self.categoryName = categoryName
+        
+        if let type = type {
+            self.type = type
+        }
+    }
+    
+}
+enum CategoryEnum: String, PersistableEnum {
+    case health
+    case gifts
+    case unknow
 }
 extension ExpenseCategory {
     var iconUrl:String  {
-        switch  categoryId {
-        case "healthCategory":
+        switch  type {
+        case CategoryEnum.health:
             return AssetIcon.icHealth
-        case "giftsCategory":
+        case CategoryEnum.gifts:
             return AssetIcon.icGift
         default:
             return AssetIcon.icHealth
         }
     }
     var colorBackground: String {
-        switch  categoryId {
-        case "healthCategory":
+        switch  type {
+        case CategoryEnum.health:
             return AssetColor.healthBackgroundColor
-        case "giftsCategory":
+        case CategoryEnum.gifts:
             return AssetColor.giftBackgroundColor
         default:
             return AssetColor.transportationBackgroundColor
@@ -69,25 +151,23 @@ extension ExpenseCategory {
 
 
 struct DummyData {
-    static let healthCategory:ExpenseCategory = ExpenseCategory(categoryId: "healthCategory", categoryName: "Heath")
-    static let giftsCategory:ExpenseCategory = ExpenseCategory(categoryId: "giftsCategory", categoryName: "Gifts")
+    static let healthCategory:ExpenseCategory = ExpenseCategory(categoryName: "Heath", type: CategoryEnum.health)
+    static let giftsCategory:ExpenseCategory = ExpenseCategory(categoryName: "Gifts", type: CategoryEnum.gifts)
     static let listExpense:[Expenses] =
-    [
-        Expenses(category: healthCategory, expenseValue: 150 , expenseDescription: "Hangouts with Sujay"),Expenses(category: giftsCategory, expenseValue: 100,expenseDescription: "Egg & veggies")
-        
-        
-    ]
+                                                                        [ Expenses(expenseDescription: "Hangouts with Sujay", category: healthCategory, expenseValue: 150),
+                                                                          Expenses(expenseDescription: "Egg & veggies", category: giftsCategory, expenseValue: 100)]
+    
     static let listDailyStatistic:[DailyStatistic] =
     [
-        DailyStatistic(dayId: "1/1/2023",dayName: "1", dailyIncome: 500, dailyBalance: 250, dailyExpense: 250, listExpenseReport: listExpense),
-        DailyStatistic(dayId: "2/1/2023",dayName: "2", dailyIncome: 500, dailyBalance: 250, dailyExpense: 250, listExpenseReport: listExpense)
+        DailyStatistic(dayName: "1/1/2023", expenseReports: listExpense),
+        DailyStatistic(dayName: "2/1/2023",  expenseReports: listExpense)
     ]
     static let listMonthlyStatistic:[MonthlyStatistic] =
     [
-        MonthlyStatistic(monthId: "1/2023", monthName: "1", monthlyIncome: 1000, monthlyBalance: 500, monthlyExpense: 500, listDailyStatistic: listDailyStatistic),
-        MonthlyStatistic(monthId: "2/2023", monthName: "2", monthlyIncome: 1000, monthlyBalance: 500, monthlyExpense: 500, listDailyStatistic: listDailyStatistic)
+        MonthlyStatistic(yearName: "2023",monthName: "1/2023", monthlyIncome: 1000,  dailyStatistics: listDailyStatistic),
+        MonthlyStatistic(yearName: "2023",monthName: "2/2023", monthlyIncome: 1000,  dailyStatistics: listDailyStatistic)
     ]
-    static let listYearlyStatistic: [YearlyStatistic] = [YearlyStatistic(yearId: "2023", yearName: "2023", yearIncome: 4000, yearBalance: 2000, yearExpense: 2000, listMonthlyStatistic: listMonthlyStatistic)]
-    static let user = User(userId: "userId1", userName: "UserName1", listYearlyStatistic: listYearlyStatistic)
+    
+    static let user = User(userName: "UserName1", monthlyStatistics: listMonthlyStatistic)
     
 }
