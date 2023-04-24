@@ -11,7 +11,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var contentLabel: UILabel!
     
-    private let loginButton = IconTextButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addLoginButton()
@@ -19,14 +19,16 @@ class LoginViewController: UIViewController {
         
     }
     private func addLoginButton() {
+        let loginButton = IconTextButton()
         view.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.configure(viewData: IconTextButton.IconTextButtonViewData(text: StringUtils.registerLabel, image: UIImage(named: AssetIcon.icGoogle)))
         NSLayoutConstraint.activate([
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.topAnchor.constraint(equalTo: contentLabel.bottomAnchor,constant: 56),
             loginButton.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 40/780,constant: 0),
         ])
-        loginButton.configuration(with: IconTextButtonViewModel(text: StringUtils.registerLabel, image: UIImage(named: AssetIcon.icGoogle) ))
+        
         loginButton.addTarget(self, action: #selector(onPressRegister), for: .touchUpInside)
     }
     @objc func onPressRegister() {

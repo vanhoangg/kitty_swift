@@ -20,6 +20,7 @@ struct AssetColor {
     static let giftBackgroundColor: String = "giftBackgroundColor"
     static let healthBackgroundColor: String = "healthBackgroundColor"
     static let transportationBackgroundColor: String = "transportationBackgroundColor"
+    static let buttonBackgroundColor: String = "buttonBackgroundColor"
 }
 
 struct AssetIcon {
@@ -45,6 +46,7 @@ struct AssetIcon {
     static let icTransportation: String = "ic_transportation"
     static let icGift: String = "ic_gift"
     static let icElectronic: String = "ic_electronic"
+    static let icAdd: String = "ic_add_circle"
     
 }
 /// Type 2

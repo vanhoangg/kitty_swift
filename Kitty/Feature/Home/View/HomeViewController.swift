@@ -20,20 +20,36 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
-        bindData()
+        build()
     }
     
     // MARK: -Method
-    private func bindData(){
+    private func build(){
         
 //        configCalendarView()
         configHomeStatView()
         configHistoryTableView()
+        configFloatingButton()
+
     }
 }
 
 // MARK: - Extension
 extension HomeViewController {
+    private func configFloatingButton(){
+        let addButton = IconTextButton();
+        view.addSubview(addButton)
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.configure(viewData: IconTextButton.IconTextButtonViewData(text: "Add new", image:UIImage(named: AssetIcon.icAdd)))
+        
+        NSLayoutConstraint.activate([
+            addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor,multiplier: 48/130,constant: 0),
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -32)])
+        addButton.configureStyle(cornerRadius: 22,borderWidth: 0,backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor),textColor: .white)
+//        addButton.setShadow()
+    }
     private func configHomeStatView(){
      
         expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyStatistics?.monthlyExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
