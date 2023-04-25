@@ -36,13 +36,28 @@ final class DataManager {
       
       //open database
     func fetchData(completion: ( Results<User>? )->()) {
-
+        
                     // realm
         guard let database = database else {
              print("error: database is not found")
              return
            }
+        print(database.configuration.fileURL)
         let response = database.objects(User.self)
+        
+        completion(response)
+
+      
+      }
+    func fetchCategory(completion: ( Results<ExpenseCategory>? )->()) {
+        
+                    // realm
+        guard let database = database else {
+             print("error: database is not found")
+             return
+           }
+        print(database.configuration.fileURL)
+        let response = database.objects(ExpenseCategory.self)
         
         completion(response)
 
@@ -51,12 +66,15 @@ final class DataManager {
       
       //save database
       func save() {
+          
           guard let database = database else {
                print("error: database is not found")
                return
              }
+          
           try! database.write {
-              database.add(DummyData.user)
+              
+              database.add(DummyData.listCategory)
                   }
       }
     

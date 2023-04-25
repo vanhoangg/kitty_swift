@@ -37,7 +37,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o24-wJ-7is" userLabel="Category Name Label">
-                                <rect key="frame" x="15" y="46" width="42" height="16"/>
+                                <rect key="frame" x="15" y="46" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,6 @@
                             <constraint firstItem="o24-wJ-7is" firstAttribute="centerX" secondItem="Gs8-ye-fbS" secondAttribute="centerX" id="RON-CN-mCD"/>
                             <constraint firstItem="QBd-hf-FJ1" firstAttribute="top" secondItem="Gs8-ye-fbS" secondAttribute="top" id="eX6-jp-T6A"/>
                             <constraint firstItem="o24-wJ-7is" firstAttribute="top" secondItem="QBd-hf-FJ1" secondAttribute="bottom" constant="6" id="p2L-zW-OIL"/>
-                            <constraint firstAttribute="bottom" secondItem="o24-wJ-7is" secondAttribute="bottom" id="v0M-Pa-NXq"/>
                             <constraint firstItem="QBd-hf-FJ1" firstAttribute="centerX" secondItem="Gs8-ye-fbS" secondAttribute="centerX" id="x28-Ly-XkR"/>
                         </constraints>
                     </view>
@@ -63,6 +62,7 @@
             <connections>
                 <outlet property="categoryNameLabel" destination="o24-wJ-7is" id="0bW-z3-yAw"/>
                 <outlet property="iconCategoryImageView" destination="btB-yM-bK4" id="YKv-Nq-2UW"/>
+                <outlet property="shapeView" destination="QBd-hf-FJ1" id="cNd-ZB-jxc"/>
             </connections>
             <point key="canvasLocation" x="139" y="131"/>
         </collectionViewCell>

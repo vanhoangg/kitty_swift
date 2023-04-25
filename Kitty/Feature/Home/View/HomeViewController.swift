@@ -56,16 +56,16 @@ extension HomeViewController {
     }
     private func configHomeStatView(){
      
-        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyStatistics?.monthlyExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
-        
-        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyStatistics?.monthlyBalance ?? 0 ), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
-       
-        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyStatistics?.monthlyIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
+//        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyStatistics?.monthlyExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
+//
+//        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyStatistics?.monthlyBalance ?? 0 ), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
+//
+//        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyStatistics?.monthlyIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
     }
     private func configHistoryTableView(){
-        if let listDaily = homeViewModel.monthlyStatistics?.listDailyStatistic {
-            historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyStatistic: Array(listDaily)  ))
-        }
+//        if let listDaily = homeViewModel.monthlyStatistics?.listDailyStatistic {
+//            historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyStatistic: Array(listDaily)  ))
+//        }
         
         historyTableView.bounces = false
         historyTableView.rowHeight = UITableView.automaticDimension

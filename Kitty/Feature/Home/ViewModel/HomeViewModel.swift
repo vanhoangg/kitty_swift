@@ -20,9 +20,9 @@ class HomeViewModel :ObservableObject {
             (results) in
             
             
-            monthlyStatistics = results?[0].listMonthlyStatistic.first(where: { MonthlyStatistic in
-                MonthlyStatistic.monthName == "1/2023"
-            })
+//            monthlyStatistics = results?[0].listMonthlyStatistic.first(where: { MonthlyStatistic in
+//                MonthlyStatistic.monthName == "1/2023"
+//            })
         
           
         }

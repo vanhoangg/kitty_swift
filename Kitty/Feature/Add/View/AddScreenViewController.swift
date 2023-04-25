@@ -46,8 +46,8 @@ class AddScreenViewController: UIViewController {
     }
     @objc func onTapCategoryView() {
         //        textTitle.text = menu.selectedItem
-        let reportViewController = ReportViewController()
-           let nav = UINavigationController(rootViewController: reportViewController)
+        let categoryViewController = CategoryViewController()
+           let nav = UINavigationController(rootViewController: categoryViewController)
            // 1
            nav.modalPresentationStyle = .pageSheet
 

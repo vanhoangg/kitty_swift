@@ -8,25 +8,30 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
-    let nib = UINib(nibName: "CategoryCell", bundle: .main)
-    
+    let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: .main)
+    let identifer = "categoryCell"
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
+    let categoryViewModel = CategoryViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.register(nib, forCellWithReuseIdentifier: identifer)
         // Do any additional setup after loading the view.
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+extension CategoryViewController : UICollectionViewDelegate , UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categoryViewModel.listCategory?.count ?? 0
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath) as! CategoryCollectionViewCell
+        let listCategory = categoryViewModel.listCategory
+        cell.configure(viewData: CategoryCollectionViewCell.ViewData(categoryName: listCategory?[indexPath.row].categoryName, iconUrl: listCategory?[indexPath.row].iconUrl,iconBackgroundColor:listCategory?[indexPath.row].colorBackground ))
+        return cell
+    }
+    
+    
 }

@@ -49,9 +49,9 @@ class HistoryTableView: UITableView , UITableViewDelegate , UITableViewDataSourc
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
-        if let listExpenseReport = viewData.listDailyStatistic?[indexPath.section].listExpenseReport {
-            cell.loadData(viewData: HistoryTableViewCell.ViewData(dayName: viewData.listDailyStatistic?[indexPath.section].dayName, dailyExpense: viewData.listDailyStatistic?[indexPath.section].dailyExpense, listItemExpenseViewData: Array(listExpenseReport)))
-        }
+//        if let listExpenseReport = viewData.listDailyStatistic?[indexPath.section].listExpenseReport {
+//            cell.loadData(viewData: HistoryTableViewCell.ViewData(dayName: viewData.listDailyStatistic?[indexPath.section].dayName, dailyExpense: viewData.listDailyStatistic?[indexPath.section].dailyExpense, listItemExpenseViewData: Array(listExpenseReport)))
+//        }
         
         
         
