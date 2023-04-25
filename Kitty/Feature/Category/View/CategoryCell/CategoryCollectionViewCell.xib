@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CategoryCollectionViewCell" customModule="Kitty" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="96" height="86"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="96" height="86"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gs8-ye-fbS">
+                        <rect key="frame" x="12" y="12" width="72" height="62"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBd-hf-FJ1" customClass="RoundedUIView" customModule="Kitty" customModuleProvider="target">
+                                <rect key="frame" x="16" y="0.0" width="40" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="btB-yM-bK4">
+                                        <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="btB-yM-bK4" secondAttribute="trailing" constant="8" id="2Qi-ZP-6BN"/>
+                                    <constraint firstAttribute="bottom" secondItem="btB-yM-bK4" secondAttribute="bottom" constant="8" id="ADg-qj-we0"/>
+                                    <constraint firstAttribute="width" constant="40" id="HD4-E2-rzl"/>
+                                    <constraint firstItem="btB-yM-bK4" firstAttribute="top" secondItem="QBd-hf-FJ1" secondAttribute="top" constant="8" id="Je8-dq-v9A"/>
+                                    <constraint firstAttribute="height" constant="40" id="tNy-6Z-2yw"/>
+                                    <constraint firstItem="btB-yM-bK4" firstAttribute="leading" secondItem="QBd-hf-FJ1" secondAttribute="leading" constant="8" id="tlG-oE-ULb"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o24-wJ-7is" userLabel="Category Name Label">
+                                <rect key="frame" x="15" y="46" width="42" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="o24-wJ-7is" firstAttribute="centerX" secondItem="Gs8-ye-fbS" secondAttribute="centerX" id="RON-CN-mCD"/>
+                            <constraint firstItem="QBd-hf-FJ1" firstAttribute="top" secondItem="Gs8-ye-fbS" secondAttribute="top" id="eX6-jp-T6A"/>
+                            <constraint firstItem="o24-wJ-7is" firstAttribute="top" secondItem="QBd-hf-FJ1" secondAttribute="bottom" constant="6" id="p2L-zW-OIL"/>
+                            <constraint firstAttribute="bottom" secondItem="o24-wJ-7is" secondAttribute="bottom" id="v0M-Pa-NXq"/>
+                            <constraint firstItem="QBd-hf-FJ1" firstAttribute="centerX" secondItem="Gs8-ye-fbS" secondAttribute="centerX" id="x28-Ly-XkR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Gs8-ye-fbS" secondAttribute="bottom" constant="12" id="W2V-07-YXF"/>
+                <constraint firstAttribute="trailing" secondItem="Gs8-ye-fbS" secondAttribute="trailing" constant="12" id="vsp-kb-WYM"/>
+                <constraint firstItem="Gs8-ye-fbS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="yhE-8Z-Hhb"/>
+                <constraint firstItem="Gs8-ye-fbS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="yu4-Ja-ocE"/>
+            </constraints>
+            <connections>
+                <outlet property="categoryNameLabel" destination="o24-wJ-7is" id="0bW-z3-yAw"/>
+                <outlet property="iconCategoryImageView" destination="btB-yM-bK4" id="YKv-Nq-2UW"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="131"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

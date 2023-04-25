@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
         build()
     }
     
@@ -48,7 +48,11 @@ extension HomeViewController {
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -32)])
         addButton.configureStyle(cornerRadius: 22,borderWidth: 0,backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor),textColor: .white)
-//        addButton.setShadow()
+        addButton.addTarget(self, action: #selector(onPressAddExpense), for: .touchUpInside)
+    }
+    @objc func onPressAddExpense() {
+        let addScreenViewController = AddScreenViewController()
+             self.navigationController?.pushViewController(addScreenViewController, animated: true)
     }
     private func configHomeStatView(){
      

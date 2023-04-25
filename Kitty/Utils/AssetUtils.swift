@@ -47,6 +47,7 @@ struct AssetIcon {
     static let icGift: String = "ic_gift"
     static let icElectronic: String = "ic_electronic"
     static let icAdd: String = "ic_add_circle"
+    static let icArrowDown: String = "ic_arrow_down"
     
 }
 /// Type 2

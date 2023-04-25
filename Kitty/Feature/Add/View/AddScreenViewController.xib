@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddScreenViewController" customModule="Kitty" customModuleProvider="target">
+            <connections>
+                <outlet property="categoryView" destination="s8t-Eh-e0u" id="Hrm-UR-aDO"/>
+                <outlet property="dropDownView" destination="6Ff-DA-qMK" id="x2k-pY-JLc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ff-DA-qMK" userLabel="Dropdown View" customClass="DropDownView" customModule="Kitty" customModuleProvider="target">
+                    <rect key="frame" x="16" y="68" width="382" height="48"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="uWF-Kr-Rs3"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s8t-Eh-e0u" userLabel="Category View">
+                    <rect key="frame" x="16" y="140" width="382" height="48"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="FwO-QJ-wjQ"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter amout" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dau-l8-Xxg" customClass="CustomTextField" customModule="Kitty" customModuleProvider="target">
+                    <rect key="frame" x="16" y="212" width="382" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="2tk-C9-M6p"/>
+                    </constraints>
+                    <color key="textColor" name="61"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description (Optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nee-og-t55" customClass="CustomTextField" customModule="Kitty" customModuleProvider="target">
+                    <rect key="frame" x="16" y="284" width="382" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="WHk-b1-ea8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="s8t-Eh-e0u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0EF-Er-7h0"/>
+                <constraint firstItem="dau-l8-Xxg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0jh-wM-wNH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nee-og-t55" secondAttribute="trailing" constant="16" id="0mW-Sl-63t"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dau-l8-Xxg" secondAttribute="trailing" constant="16" id="9HB-5g-5RA"/>
+                <constraint firstItem="dau-l8-Xxg" firstAttribute="top" secondItem="s8t-Eh-e0u" secondAttribute="bottom" constant="24" id="Bb0-mg-Eeu"/>
+                <constraint firstItem="Nee-og-t55" firstAttribute="top" secondItem="dau-l8-Xxg" secondAttribute="bottom" constant="24" id="Jti-gc-qfN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6Ff-DA-qMK" secondAttribute="trailing" constant="16" id="LWq-0L-lRp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="s8t-Eh-e0u" secondAttribute="trailing" constant="16" id="OgX-z7-wp1"/>
+                <constraint firstItem="6Ff-DA-qMK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="Pja-MY-VmH"/>
+                <constraint firstItem="s8t-Eh-e0u" firstAttribute="top" secondItem="6Ff-DA-qMK" secondAttribute="bottom" constant="24" id="S6c-hE-rzz"/>
+                <constraint firstItem="Nee-og-t55" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ZyU-oc-X1y"/>
+                <constraint firstItem="6Ff-DA-qMK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="onS-u4-VBc"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="73.660714285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="61">
+            <color red="0.38039215686274508" green="0.38039215686274508" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
