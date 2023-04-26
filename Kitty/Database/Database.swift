@@ -7,6 +7,10 @@
 
 import Foundation
 import RealmSwift
+struct DummyData {
+    static let listCategory: [Category] = [Category(categoryName: "Gift", type: CategoryEnum.gifts),Category(categoryName: "Health", type: CategoryEnum.health)]
+    
+}
 final class DataManager {
     private static var dataManager: DataManager = {
           let dataManager = DataManager()
@@ -42,22 +46,21 @@ final class DataManager {
              print("error: database is not found")
              return
            }
-        print(database.configuration.fileURL)
         let response = database.objects(User.self)
         
         completion(response)
 
       
       }
-    func fetchCategory(completion: ( Results<ExpenseCategory>? )->()) {
+    func fetchCategory(completion: ( Results<Category>? )->()) {
         
                     // realm
         guard let database = database else {
              print("error: database is not found")
              return
            }
-        print(database.configuration.fileURL)
-        let response = database.objects(ExpenseCategory.self)
+        let response = database.objects(Category.self)
+        print(response)
         
         completion(response)
 

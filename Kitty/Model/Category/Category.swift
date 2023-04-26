@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class ExpenseCategory :Object {
+class Category :Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var categoryName:String?
     @Persisted var type:CategoryEnum = CategoryEnum.unknow
@@ -28,7 +28,7 @@ enum CategoryEnum: String, PersistableEnum {
     case gifts
     case unknow
 }
-extension ExpenseCategory {
+extension Category {
     var iconUrl:String  {
         switch  type {
         case CategoryEnum.health:

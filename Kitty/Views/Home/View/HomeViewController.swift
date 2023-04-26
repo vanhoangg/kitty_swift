@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         build()
     }
     
@@ -51,8 +51,8 @@ extension HomeViewController {
         addButton.addTarget(self, action: #selector(onPressAddExpense), for: .touchUpInside)
     }
     @objc func onPressAddExpense() {
-        let addScreenViewController = AddScreenViewController()
-             self.navigationController?.pushViewController(addScreenViewController, animated: true)
+        let addExpenseViewController = AddExpenseViewController()
+             self.navigationController?.pushViewController(addExpenseViewController, animated: true)
     }
     private func configHomeStatView(){
      
