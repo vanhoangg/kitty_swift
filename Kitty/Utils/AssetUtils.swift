@@ -23,7 +23,7 @@ struct AssetColor {
     static let buttonBackgroundColor: String = "buttonBackgroundColor"
 }
 
-struct AssetIcon {
+enum AssetIcon {
     static let icBank: String = "ic_bank"
     static let icCalendar: String = "ic_calendar"
     static let icCoffee: String = "ic_coffee"
@@ -48,19 +48,19 @@ struct AssetIcon {
     static let icElectronic: String = "ic_electronic"
     static let icAdd: String = "ic_add_circle"
     static let icArrowDown: String = "ic_arrow_down"
-    
 }
+
 /// Type 2
 /// How to use :  UIFont.CustomFontStyle(.semibold,size:12)
 extension UIFont {
     public enum CustomFontType: String {
-            case semibold = "-Semibold"
-            case regular = "-Regular"
-            case medium = "-Medium"
-            case bold = "-bold"
-        }
+        case semibold = "-Semibold"
+        case regular = "-Regular"
+        case medium = "-Medium"
+        case bold = "-bold"
+    }
 
-        static func CustomFont(_ type: CustomFontType = .semibold, size: CGFloat = UIFont.systemFontSize) -> UIFont {
-            return UIFont(name: "Inter\(type.rawValue)", size: size)!
-        }
+    static func CustomFont(_ type: CustomFontType = .semibold, size: CGFloat = UIFont.systemFontSize) -> UIFont {
+        return UIFont(name: "Inter\(type.rawValue)", size: size)!
+    }
 }

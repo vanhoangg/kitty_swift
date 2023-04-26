@@ -7,7 +7,6 @@
 
 import Foundation
 struct StringUtils {
-    
     static var registerLabel: String = "Sign up with Google"
     static var reportLabel: String = "Statistics"
 }

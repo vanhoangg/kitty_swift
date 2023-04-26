@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddExpenseViewController" customModule="Kitty" customModuleProvider="target">
             <connections>
+                <outlet property="amountTextField" destination="dau-l8-Xxg" id="wck-uK-pSy"/>
                 <outlet property="categoryView" destination="s8t-Eh-e0u" id="Hrm-UR-aDO"/>
+                <outlet property="descriptionTextField" destination="Nee-og-t55" id="G6A-0h-1ov"/>
                 <outlet property="dropDownView" destination="6Ff-DA-qMK" id="x2k-pY-JLc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -35,7 +37,7 @@
                         <constraint firstAttribute="height" constant="48" id="FwO-QJ-wjQ"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter amout" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dau-l8-Xxg" customClass="CustomTextField" customModule="Kitty" customModuleProvider="target">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter amout" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dau-l8-Xxg" customClass="CurrencyTextField" customModule="Kitty" customModuleProvider="target">
                     <rect key="frame" x="16" y="212" width="382" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="2tk-C9-M6p"/>
@@ -52,6 +54,17 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-xN-vPP">
+                    <rect key="frame" x="16" y="806" width="382" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="xJh-3N-LZz"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Add new expense" cornerStyle="capsule"/>
+                    <connections>
+                        <action selector="onTapAddButton:" destination="-1" eventType="touchUpInside" id="Fbc-bA-dX4"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -59,6 +72,8 @@
                 <constraint firstItem="s8t-Eh-e0u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0EF-Er-7h0"/>
                 <constraint firstItem="dau-l8-Xxg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0jh-wM-wNH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nee-og-t55" secondAttribute="trailing" constant="16" id="0mW-Sl-63t"/>
+                <constraint firstItem="Igp-xN-vPP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5te-1c-NTs"/>
+                <constraint firstItem="Igp-xN-vPP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="6ru-Cq-w8K"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dau-l8-Xxg" secondAttribute="trailing" constant="16" id="9HB-5g-5RA"/>
                 <constraint firstItem="dau-l8-Xxg" firstAttribute="top" secondItem="s8t-Eh-e0u" secondAttribute="bottom" constant="24" id="Bb0-mg-Eeu"/>
                 <constraint firstItem="Nee-og-t55" firstAttribute="top" secondItem="dau-l8-Xxg" secondAttribute="bottom" constant="24" id="Jti-gc-qfN"/>
@@ -68,6 +83,8 @@
                 <constraint firstItem="s8t-Eh-e0u" firstAttribute="top" secondItem="6Ff-DA-qMK" secondAttribute="bottom" constant="24" id="S6c-hE-rzz"/>
                 <constraint firstItem="Nee-og-t55" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ZyU-oc-X1y"/>
                 <constraint firstItem="6Ff-DA-qMK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="onS-u4-VBc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Igp-xN-vPP" secondAttribute="bottom" constant="16" id="v4E-1I-TQj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Igp-xN-vPP" secondAttribute="trailing" constant="16" id="zNJ-46-cdv"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="73.660714285714278"/>
         </view>

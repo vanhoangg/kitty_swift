@@ -7,16 +7,18 @@
 
 import UIKit
 
-class LogoView : UIView {
+class LogoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-      buildLogoView()
+        buildLogoView()
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         buildLogoView()
     }
-    private func buildLogoView(){
+
+    private func buildLogoView() {
         let logoImageView = UIImageView()
         logoImageView.contentMode = .scaleAspectFit
         logoImageView.clipsToBounds = true
@@ -29,27 +31,24 @@ class LogoView : UIView {
 
         NSLayoutConstraint.activate([
             logoImageView.heightAnchor.constraint(equalToConstant: 24),
-            logoImageView.widthAnchor.constraint(equalTo: logoImageView.heightAnchor,multiplier: 1,constant: 0),
-            logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            logoLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            
-            logoLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor,constant: 4)
+            logoImageView.widthAnchor.constraint(equalTo: logoImageView.heightAnchor, multiplier: 1, constant: 0),
+            logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            logoLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+            logoLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 4),
         ])
-        
     }
 }
 
-
 class LogoLabel: UILabel {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         sizeToFit()
         font = UIFont(name: "Inter-Bold", size: 20)
         text = "Kitty"
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
 }

@@ -8,44 +8,59 @@
 import Foundation
 import RealmSwift
 
-class  Money : Object {
+class Money: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var yearId:String?
-    @Persisted var monthId:String?
-    @Persisted var dayId:String?
-    @Persisted var category:Category?
-    @Persisted var value :Float?
-    @Persisted var valueDescription:String?
-    @Persisted var type:MoneyEnum?
-    convenience init(description:String? = "" ,category:Category?,value:Float?,yearId:String?,monthId:String?,dayId:String?,type:MoneyEnum?)
+  
+    @Persisted var category: Category?
+    @Persisted var value: Double?
+    @Persisted var valueDescription: String?
+    @Persisted var type: MoneyEnum?
+    @Persisted var createAt: String?
+    convenience init(description _: String? = "", category: Category?, value: Double?, createAt:String?, type: MoneyEnum?)
     {
         self.init()
-        self.dayId = dayId
-        self.monthId = monthId
-        self.yearId = yearId
+     
+        self.createAt = createAt
         self.value = value
-        self.valueDescription = valueDescription
+        valueDescription = valueDescription
         if let category = category {
             self.category = category
         }
         self.type = type
     }
 }
+
 enum MoneyEnum: String, PersistableEnum {
     case balance
     case expense
     case income
 }
+
 extension MoneyEnum {
-    var getTitle:String  {
-        switch  self {
-        case.balance:
+    var getTitle: String {
+        switch self {
+        case .balance:
             return "Balance"
         case .expense:
             return "Expense"
         case .income:
-            return "Expense"
-            
+            return "Income"
         }
+    }
+    
+}
+extension String {
+    var getMoneyEnum : MoneyEnum {
+        switch self {
+        case "Balance":
+            return MoneyEnum.balance
+        case "Expense":
+            return MoneyEnum.expense
+        case "Income":
+            return MoneyEnum.income
+        default:
+            return MoneyEnum.expense
+        }
+        
     }
 }

@@ -8,29 +8,29 @@
 import Foundation
 import RealmSwift
 
-class Category :Object {
+class Category: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var categoryName:String?
-    @Persisted var type:CategoryEnum = CategoryEnum.unknow
-    convenience init(categoryName:String? = "" ,type:CategoryEnum?)
-    {
+    @Persisted var categoryName: String?
+    @Persisted var type: CategoryEnum = .unknow
+    convenience init(categoryName: String? = "", type: CategoryEnum?) {
         self.init()
         self.categoryName = categoryName
-        
+
         if let type = type {
             self.type = type
         }
     }
-    
 }
+
 enum CategoryEnum: String, PersistableEnum {
     case health
     case gifts
     case unknow
 }
+
 extension Category {
-    var iconUrl:String  {
-        switch  type {
+    var iconUrl: String {
+        switch type {
         case CategoryEnum.health:
             return AssetIcon.icHealth
         case CategoryEnum.gifts:
@@ -39,8 +39,9 @@ extension Category {
             return AssetIcon.icHealth
         }
     }
+
     var colorBackground: String {
-        switch  type {
+        switch type {
         case CategoryEnum.health:
             return AssetColor.healthBackgroundColor
         case CategoryEnum.gifts:

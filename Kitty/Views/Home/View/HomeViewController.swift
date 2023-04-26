@@ -8,65 +8,72 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var homeViewModel  = HomeViewModel()
+    var homeViewModel = HomeViewModel()
+
     // MARK: - IBoutlet
-    @IBOutlet weak var homeStatStackView: UIStackView!
-    @IBOutlet weak var calendarView: UIView!
-    @IBOutlet weak var historyTableView: HistoryTableView!
-    @IBOutlet weak var expenseMonthlyReportView: ItemMonthlyReportView!
-    @IBOutlet weak var incomeMonthlyReportView: ItemMonthlyReportView!
-    @IBOutlet weak var balanceMonthlyReportView: ItemMonthlyReportView!
+
+    @IBOutlet var homeStatStackView: UIStackView!
+    @IBOutlet var calendarView: UIView!
+    @IBOutlet var historyTableView: HistoryTableView!
+    @IBOutlet var expenseMonthlyReportView: ItemMonthlyReportView!
+    @IBOutlet var incomeMonthlyReportView: ItemMonthlyReportView!
+    @IBOutlet var balanceMonthlyReportView: ItemMonthlyReportView!
+
     // MARK: - LifeCycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         build()
     }
-    
-    // MARK: -Method
-    private func build(){
-        
+
+    // MARK: - Method
+
+    private func build() {
 //        configCalendarView()
         configHomeStatView()
         configHistoryTableView()
         configFloatingButton()
-
     }
 }
 
 // MARK: - Extension
+
 extension HomeViewController {
-    private func configFloatingButton(){
-        let addButton = IconTextButton();
+    private func configFloatingButton() {
+        let addButton = IconTextButton()
         view.addSubview(addButton)
-        
+
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.configure(viewData: IconTextButton.IconTextButtonViewData(text: "Add new", image:UIImage(named: AssetIcon.icAdd)))
-        
+        addButton.configure(viewData: IconTextButton.IconTextButtonViewData(text: "Add new", image: UIImage(named: AssetIcon.icAdd)))
+
         NSLayoutConstraint.activate([
-            addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor,multiplier: 48/130,constant: 0),
+            addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 48 / 130, constant: 0),
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -32)])
-        addButton.configureStyle(cornerRadius: 22,borderWidth: 0,backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor),textColor: .white)
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+        ])
+        addButton.configureStyle(cornerRadius: 22, borderWidth: 0, backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor), textColor: .white)
         addButton.addTarget(self, action: #selector(onPressAddExpense), for: .touchUpInside)
     }
+
     @objc func onPressAddExpense() {
         let addExpenseViewController = AddExpenseViewController()
-             self.navigationController?.pushViewController(addExpenseViewController, animated: true)
+        navigationController?.pushViewController(addExpenseViewController, animated: true)
     }
-    private func configHomeStatView(){
-     
+
+    private func configHomeStatView() {
 //        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyStatistics?.monthlyExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
 //
 //        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyStatistics?.monthlyBalance ?? 0 ), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
 //
 //        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyStatistics?.monthlyIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
     }
-    private func configHistoryTableView(){
+
+    private func configHistoryTableView() {
 //        if let listDaily = homeViewModel.monthlyStatistics?.listDailyStatistic {
 //            historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyStatistic: Array(listDaily)  ))
 //        }
-        
+
         historyTableView.bounces = false
         historyTableView.rowHeight = UITableView.automaticDimension
         historyTableView.estimatedRowHeight = 300

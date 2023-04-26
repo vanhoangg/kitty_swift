@@ -7,66 +7,57 @@
 
 import UIKit
 
-
 class CustomNavigationBar: UIView {
-    
-    
     var titleText: String?
     var actions: UIView?
-    
-    required init(titleText:String? = nil , actions: UIView? = nil){
+
+    required init(titleText: String? = nil, actions: UIView? = nil) {
         super.init(frame: CGRect.zero)
-        
-        buildNavigationBar(titleText: titleText,actions: actions)
+
+        buildNavigationBar(titleText: titleText, actions: actions)
     }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         buildNavigationBar()
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         buildNavigationBar()
     }
-    
-    
-    
 }
 
 extension CustomNavigationBar {
-    
-    private func buildNavigationBar(titleText: String? = nil, actions: UIView? = nil) -> Void {
-        
-        
+    private func buildNavigationBar(titleText: String? = nil, actions: UIView? = nil) {
         if titleText != nil {
             let titleLabel = UILabel()
             titleLabel.font = UIFont.CustomFont(.bold, size: 20)
             titleLabel.text = titleText
             addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            
+
             NSLayoutConstraint.activate([
-                titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 16)
+                titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+                titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             ])
         } else {
             let logoView = LogoView()
             logoView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(logoView)
             NSLayoutConstraint.activate([
-                logoView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                logoView.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 16)
+                logoView.centerYAnchor.constraint(equalTo: centerYAnchor),
+                logoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             ])
         }
-        
-        if( actions != nil) {
+
+        if actions != nil {
             addSubview(actions!)
             actions!.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                actions!.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                actions!.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: 16)])
+                actions!.centerYAnchor.constraint(equalTo: centerYAnchor),
+                actions!.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16),
+            ])
         }
-    
-        
-        
     }
 }

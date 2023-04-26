@@ -5,13 +5,11 @@
 //  Created by Dinh Van Hoang on 18/04/2023.
 //
 
-
-import UIKit
 import RealmSwift
-
+import UIKit
 
 extension Results {
-    func toArray<T>(ofType: T.Type) -> [T] {
+    func toArray<T>(ofType _: T.Type) -> [T] {
         var array = [T]()
         for i in 0 ..< count {
             if let result = self[i] as? T {
@@ -22,50 +20,63 @@ extension Results {
         return array
     }
 }
+
+extension UIView {
+
+    func removeAllSubViews() {
+        _ = self.subviews.map({ view in
+            view.removeFromSuperview()
+        })
+    }
+}
+
 extension CGFloat {
     static var random: CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
     }
 }
+
 extension UIColor {
     static func random() -> UIColor {
         return UIColor(
-            red:   .random,
-           green: .random,
-           blue:  .random,
-           alpha: 1.0
+            red: .random,
+            green: .random,
+            blue: .random,
+            alpha: 1.0
         )
     }
 }
+
 extension CALayer {
-  func applySketchShadow(
-    color: UIColor = .black,
-    alpha: Float = 0.5,
-    x: CGFloat = 0,
-    y: CGFloat = 2,
-    blur: CGFloat = 4,
-    spread: CGFloat = 0)
-  {
-    masksToBounds = false
-    shadowColor = color.cgColor
-    shadowOpacity = alpha
-    shadowOffset = CGSize(width: x, height: y)
-      shadowRadius = blur / UIScreen.main.scale
-    if spread == 0 {
-      shadowPath = nil
-    } else {
-      let dx = -spread
-      let rect = bounds.insetBy(dx: dx, dy: dx)
-      shadowPath = UIBezierPath(rect: rect).cgPath
+    func applySketchShadow(
+        color: UIColor = .black,
+        alpha: Float = 0.5,
+        x: CGFloat = 0,
+        y: CGFloat = 2,
+        blur: CGFloat = 4,
+        spread: CGFloat = 0
+    ) {
+        masksToBounds = false
+        shadowColor = color.cgColor
+        shadowOpacity = alpha
+        shadowOffset = CGSize(width: x, height: y)
+        shadowRadius = blur / UIScreen.main.scale
+        if spread == 0 {
+            shadowPath = nil
+        } else {
+            let dx = -spread
+            let rect = bounds.insetBy(dx: dx, dy: dx)
+            shadowPath = UIBezierPath(rect: rect).cgPath
+        }
     }
-  }
 }
+
 extension String {
     // formatting text for currency textField
     func currencyFormatting() -> String {
         if let value = Double(self) {
             let formatter = NumberFormatter()
-                      // Cache this, NumberFormatter creation is expensive.
+            // Cache this, NumberFormatter creation is expensive.
             formatter.locale = Locale(identifier: "en_IN") // Here indian locale with english language is used
             formatter.numberStyle = .currency
             formatter.currencySymbol = " ₹"
@@ -79,17 +90,17 @@ extension String {
         return ""
     }
 }
-@IBDesignable public class RoundedUIView: UIView {
 
+@IBDesignable public class RoundedUIView: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        self.layer.cornerRadius = self.frame.width / 2;
-        self.layer.masksToBounds = true
+        layer.cornerRadius = frame.width / 2
+        layer.masksToBounds = true
     }
 }
+
 extension UIView {
-   
     @IBInspectable
     var cornerRadius: CGFloat {
         get {
@@ -109,7 +120,7 @@ extension UIView {
             layer.borderWidth = newValue
         }
     }
-    
+
     @IBInspectable
     var borderColor: UIColor? {
         get {
@@ -126,7 +137,7 @@ extension UIView {
             }
         }
     }
-    
+
     @IBInspectable
     var shadowRadius: CGFloat {
         get {
@@ -136,7 +147,7 @@ extension UIView {
             layer.shadowRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOpacity: Float {
         get {
@@ -146,7 +157,7 @@ extension UIView {
             layer.shadowOpacity = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOffset: CGSize {
         get {
@@ -156,7 +167,7 @@ extension UIView {
             layer.shadowOffset = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowColor: UIColor? {
         get {
