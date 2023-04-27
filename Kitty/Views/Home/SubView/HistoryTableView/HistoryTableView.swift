@@ -9,7 +9,7 @@ import UIKit
 
 class HistoryTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     struct ViewData {
-        let listDailyStatistic: [DailyStatistic]?
+        let listDailyStatistic: [Money]?
     }
 
     var viewData = ViewData(listDailyStatistic: [])

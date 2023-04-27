@@ -8,6 +8,16 @@
 import RealmSwift
 import UIKit
 
+
+
+extension Date{
+    func toString(pattern:String? = "dd-MMMM-yyyy") -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = pattern
+        let dateString = dateFormatter.string(from: self)
+        return dateString
+    }
+}
 extension Results {
     func toArray<T>(ofType _: T.Type) -> [T] {
         var array = [T]()
@@ -77,10 +87,12 @@ extension String {
         if let value = Double(self) {
             let formatter = NumberFormatter()
             // Cache this, NumberFormatter creation is expensive.
-            formatter.locale = Locale(identifier: "en_IN") // Here indian locale with english language is used
+            formatter.locale = Locale(identifier: "en_US") // Here indian locale with english language is used
             formatter.numberStyle = .currency
-            formatter.currencySymbol = " ₹"
-            formatter.minimumFractionDigits = 0
+            formatter.currencySymbol = " ₹ "
+//            formatter.minimumFractionDigits = 0
+            
+            
             formatter.maximumFractionDigits = 0
             // Change to `.currency` if needed
             if let str = formatter.string(from: NSNumber(value: value)) {

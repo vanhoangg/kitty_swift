@@ -21,6 +21,7 @@ struct AssetColor {
     static let healthBackgroundColor: String = "healthBackgroundColor"
     static let transportationBackgroundColor: String = "transportationBackgroundColor"
     static let buttonBackgroundColor: String = "buttonBackgroundColor"
+    static let backgroundColor: String = "backgroundColor"
 }
 
 enum AssetIcon {

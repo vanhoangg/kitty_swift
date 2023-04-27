@@ -11,7 +11,7 @@ import UIKit
 class AddExpenseViewController: UIViewController {
     // MARK: IBOutlet
     
-    
+    var refreshHomeData: ((Bool) -> Void)?
     @IBOutlet var dropDownView: DropDownView!
     @IBOutlet var categoryView: UIView!
     
@@ -23,7 +23,9 @@ class AddExpenseViewController: UIViewController {
     @IBAction func onTapAddButton(_ sender: UIButton) {
         self.addExpenseViewModel.saveExpense { finish in
             if finish {
+                self.refreshHomeData?(true)
                 self.navigationController?.popViewController(animated: true)
+                
                       } else {
                           print("Error")
                       }

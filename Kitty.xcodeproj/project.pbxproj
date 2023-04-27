@@ -33,11 +33,13 @@
 		7EA34CC629ED2703001B51C9 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA34CC429ED2703001B51C9 /* SettingViewController.xib */; };
 		7EA34CCB29ED271A001B51C9 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CC929ED271A001B51C9 /* ReportViewController.swift */; };
 		7EA34CCC29ED271A001B51C9 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EA34CCA29ED271A001B51C9 /* ReportViewController.xib */; };
-		7EA34CD029ED2D86001B51C9 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CCF29ED2D86001B51C9 /* CustomNavigationBar.swift */; };
 		7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */; };
 		7EB7D06A29F8CC5500F4E294 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D06929F8CC5500F4E294 /* DropDownView.swift */; };
 		7EB7D07129F8CCDE00F4E294 /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D06F29F8CCDE00F4E294 /* AddExpenseViewController.swift */; };
 		7EB7D07229F8CCDE00F4E294 /* AddExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EB7D07029F8CCDE00F4E294 /* AddExpenseViewController.xib */; };
+		7EB7D07A29FA276A00F4E294 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07929FA276A00F4E294 /* MainViewController.swift */; };
+		7EB7D07C29FA2D6100F4E294 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */; };
+		7EB7D07E29FA2D9500F4E294 /* DefaultNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */; };
 		7ECC579A29EE3B1C00C09F30 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECC579929EE3B1C00C09F30 /* Extension.swift */; };
 		7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDFC5CA29EF966700C8AE30 /* HistoryTableViewCell.swift */; };
 		7EDFC5CD29EF966700C8AE30 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDFC5CB29EF966700C8AE30 /* HistoryTableViewCell.xib */; };
@@ -89,11 +91,13 @@
 		7EA34CC429ED2703001B51C9 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		7EA34CC929ED271A001B51C9 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		7EA34CCA29ED271A001B51C9 /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
-		7EA34CCF29ED2D86001B51C9 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoImageView.swift; sourceTree = "<group>"; };
 		7EB7D06929F8CC5500F4E294 /* DropDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		7EB7D06F29F8CCDE00F4E294 /* AddExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
 		7EB7D07029F8CCDE00F4E294 /* AddExpenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddExpenseViewController.xib; sourceTree = "<group>"; };
+		7EB7D07929FA276A00F4E294 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationBar.swift; sourceTree = "<group>"; };
 		7ECC579929EE3B1C00C09F30 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7EDFC5CA29EF966700C8AE30 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		7EDFC5CB29EF966700C8AE30 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 		7E99F84929ECE8AF00BDDF92 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7EB7D07729FA274400F4E294 /* Main */,
 				7EFABEE529F7C9CC00C1F9A9 /* Category */,
 				7EFABEC829F68B4500C1F9A9 /* Add */,
 				7EA34CC729ED2706001B51C9 /* Report */,
@@ -200,10 +205,11 @@
 			isa = PBXGroup;
 			children = (
 				7EA34C9B29ECFEF3001B51C9 /* IconTextButton.swift */,
-				7EA34CCF29ED2D86001B51C9 /* CustomNavigationBar.swift */,
 				7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */,
 				7E834F5429F269E500F3363E /* CustomTableView.swift */,
 				7EFABEDD29F7BC0500C1F9A9 /* CustomTextField.swift */,
+				7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */,
+				7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -351,6 +357,22 @@
 			children = (
 				7EB7D06F29F8CCDE00F4E294 /* AddExpenseViewController.swift */,
 				7EB7D07029F8CCDE00F4E294 /* AddExpenseViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7EB7D07729FA274400F4E294 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7EB7D07829FA274F00F4E294 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7EB7D07829FA274F00F4E294 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7EB7D07929FA276A00F4E294 /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -621,6 +643,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EB7D07C29FA2D6100F4E294 /* CustomNavigationBar.swift in Sources */,
 				7EFABEFB29F8C9E300C1F9A9 /* Money.swift in Sources */,
 				7EA34CB229ED25E5001B51C9 /* LoginViewController.swift in Sources */,
 				7EA34CA129ED1868001B51C9 /* StringUtils.swift in Sources */,
@@ -633,7 +656,7 @@
 				7E9A745D29EE7A010002051C /* HomeViewModel.swift in Sources */,
 				7EB7D06A29F8CC5500F4E294 /* DropDownView.swift in Sources */,
 				7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */,
-				7EA34CD029ED2D86001B51C9 /* CustomNavigationBar.swift in Sources */,
+				7EB7D07A29FA276A00F4E294 /* MainViewController.swift in Sources */,
 				7E834F5529F269E500F3363E /* CustomTableView.swift in Sources */,
 				7E1798C529F0EE5F0003C20E /* ItemExpenseViewController.swift in Sources */,
 				7EFABEC729F6542900C1F9A9 /* Database.swift in Sources */,
@@ -649,6 +672,7 @@
 				7EB7D07129F8CCDE00F4E294 /* AddExpenseViewController.swift in Sources */,
 				7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */,
 				7EFABEFE29F8CA1C00C1F9A9 /* MonthlyStatistic.swift in Sources */,
+				7EB7D07E29FA2D9500F4E294 /* DefaultNavigationBar.swift in Sources */,
 				7EFABEF529F7CCCA00C1F9A9 /* Category.swift in Sources */,
 				7EFABEF329F7CC9300C1F9A9 /* CategoryViewModel.swift in Sources */,
 				7E99F83729ECE83F00BDDF92 /* SceneDelegate.swift in Sources */,

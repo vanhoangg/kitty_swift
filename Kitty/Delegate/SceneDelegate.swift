@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
 //
-        window.rootViewController = settingRoute()
+        window.rootViewController = LoginViewController()
 
         self.window = window
         window.makeKeyAndVisible()
@@ -49,35 +49,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-extension SceneDelegate: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect _: UIViewController) {
-        print("Selected Tab : \(tabBarController.selectedIndex)")
-    }
 
-    private func settingRoute() -> UITabBarController {
-//        let rootViewController = LoginViewController()
-
-        // Home
-        let homeViewController = HomeViewController()
-        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
-        homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: AssetIcon.icHome), selectedImage: UIImage(named: AssetIcon.icHomeActive))
-
-        // Setting
-        let settingViewController = SettingViewController()
-        let settingNavigationController = UINavigationController(rootViewController: settingViewController)
-        settingNavigationController.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: AssetIcon.icSetting), selectedImage: UIImage(named: AssetIcon.icSettingActive))
-
-        // Report
-        let reportViewController = ReportViewController()
-        let reportNavigationController = UINavigationController(rootViewController: reportViewController)
-        reportNavigationController.tabBarItem = UITabBarItem(title: "Report", image: UIImage(named: AssetIcon.icReport), selectedImage: UIImage(named: AssetIcon.icReportActive))
-
-        let tabbarController = UITabBarController()
-        tabbarController.viewControllers = [homeNavigationController, settingNavigationController, reportNavigationController]
-        tabbarController.delegate = self
-
-        tabbarController.tabBar.tintColor = UIColor(named: AssetColor.ThirdTextColor)
-
-        return tabbarController
-    }
-}

@@ -7,14 +7,9 @@
 
 import Foundation
 import RealmSwift
-class DailyStatistic: Object {
-    @Persisted(primaryKey: true) var id: String?
 
-    @Persisted var dayName: String?
+class DailyStatistic : Object  {
+    @Persisted(primaryKey: true) var _id: ObjectId
 
-    convenience init(dayName: String?, dayId: String?) {
-        self.init()
-        self.dayName = dayName
-        id = dayId
-    }
+    @Persisted var dailyExpenses: List<Money>
 }

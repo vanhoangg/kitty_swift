@@ -23,7 +23,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.delegate = self
+
         build()
     }
 
@@ -31,9 +32,10 @@ class HomeViewController: UIViewController {
 
     private func build() {
 //        configCalendarView()
-        configHomeStatView()
+        
         configHistoryTableView()
         configFloatingButton()
+        bindData()
     }
 }
 
@@ -58,25 +60,40 @@ extension HomeViewController {
 
     @objc func onPressAddExpense() {
         let addExpenseViewController = AddExpenseViewController()
+        addExpenseViewController.refreshHomeData = { [weak self] result in
+            if result {
+                self?.homeViewModel.loadApi()
+                
+                self?.bindData()
+            }
+            
+        }
         navigationController?.pushViewController(addExpenseViewController, animated: true)
     }
 
-    private func configHomeStatView() {
-//        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyStatistics?.monthlyExpense ?? 0)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
-//
-//        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyStatistics?.monthlyBalance ?? 0 ), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
-//
-//        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyStatistics?.monthlyIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
+    private func bindData() {
+        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyExpense)), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
+
+        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyBalance), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
+
+        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyIncome), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
+        
+        historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyStatistic: homeViewModel.monthlyStatistics  ))
     }
 
     private func configHistoryTableView() {
-//        if let listDaily = homeViewModel.monthlyStatistics?.listDailyStatistic {
-//            historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyStatistic: Array(listDaily)  ))
-//        }
+        
 
         historyTableView.bounces = false
         historyTableView.rowHeight = UITableView.automaticDimension
         historyTableView.estimatedRowHeight = 300
         historyTableView.sizeToFit()
+    }
+}
+
+extension HomeViewController : UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let hide = (viewController is HomeViewController)
+        navigationController.setNavigationBarHidden(hide, animated: animated)
     }
 }

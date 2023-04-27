@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         addLoginButton()
     }
 
@@ -30,17 +31,13 @@ class LoginViewController: UIViewController {
     }
 
     @objc func onPressRegister() {
-        let homeViewController = HomeViewController()
-        navigationController?.pushViewController(homeViewController, animated: true)
+        let mainViewController = MainViewController()
+        mainViewController.modalPresentationStyle = .fullScreen
+               present(mainViewController, animated: true, completion: nil)
+
     }
 
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+   
 }
+
+

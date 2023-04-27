@@ -17,7 +17,10 @@ class CategoryViewController: UIViewController {
     // MARK: Properties
     let identifer = "categoryCell"
     let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: .main)
-    var categoryViewModel = CategoryViewModel()
+    lazy var categoryViewModel :CategoryListProtocol =
+    {
+        return CategoryViewModel()
+    }()
 
     // MARK: LifeCycle
 

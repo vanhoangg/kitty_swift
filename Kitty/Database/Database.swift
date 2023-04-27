@@ -37,16 +37,6 @@ final class DataManager {
     }
 
     // open database
-    func fetchData(completion: (Results<User>?) -> Void) {
-        // realm
-        guard let database = database else {
-            print("error: database is not found")
-            return
-        }
-        let response = database.objects(User.self)
-
-        completion(response)
-    }
 
     func fetchCategory(completion: (Results<Category>?) -> Void) {
         // realm
@@ -54,11 +44,32 @@ final class DataManager {
             print("error: database is not found")
             return
         }
-        let response = database.objects(Category.self)
+        let response = database.objects(Category.self).distinct(by: ["type"])
         print(response)
 
         completion(response)
     }
+    func fetchData(completion: (Results<Money>?) -> Void) {
+        // realm
+        guard let database = database else {
+            print("error: database is not found")
+            return
+        }
+        print(database.configuration.fileURL)
+        let response = database.objects(Money.self)
+        completion(response)
+    }
+    func testFilter(){
+        guard let database = database else {
+            print("error: database is not found")
+            return
+        }
+        
+        let movies = database.objects(Money.self).distinct(by: ["createAt"])
+        print(movies)
+    }
+    
+
 
     // save database
     func save() {
@@ -66,7 +77,6 @@ final class DataManager {
             print("error: database is not found")
             return
         }
-        print(database.configuration.fileURL)
         try! database.write {
             database.add(DummyData.listCategory)
         }
@@ -84,12 +94,15 @@ extension DataManager{
             try database.write{
                 database.add(money)
                 completion(true)
+                database.cancelWrite()
             }
+            
         } catch {
                 completion(false)
             }
-                   
+        
         }
+    
     
 }
 
