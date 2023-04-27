@@ -12,5 +12,7 @@ class MonthlyStatistic :Object {
     @Persisted var monthlyExpense:Double?
     @Persisted var monthlyIncome:Double?
     @Persisted var monthlyBalance:Double?
-    @Persisted(originProperty: "dailyExpenses") var dailyExpenses: LinkingObjects<DailyStatistic>
+    
+    @Persisted var dailyExpenses: List<DailyStatistic>
+    
 }

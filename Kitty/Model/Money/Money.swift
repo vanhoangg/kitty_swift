@@ -23,9 +23,6 @@ class Money: Object {
     convenience init(description _: String? = "", category: Category?, value: Double?, type: MoneyEnum?)
     {
         self.init()
-        self.dailyExpenses =  LinkingObjects(fromType: DailyStatistic.self, property: "dailyExpenses")
-        
-        
         self.value = value
         valueDescription = valueDescription
         if let category = category {

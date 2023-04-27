@@ -6,12 +6,29 @@
 //
 
 import Foundation
-
-class AddExpenseViewModel {
-    @Published var choosenCategory: Category? 
-    @Published var choosenMoneyType: MoneyEnum? = MoneyEnum.expense
-    @Published var amountValue: Double?
-    @Published var descriptionAmount: String?
+protocol UpdateExpenseInfomationProtocol{
+    func setChoosenCategory(choosenCategory: Category?)
+    func setChoosenCategory(type: MoneyEnum?)
+    func setAmountValue(value: Double?)
+    func setDescriptionAmount(description: String?)
+    func saveExpense(completion: (Bool) -> Void)
+    var choosenCategory: Category? {get set}
+    var choosenMoneyType: MoneyEnum? {get set}
+    var amountValue: Double? {get set}
+    var descriptionAmount: String? {get set}
+}
+class AddExpenseViewModel :UpdateExpenseInfomationProtocol{
+    var choosenCategory: Category?
+    var choosenMoneyType: MoneyEnum? = MoneyEnum.expense
+    var amountValue: Double?
+    var descriptionAmount: String?
+    
+    let storageServices:StorageServiceProtocol
+    
+    
+    init(services:StorageServiceProtocol = StorageService.init()){
+        self.storageServices = services
+    }
     
     func setChoosenCategory(choosenCategory: Category?) {
         self.choosenCategory = choosenCategory
@@ -33,6 +50,6 @@ class AddExpenseViewModel {
         print("amountValue == \(amountValue)")
         
         let money = Money(description: descriptionAmount, category: choosenCategory, value: amountValue, type: choosenMoneyType)
-        DataManager.instance().saveExpense(money: money,completion:completion)
+        storageServices.saveExpense(money: money,completion:completion)
     }
 }

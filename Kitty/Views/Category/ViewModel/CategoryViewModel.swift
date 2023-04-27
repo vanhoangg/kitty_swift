@@ -11,16 +11,19 @@ protocol CategoryListProtocol {
 class CategoryViewModel: CategoryListProtocol {
     var choosenCategoryCallBack: ((Category?) -> Void)?
     var listCategory: [Category]?
+    let categoryStorageServices: StorageServiceProtocol
+    
+    init(service: StorageServiceProtocol = StorageService.init()) {
+        self.categoryStorageServices = service
+        getCategory()
+    }
+   
     
     func getCategory() {
-        DataManager.instance().fetchCategory {
+        categoryStorageServices.fetchCategory {
             results in
             listCategory = results?.toArray(ofType: Category.self)
         }
     }
-    init() {
-        getCategory()
-    }
-
    
 }

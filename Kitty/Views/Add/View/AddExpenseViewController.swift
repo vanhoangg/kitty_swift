@@ -34,7 +34,7 @@ class AddExpenseViewController: UIViewController {
     }
     // MARK: Property
     
-    var addExpenseViewModel = AddExpenseViewModel()
+    lazy var addExpenseViewModel: UpdateExpenseInfomationProtocol = {return  AddExpenseViewModel()}()
     let categoryTitleLabel : UILabel = {
         let textTitle = UILabel()
         
@@ -96,7 +96,7 @@ class AddExpenseViewController: UIViewController {
 extension AddExpenseViewController {
     // MARK: Method
     
-    @objc func onTapChooseCategory() {
+     @objc func onTapChooseCategory() {
         let categoryViewController = CategoryViewController()
         categoryViewController.categoryViewModel.choosenCategoryCallBack = { [weak self] result in
             self?.addExpenseViewModel.setChoosenCategory(choosenCategory: result)
@@ -110,17 +110,17 @@ extension AddExpenseViewController {
         present(nav, animated: true, completion: nil)
     }
     
-    func hideKeyboardOnTapAround() {
+    private func hideKeyboardOnTapAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     
-    @objc func hideKeyboard() {
+     @objc func hideKeyboard() {
         view.endEditing(true)
     }
     
-    @objc func onChangedDescription(){
+     @objc func onChangedDescription(){
         self.addExpenseViewModel.setDescriptionAmount(description:descriptionTextField.text)
     }
 }

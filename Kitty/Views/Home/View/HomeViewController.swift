@@ -8,7 +8,9 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var homeViewModel = HomeViewModel()
+    lazy var homeViewModel: MonthlyStatisticProtocol = {
+        return HomeViewModel()
+    }()
 
     // MARK: - IBoutlet
 

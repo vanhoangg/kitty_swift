@@ -7,16 +7,31 @@
 
 import Foundation
 
-class HomeViewModel {
+
+protocol MonthlyStatisticProtocol {
+    var monthlyStatistics: [Money]? { get set }
+    var refreshData: (()-> ())? { get set }
+    var monthlyExpense:Double {get set}
+    var monthlyIncome:Double {get set}
+    var monthlyBalance:Double {get set}
+    func initData()
+    func loadApi()
+}
+class HomeViewModel :MonthlyStatisticProtocol{
     var monthlyStatistics: [Money]?
-    var refreshData: (()-> ())?
-    var monthlyExpense:Double = 0
-    var monthlyIncome:Double = 0
-    var monthlyBalance:Double = 0
-    init() {
-        
+    
+    var refreshData: (() -> ())?
+    
+    var monthlyExpense: Double = 0.0
+    
+    var monthlyIncome: Double = 0.0
+    
+    var monthlyBalance: Double = 0.0
+    
+    init(){
         loadApi()
     }
+    
     func initData(){
         monthlyIncome = 0
         monthlyExpense = 0

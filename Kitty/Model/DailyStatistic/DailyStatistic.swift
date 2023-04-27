@@ -12,4 +12,5 @@ class DailyStatistic : Object  {
     @Persisted(primaryKey: true) var _id: ObjectId
 
     @Persisted var dailyExpenses: List<Money>
+    @Persisted(originProperty: "dailyExpenses") var monthlyStatistic: LinkingObjects<MonthlyStatistic>
 }

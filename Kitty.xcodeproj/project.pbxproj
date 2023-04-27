@@ -40,6 +40,7 @@
 		7EB7D07A29FA276A00F4E294 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07929FA276A00F4E294 /* MainViewController.swift */; };
 		7EB7D07C29FA2D6100F4E294 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */; };
 		7EB7D07E29FA2D9500F4E294 /* DefaultNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */; };
+		7EB7D08129FA5AEE00F4E294 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D08029FA5AEE00F4E294 /* StorageService.swift */; };
 		7ECC579A29EE3B1C00C09F30 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECC579929EE3B1C00C09F30 /* Extension.swift */; };
 		7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDFC5CA29EF966700C8AE30 /* HistoryTableViewCell.swift */; };
 		7EDFC5CD29EF966700C8AE30 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDFC5CB29EF966700C8AE30 /* HistoryTableViewCell.xib */; };
@@ -98,6 +99,7 @@
 		7EB7D07929FA276A00F4E294 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationBar.swift; sourceTree = "<group>"; };
+		7EB7D08029FA5AEE00F4E294 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7ECC579929EE3B1C00C09F30 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7EDFC5CA29EF966700C8AE30 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		7EDFC5CB29EF966700C8AE30 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		7E99F83329ECE83F00BDDF92 /* Kitty */ = {
 			isa = PBXGroup;
 			children = (
+				7EB7D07F29FA5AD900F4E294 /* Services */,
 				7EFABEF829F8C9C800C1F9A9 /* Model */,
 				7EFABEC529F6541800C1F9A9 /* Database */,
 				7EA34C9D29ED05C4001B51C9 /* Utils */,
@@ -375,6 +378,14 @@
 				7EB7D07929FA276A00F4E294 /* MainViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7EB7D07F29FA5AD900F4E294 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7EB7D08029FA5AEE00F4E294 /* StorageService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		7EFABEC529F6541800C1F9A9 /* Database */ = {
@@ -663,6 +674,7 @@
 				7E9A745B29EE705C0002051C /* HistoryTableView.swift in Sources */,
 				7EA34C9C29ECFEF4001B51C9 /* IconTextButton.swift in Sources */,
 				7EA34CCB29ED271A001B51C9 /* ReportViewController.swift in Sources */,
+				7EB7D08129FA5AEE00F4E294 /* StorageService.swift in Sources */,
 				7E9A745129EE51F00002051C /* ItemMonthlyReportView.swift in Sources */,
 				7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */,
 				7EFABEE929F7C9DC00C1F9A9 /* CategoryViewController.swift in Sources */,

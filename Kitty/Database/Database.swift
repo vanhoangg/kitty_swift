@@ -17,11 +17,13 @@ final class DataManager {
         let database = try! Realm()
         // config
         dataManager.configDatabase(realm: database)
-
+        print(database.configuration.fileURL ?? "")
+        
         return dataManager
     }()
 
     class func instance() -> DataManager {
+        
         return dataManager
     }
 
@@ -37,40 +39,16 @@ final class DataManager {
     }
 
     // open database
-
-    func fetchCategory(completion: (Results<Category>?) -> Void) {
-        // realm
-        guard let database = database else {
-            print("error: database is not found")
-            return
-        }
-        let response = database.objects(Category.self).distinct(by: ["type"])
-        print(response)
-
-        completion(response)
-    }
     func fetchData(completion: (Results<Money>?) -> Void) {
         // realm
         guard let database = database else {
             print("error: database is not found")
             return
         }
-        print(database.configuration.fileURL)
+        
         let response = database.objects(Money.self)
         completion(response)
     }
-    func testFilter(){
-        guard let database = database else {
-            print("error: database is not found")
-            return
-        }
-        
-        let movies = database.objects(Money.self).distinct(by: ["createAt"])
-        print(movies)
-    }
-    
-
-
     // save database
     func save() {
         guard let database = database else {
@@ -82,27 +60,5 @@ final class DataManager {
         }
     }
 }
-extension DataManager{
-    func saveExpense(money:Money ,completion: (Bool) -> Void){
-        guard let database = database else {
-            print("error: database is not found")
-            return
-        }
-       
-        do{
-                   // realm
-            try database.write{
-                database.add(money)
-                completion(true)
-                database.cancelWrite()
-            }
-            
-        } catch {
-                completion(false)
-            }
-        
-        }
-    
-    
-}
+
 
