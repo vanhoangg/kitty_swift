@@ -11,14 +11,16 @@ import RealmSwift
 class Category: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var categoryName: String?
-    @Persisted var type: CategoryEnum = .unknow
-    convenience init(categoryName: String? = "", type: CategoryEnum?) {
+//    @Persisted var type: CategoryEnum = .unknow
+    
+    @Persisted var iconUrl: String?
+    @Persisted var backgroundColor: String?
+    
+    convenience init(categoryName: String?, iconUrl: String?,backgroundColor:String?) {
         self.init()
         self.categoryName = categoryName
-
-        if let type = type {
-            self.type = type
-        }
+        self.iconUrl = iconUrl
+        self.backgroundColor = backgroundColor
     }
 }
 
@@ -29,25 +31,25 @@ enum CategoryEnum: String, PersistableEnum {
 }
 
 extension Category {
-    var iconUrl: String {
-        switch type {
-        case CategoryEnum.health:
-            return AssetIcon.icHealth
-        case CategoryEnum.gifts:
-            return AssetIcon.icGift
-        default:
-            return AssetIcon.icHealth
-        }
-    }
-
-    var colorBackground: String {
-        switch type {
-        case CategoryEnum.health:
-            return AssetColor.healthBackgroundColor
-        case CategoryEnum.gifts:
-            return AssetColor.giftBackgroundColor
-        default:
-            return AssetColor.transportationBackgroundColor
-        }
-    }
+//    var iconUrl: String {
+//        switch type {
+//        case CategoryEnum.health:
+//            return AssetIcon.icHealth
+//        case CategoryEnum.gifts:
+//            return AssetIcon.icGift
+//        default:
+//            return AssetIcon.icHealth
+//        }
+//    }
+//
+//    var colorBackground: String {
+//        switch type {
+//        case CategoryEnum.health:
+//            return AssetColor.healthBackgroundColor
+//        case CategoryEnum.gifts:
+//            return AssetColor.giftBackgroundColor
+//        default:
+//            return AssetColor.transportationBackgroundColor
+//        }
+//    }
 }

@@ -11,7 +11,7 @@ import UIKit
 class AddExpenseViewController: UIViewController {
     // MARK: IBOutlet
     
-    var refreshHomeData: ((Bool) -> Void)?
+    
     @IBOutlet var dropDownView: DropDownView!
     @IBOutlet var categoryView: UIView!
     
@@ -33,7 +33,7 @@ class AddExpenseViewController: UIViewController {
         
     }
     // MARK: Property
-    
+    var refreshHomeData: ((Bool) -> Void)?
     lazy var addExpenseViewModel: UpdateExpenseInfomationProtocol = {return  AddExpenseViewModel()}()
     let categoryTitleLabel : UILabel = {
         let textTitle = UILabel()
@@ -47,7 +47,6 @@ class AddExpenseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardOnTapAround()
-        
         configureCategoryView()
         configureTextField()
         bindData()
@@ -57,9 +56,9 @@ class AddExpenseViewController: UIViewController {
         dropDownView.configure(viewData: DropDownView.ViewData( initValue: self.addExpenseViewModel.choosenMoneyType?.getTitle))
         dropDownView.choosenMonneyType = { [weak self] (result) in
             let type = result?.getMoneyEnum
-            self?.addExpenseViewModel.setChoosenCategory(type: type)
+            self?.addExpenseViewModel.setMoneyType(type: type)
         }
-        categoryTitleLabel.text = addExpenseViewModel.choosenCategory?.categoryName
+        categoryTitleLabel.text = addExpenseViewModel.choosenCategory?.categoryName ?? "Choose Category"
     }
    
     // MARK: Config

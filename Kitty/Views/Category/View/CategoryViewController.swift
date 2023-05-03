@@ -81,7 +81,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath) as! CategoryCollectionViewCell
 
         if let listCategory = categoryViewModel.listCategory {
-            cell.configure(viewData: CategoryCollectionViewCell.ViewData(categoryName: listCategory[indexPath.row].categoryName, iconUrl: listCategory[indexPath.row].iconUrl, iconBackgroundColor: listCategory[indexPath.row].colorBackground))
+            cell.configure(viewData: CategoryCollectionViewCell.ViewData(categoryName: listCategory[indexPath.row].categoryName, iconUrl: listCategory[indexPath.row].iconUrl, iconBackgroundColor: listCategory[indexPath.row].backgroundColor))
         }
 
         return cell

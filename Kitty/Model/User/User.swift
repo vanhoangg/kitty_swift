@@ -7,13 +7,13 @@
 
 import Foundation
 import RealmSwift
-class User: Object {
-    @Persisted(primaryKey: true) var _id: ObjectId
-
-    @Persisted var userName: String?
-
-    convenience init(userName: String?) {
-        self.init()
-        self.userName = userName
-    }
-}
+//class User: Object {
+//    @Persisted(primaryKey: true) var _id: ObjectId
+//
+//    @Persisted var userName: String?
+//
+//    convenience init(userName: String?) {
+//        self.init()
+//        self.userName = userName
+//    }
+//}

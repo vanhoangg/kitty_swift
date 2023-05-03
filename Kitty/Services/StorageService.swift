@@ -16,14 +16,14 @@ protocol StorageServiceProtocol {
 class StorageService : StorageServiceProtocol {
     
     
-    let database = DataManager.instance().database
+    let database = DataManager.instance.database
     func fetchCategory(completion: (Results<Category>?) -> Void) {
         // realm
         guard let database = database else {
             print("error: database is not found")
             return
         }
-        let response = database.objects(Category.self).distinct(by: ["type"])
+        let response = database.objects(Category.self)
         print(response)
 
         completion(response)

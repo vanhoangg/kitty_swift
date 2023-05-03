@@ -8,11 +8,11 @@
 import Foundation
 import RealmSwift
 struct DummyData {
-    static let listCategory: [Category] = [Category(categoryName: "Gift", type: CategoryEnum.gifts), Category(categoryName: "Health", type: CategoryEnum.health)]
+    static let listCategory: [Category] = [Category(categoryName: "Gift", iconUrl: AssetIcon.icHealth,backgroundColor: AssetColor.healthBackgroundColor), Category(categoryName: "Health", iconUrl: AssetIcon.icGift,backgroundColor: AssetColor.giftBackgroundColor)]
 }
 
 final class DataManager {
-    private static var dataManager: DataManager = {
+    static let instance: DataManager = {
         let dataManager = DataManager()
         let database = try! Realm()
         // config
@@ -22,13 +22,11 @@ final class DataManager {
         return dataManager
     }()
 
-    class func instance() -> DataManager {
-        
-        return dataManager
-    }
+    
+    
 
     // properties
-    var database: Realm?
+     var database: Realm?
 
     // init
     private init() {}
@@ -46,7 +44,7 @@ final class DataManager {
             return
         }
         
-        let response = database.objects(Money.self)
+        let response = database.objects(Money.self).sorted(byKeyPath: "createAt", ascending: true)
         completion(response)
     }
     // save database

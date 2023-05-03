@@ -41,6 +41,9 @@
 		7EB7D07C29FA2D6100F4E294 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */; };
 		7EB7D07E29FA2D9500F4E294 /* DefaultNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */; };
 		7EB7D08129FA5AEE00F4E294 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D08029FA5AEE00F4E294 /* StorageService.swift */; };
+		7EB7D08329FB783200F4E294 /* MonthlyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D08229FB783200F4E294 /* MonthlyHistory.swift */; };
+		7EB7D08929FBAF3A00F4E294 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB7D08729FBAF3A00F4E294 /* AddCategoryViewController.swift */; };
+		7EB7D08A29FBAF3A00F4E294 /* AddCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EB7D08829FBAF3A00F4E294 /* AddCategoryViewController.xib */; };
 		7ECC579A29EE3B1C00C09F30 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECC579929EE3B1C00C09F30 /* Extension.swift */; };
 		7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDFC5CA29EF966700C8AE30 /* HistoryTableViewCell.swift */; };
 		7EDFC5CD29EF966700C8AE30 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDFC5CB29EF966700C8AE30 /* HistoryTableViewCell.xib */; };
@@ -54,8 +57,6 @@
 		7EFABEF529F7CCCA00C1F9A9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFABEF429F7CCCA00C1F9A9 /* Category.swift */; };
 		7EFABEF729F8C95500C1F9A9 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFABEF629F8C95500C1F9A9 /* AddExpenseViewModel.swift */; };
 		7EFABEFB29F8C9E300C1F9A9 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFABEFA29F8C9E300C1F9A9 /* Money.swift */; };
-		7EFABEFE29F8CA1C00C1F9A9 /* MonthlyStatistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFABEFD29F8CA1C00C1F9A9 /* MonthlyStatistic.swift */; };
-		7EFABF0129F8CA3600C1F9A9 /* DailyStatistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFABF0029F8CA3600C1F9A9 /* DailyStatistic.swift */; };
 		7EFABF0429F8CA5800C1F9A9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFABF0329F8CA5800C1F9A9 /* User.swift */; };
 		B19CE2A32B2A1644093678FB /* Pods_Kitty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE04161BD20CEAB213E3388 /* Pods_Kitty.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,9 @@
 		7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationBar.swift; sourceTree = "<group>"; };
 		7EB7D08029FA5AEE00F4E294 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		7EB7D08229FB783200F4E294 /* MonthlyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyHistory.swift; sourceTree = "<group>"; };
+		7EB7D08729FBAF3A00F4E294 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		7EB7D08829FBAF3A00F4E294 /* AddCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCategoryViewController.xib; sourceTree = "<group>"; };
 		7ECC579929EE3B1C00C09F30 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7EDFC5CA29EF966700C8AE30 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		7EDFC5CB29EF966700C8AE30 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -113,8 +117,6 @@
 		7EFABEF429F7CCCA00C1F9A9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7EFABEF629F8C95500C1F9A9 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
 		7EFABEFA29F8C9E300C1F9A9 /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
-		7EFABEFD29F8CA1C00C1F9A9 /* MonthlyStatistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyStatistic.swift; sourceTree = "<group>"; };
-		7EFABF0029F8CA3600C1F9A9 /* DailyStatistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStatistic.swift; sourceTree = "<group>"; };
 		7EFABF0329F8CA5800C1F9A9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,9 +187,10 @@
 		7E99F84929ECE8AF00BDDF92 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7EB7D08429FBAF0200F4E294 /* AddCategory */,
 				7EB7D07729FA274400F4E294 /* Main */,
 				7EFABEE529F7C9CC00C1F9A9 /* Category */,
-				7EFABEC829F68B4500C1F9A9 /* Add */,
+				7EFABEC829F68B4500C1F9A9 /* AddExpense */,
 				7EA34CC729ED2706001B51C9 /* Report */,
 				7EA34CAE29ED25A5001B51C9 /* Setting */,
 				7EA34CA229ED2081001B51C9 /* Home */,
@@ -388,6 +391,31 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		7EB7D08429FBAF0200F4E294 /* AddCategory */ = {
+			isa = PBXGroup;
+			children = (
+				7EB7D08629FBAF1C00F4E294 /* ViewModel */,
+				7EB7D08529FBAF1600F4E294 /* View */,
+			);
+			path = AddCategory;
+			sourceTree = "<group>";
+		};
+		7EB7D08529FBAF1600F4E294 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7EB7D08729FBAF3A00F4E294 /* AddCategoryViewController.swift */,
+				7EB7D08829FBAF3A00F4E294 /* AddCategoryViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7EB7D08629FBAF1C00F4E294 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7EFABEC529F6541800C1F9A9 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,14 +424,14 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		7EFABEC829F68B4500C1F9A9 /* Add */ = {
+		7EFABEC829F68B4500C1F9A9 /* AddExpense */ = {
 			isa = PBXGroup;
 			children = (
 				7EB7D06E29F8CCDE00F4E294 /* View */,
 				7EFABED629F783E300C1F9A9 /* SubView */,
 				7EFABEC929F68B5300C1F9A9 /* ViewModel */,
 			);
-			path = Add;
+			path = AddExpense;
 			sourceTree = "<group>";
 		};
 		7EFABEC929F68B5300C1F9A9 /* ViewModel */ = {
@@ -463,9 +491,8 @@
 			children = (
 				7EFABF0529F8CAD200C1F9A9 /* Category */,
 				7EFABF0229F8CA4B00C1F9A9 /* User */,
-				7EFABEFF29F8CA2500C1F9A9 /* DailyStatistic */,
-				7EFABEFC29F8C9FC00C1F9A9 /* MonthlyStatistic */,
 				7EFABEF929F8C9D100C1F9A9 /* Money */,
+				7EB7D08229FB783200F4E294 /* MonthlyHistory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,22 +503,6 @@
 				7EFABEFA29F8C9E300C1F9A9 /* Money.swift */,
 			);
 			path = Money;
-			sourceTree = "<group>";
-		};
-		7EFABEFC29F8C9FC00C1F9A9 /* MonthlyStatistic */ = {
-			isa = PBXGroup;
-			children = (
-				7EFABEFD29F8CA1C00C1F9A9 /* MonthlyStatistic.swift */,
-			);
-			path = MonthlyStatistic;
-			sourceTree = "<group>";
-		};
-		7EFABEFF29F8CA2500C1F9A9 /* DailyStatistic */ = {
-			isa = PBXGroup;
-			children = (
-				7EFABF0029F8CA3600C1F9A9 /* DailyStatistic.swift */,
-			);
-			path = DailyStatistic;
 			sourceTree = "<group>";
 		};
 		7EFABF0229F8CA4B00C1F9A9 /* User */ = {
@@ -591,6 +602,7 @@
 				7EA34CB329ED25E5001B51C9 /* LoginViewController.xib in Resources */,
 				7EDFC5CD29EF966700C8AE30 /* HistoryTableViewCell.xib in Resources */,
 				7EA34CC629ED2703001B51C9 /* SettingViewController.xib in Resources */,
+				7EB7D08A29FBAF3A00F4E294 /* AddCategoryViewController.xib in Resources */,
 				7EB7D07229F8CCDE00F4E294 /* AddExpenseViewController.xib in Resources */,
 				7E99F84129ECE84400BDDF92 /* LaunchScreen.storyboard in Resources */,
 				7EFABEEF29F7CA6200C1F9A9 /* CategoryCollectionViewCell.xib in Resources */,
@@ -666,6 +678,7 @@
 				7EFABEEE29F7CA6200C1F9A9 /* CategoryCollectionViewCell.swift in Sources */,
 				7E9A745D29EE7A010002051C /* HomeViewModel.swift in Sources */,
 				7EB7D06A29F8CC5500F4E294 /* DropDownView.swift in Sources */,
+				7EB7D08329FB783200F4E294 /* MonthlyHistory.swift in Sources */,
 				7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */,
 				7EB7D07A29FA276A00F4E294 /* MainViewController.swift in Sources */,
 				7E834F5529F269E500F3363E /* CustomTableView.swift in Sources */,
@@ -679,11 +692,10 @@
 				7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */,
 				7EFABEE929F7C9DC00C1F9A9 /* CategoryViewController.swift in Sources */,
 				7EFABEDE29F7BC0500C1F9A9 /* CustomTextField.swift in Sources */,
+				7EB7D08929FBAF3A00F4E294 /* AddCategoryViewController.swift in Sources */,
 				7E99F83529ECE83F00BDDF92 /* AppDelegate.swift in Sources */,
-				7EFABF0129F8CA3600C1F9A9 /* DailyStatistic.swift in Sources */,
 				7EB7D07129F8CCDE00F4E294 /* AddExpenseViewController.swift in Sources */,
 				7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */,
-				7EFABEFE29F8CA1C00C1F9A9 /* MonthlyStatistic.swift in Sources */,
 				7EB7D07E29FA2D9500F4E294 /* DefaultNavigationBar.swift in Sources */,
 				7EFABEF529F7CCCA00C1F9A9 /* Category.swift in Sources */,
 				7EFABEF329F7CC9300C1F9A9 /* CategoryViewModel.swift in Sources */,

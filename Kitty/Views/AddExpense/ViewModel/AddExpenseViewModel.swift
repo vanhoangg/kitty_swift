@@ -8,7 +8,7 @@
 import Foundation
 protocol UpdateExpenseInfomationProtocol{
     func setChoosenCategory(choosenCategory: Category?)
-    func setChoosenCategory(type: MoneyEnum?)
+    func setMoneyType(type: MoneyEnum?)
     func setAmountValue(value: Double?)
     func setDescriptionAmount(description: String?)
     func saveExpense(completion: (Bool) -> Void)
@@ -28,12 +28,13 @@ class AddExpenseViewModel :UpdateExpenseInfomationProtocol{
     
     init(services:StorageServiceProtocol = StorageService.init()){
         self.storageServices = services
+//        DataManager.instance.save()
     }
     
     func setChoosenCategory(choosenCategory: Category?) {
         self.choosenCategory = choosenCategory
     }
-    func setChoosenCategory(type: MoneyEnum?) {
+    func setMoneyType(type: MoneyEnum?) {
         self.choosenMoneyType = type
     }
     func setAmountValue(value: Double?) {
@@ -49,7 +50,7 @@ class AddExpenseViewModel :UpdateExpenseInfomationProtocol{
         print("choosenMoneyType == \(choosenMoneyType)")
         print("amountValue == \(amountValue)")
         
-        let money = Money(description: descriptionAmount, category: choosenCategory, value: amountValue, type: choosenMoneyType)
+        let money = Money(descriptionAmount, category: choosenCategory, value: amountValue, type: choosenMoneyType,createAt: currentDate.toString())
         storageServices.saveExpense(money: money,completion:completion)
     }
 }

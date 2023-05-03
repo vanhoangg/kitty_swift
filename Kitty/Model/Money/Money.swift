@@ -15,16 +15,18 @@ class Money: Object {
     @Persisted var value: Double?
     @Persisted var valueDescription: String?
     @Persisted var type: MoneyEnum?
+    @Persisted var createAt:String?
     
     
-    @Persisted(originProperty: "dailyExpenses") var dailyExpenses: LinkingObjects<DailyStatistic>
+    
     
 
-    convenience init(description _: String? = "", category: Category?, value: Double?, type: MoneyEnum?)
+    convenience init(_ description: String? , category: Category?, value: Double?, type: MoneyEnum?,createAt:String?)
     {
         self.init()
         self.value = value
-        valueDescription = valueDescription
+        self.valueDescription = description
+        self.createAt = createAt
         if let category = category {
             self.category = category
         }

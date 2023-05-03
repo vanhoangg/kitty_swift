@@ -7,28 +7,50 @@
 
 import UIKit
 
-class HistoryTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class HistoryTableView: UITableView {
     struct ViewData {
-        let listDailyStatistic: [Money]?
+        
+        let listDailyExpenseHistory: [DailyExpenseHistory]?
     }
 
-    var viewData = ViewData(listDailyStatistic: [])
+    var viewData:ViewData?
+    override init(frame _: CGRect, style _: UITableView.Style) {
+        super.init(frame: CGRect.zero, style: .plain)
+        initTableView()
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initTableView()
+    }
+
+    // MARK: Method
+    private func initTableView() {
+        register(HistoryTableViewCell.nib(), forCellReuseIdentifier: HistoryTableViewCell.identifer)
+        delegate = self
+        dataSource = self
+        separatorStyle = .none
+    }
+
+    func loadData(viewData: HistoryTableView.ViewData) {
+        self.viewData = viewData
+        reloadData()
+    }
+}
+extension HistoryTableView : UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in _: UITableView) -> Int {
-        return viewData.listDailyStatistic?.count ?? 0
+        return viewData?.listDailyExpenseHistory?.count ?? 0
     }
-
-    override var contentSize: CGSize {
-        didSet {
-            invalidateIntrinsicContentSize()
-            setNeedsLayout()
-        }
-    }
-
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
-    }
-
+//    override var contentSize: CGSize {
+//        didSet {
+//            invalidateIntrinsicContentSize()
+//            setNeedsLayout()
+//        }
+//    }
+//
+//    override var intrinsicContentSize: CGSize {
+//        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
+//    }
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 1
     }
@@ -50,42 +72,18 @@ class HistoryTableView: UITableView, UITableViewDelegate, UITableViewDataSource 
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
-//        if let listExpenseReport = viewData.listDailyStatistic?[indexPath.section].listExpenseReport {
-//            cell.loadData(viewData: HistoryTableViewCell.ViewData(dayName: viewData.listDailyStatistic?[indexPath.section].dayName, dailyExpense: viewData.listDailyStatistic?[indexPath.section].dailyExpense, listItemExpenseViewData: Array(listExpenseReport)))
-//        }
+        
+        if let dailyHistory = viewData?.listDailyExpenseHistory?[indexPath.section
+        ] {
+            var totalDailyExpense:Double = 0
+            dailyHistory.expenses?.forEach({ elementMoney in
+                totalDailyExpense += (elementMoney.value ?? 0)
+            })
+//            let categoryDictionary = Dictionary(grouping: dailyHistory.expenses ?? [], by: { $0.createAt })
+            cell.loadData(viewData: HistoryTableViewCell.ViewData(dayName: dailyHistory.dayId, dailyExpense: totalDailyExpense, listItemExpenseViewData: dailyHistory.expenses))
 
+        }
         return cell
     }
-
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
-
-    override init(frame _: CGRect, style _: UITableView.Style) {
-        super.init(frame: CGRect.zero, style: .plain)
-        initTableView()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initTableView()
-    }
-
-    // MARK: Method
-
-    private func initTableView() {
-        register(HistoryTableViewCell.nib(), forCellReuseIdentifier: HistoryTableViewCell.identifer)
-        delegate = self
-        dataSource = self
-        separatorStyle = .none
-    }
-
-    func loadData(viewData: HistoryTableView.ViewData) {
-        self.viewData = viewData
-        reloadData()
-    }
+    
 }

@@ -9,54 +9,63 @@ import Foundation
 
 
 protocol MonthlyStatisticProtocol {
-    var monthlyStatistics: [Money]? { get set }
+    var monthlyHistory: MonthlyHistory? { get set }
     var refreshData: (()-> ())? { get set }
-    var monthlyExpense:Double {get set}
-    var monthlyIncome:Double {get set}
-    var monthlyBalance:Double {get set}
-    func initData()
     func loadApi()
 }
 class HomeViewModel :MonthlyStatisticProtocol{
-    var monthlyStatistics: [Money]?
+    
+    var monthlyHistory: MonthlyHistory?
+    
     
     var refreshData: (() -> ())?
     
-    var monthlyExpense: Double = 0.0
-    
-    var monthlyIncome: Double = 0.0
-    
-    var monthlyBalance: Double = 0.0
+  
     
     init(){
         loadApi()
     }
     
-    func initData(){
-        monthlyIncome = 0
-        monthlyExpense = 0
-        monthlyBalance = 0
-    }
     
     func loadApi() {
-        initData()
-//        DataManager.instance().save()
-        DataManager.instance().fetchData {
+        var monthlyExpense: Double = 0.0
+        var monthlyIncome: Double = 0.0
+        var monthlyBalance: Double = 0.0
+        var listMonthlyHistory:[Money]? = []
+        var listMonthlyExpense:[Money]? = []
+        var listDailyExpenseHistory:[DailyExpenseHistory]? = []
+        
+        
+//        DataManager.instance.save()
+        DataManager.instance.fetchData {
             listMoney in
-//            monthlyStatistics =   listMoney?.filter({ money in
-//                return  (money.createAt?.contains("2023") ?? false) && (money.createAt?.contains("April") ?? false)
-//            })
-            monthlyStatistics?.forEach({ moneyElement in
-                
+            /// Query table Money key : Month - Year
+            listMonthlyHistory = listMoney?.filter({ money in
+                return (money.createAt?.contains("2023") ?? false) && (money.createAt?.contains("April") ?? false)
+            })
+            /// Query Data Money Type
+            listMonthlyHistory?.forEach({ moneyElement in
                 if(moneyElement.type == MoneyEnum.expense){
                     monthlyExpense += ( moneyElement.value ?? 0 )
+                    listMonthlyExpense?.append(moneyElement)
                 } else if(moneyElement.type == MoneyEnum.income)
                 {
                     monthlyIncome +=  (moneyElement.value ?? 0)
                 }
             })
-            monthlyBalance = monthlyExpense  - monthlyIncome
+            monthlyBalance = monthlyIncome - monthlyExpense
         }
-     
+        
+        
+        /// Create Dictionary to Group by createAt
+        let dictionary = Dictionary(grouping: listMonthlyExpense ?? [], by: { $0.createAt })
+//        print("dictionary \(dictionary)")
+        /// Convert Dictionary To Array
+        dictionary.forEach { (key: String?, value: [Money]) in
+            listDailyExpenseHistory?.append(DailyExpenseHistory(dayId: key, expenses: value))
+        }
+//        print("listDailyExpenseHistory \(listDailyExpenseHistory)")
+        
+        monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance,listDailyExpenseHistory: listDailyExpenseHistory)
     }
 }
