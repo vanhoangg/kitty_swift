@@ -70,7 +70,9 @@ extension HomeViewController {
             }
             
         }
+        addExpenseViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addExpenseViewController, animated: true)
+        
     }
 
     private func bindData() {

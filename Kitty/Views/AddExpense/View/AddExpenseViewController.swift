@@ -7,6 +7,7 @@
 
 import DropDown
 import UIKit
+import FloatingPanel
 
 class AddExpenseViewController: UIViewController {
     // MARK: IBOutlet
@@ -25,7 +26,6 @@ class AddExpenseViewController: UIViewController {
             if finish {
                 self.refreshHomeData?(true)
                 self.navigationController?.popViewController(animated: true)
-                
                       } else {
                           print("Error")
                       }
@@ -96,17 +96,22 @@ extension AddExpenseViewController {
     // MARK: Method
     
      @objc func onTapChooseCategory() {
+         let fpc = FloatingPanelController()
         let categoryViewController = CategoryViewController()
         categoryViewController.categoryViewModel.choosenCategoryCallBack = { [weak self] result in
             self?.addExpenseViewModel.setChoosenCategory(choosenCategory: result)
             self?.bindData()
         }
-        let nav = UINavigationController(rootViewController: categoryViewController)
-        nav.modalPresentationStyle = .pageSheet
-        if let sheet = nav.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-        }
-        present(nav, animated: true, completion: nil)
+         categoryViewController.categoryViewModel.onClickAddCategory = { () -> Void in
+             let viewController = AddCategoryViewController()
+             self.dismiss(animated: true, completion: nil)
+             self.navigationController?.pushViewController(viewController, animated: true)
+         }
+         fpc.set(contentViewController: categoryViewController)
+         fpc.isRemovalInteractionEnabled = true
+         fpc.backdropView.dismissalTapGestureRecognizer.isEnabled = true
+         fpc.contentMode = .fitToBounds
+         self.present(fpc, animated: true, completion: nil)
     }
     
     private func hideKeyboardOnTapAround() {
@@ -123,22 +128,3 @@ extension AddExpenseViewController {
         self.addExpenseViewModel.setDescriptionAmount(description:descriptionTextField.text)
     }
 }
-//extension AddExpenseViewController : UITextFieldDelegate {
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//         return true;
-//     }
-//     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-//         return true;
-//     }
-//     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//         return true;
-//     }
-//     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//         return true;
-//     }
-//     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//         textField.resignFirstResponder();
-//         return true;
-//     }
-//
-//}

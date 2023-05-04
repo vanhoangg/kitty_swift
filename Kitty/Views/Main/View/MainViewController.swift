@@ -14,6 +14,7 @@ class MainViewController: UITabBarController {
         self.delegate = self
         tabBar.tintColor = UIColor(named: AssetColor.ThirdTextColor)
         
+        
         // Do any additional setup after loading the view.
     }
     
@@ -43,23 +44,28 @@ extension MainViewController: UITabBarControllerDelegate {
 //        let rootViewController = LoginViewController()
 
         // Home
+        
         let homeViewController = HomeViewController()
         let homeNavigationController = UINavigationController(rootViewController: homeViewController)
+//        homeViewController.hidesBottomBarWhenPushed = true
         homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: AssetIcon.icHome), selectedImage: UIImage(named: AssetIcon.icHomeActive))
-
+//        homeNavigationController.hidesBottomBarWhenPushed = true
         // Setting
         let settingViewController = SettingViewController()
         let settingNavigationController = UINavigationController(rootViewController: settingViewController)
+//        settingViewController.hidesBottomBarWhenPushed = true
         settingNavigationController.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: AssetIcon.icSetting), selectedImage: UIImage(named: AssetIcon.icSettingActive))
 
         // Report
         let reportViewController = ReportViewController()
         let reportNavigationController = UINavigationController(rootViewController: reportViewController)
+//        reportViewController.hidesBottomBarWhenPushed = true
         reportNavigationController.tabBarItem = UITabBarItem(title: "Report", image: UIImage(named: AssetIcon.icReport), selectedImage: UIImage(named: AssetIcon.icReportActive))
 
         
       
         self.viewControllers = [homeNavigationController, settingNavigationController, reportNavigationController]
+        
         
 
         

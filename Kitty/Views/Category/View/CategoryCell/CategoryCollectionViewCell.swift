@@ -14,6 +14,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         let categoryName: String?
         let iconUrl: String?
         let iconBackgroundColor: String?
+        let isShowCategoryName:Bool? 
     }
 
     // MARK: IBOutlet
@@ -38,8 +39,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 
     func configure(viewData: ViewData) {
         shapeView.backgroundColor = UIColor(named: viewData.iconBackgroundColor ?? "")
-        categoryNameLabel.text = viewData.categoryName
-
+        viewData.isShowCategoryName ?? true ? categoryNameLabel.text = viewData.categoryName : categoryNameLabel.removeFromSuperview()
         iconCategoryImageView.image = UIImage(named: viewData.iconUrl ?? "")
     }
 }

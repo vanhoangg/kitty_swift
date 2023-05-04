@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		733081852A03A4F80027A063 /* AddCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733081842A03A4F80027A063 /* AddCategoryViewModel.swift */; };
 		7E1798C529F0EE5F0003C20E /* ItemExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1798C329F0EE5F0003C20E /* ItemExpenseViewController.swift */; };
 		7E1798C629F0EE5F0003C20E /* ItemExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1798C429F0EE5F0003C20E /* ItemExpenseViewController.xib */; };
 		7E1798C829F0F7FA0003C20E /* FunctionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1798C729F0F7FA0003C20E /* FunctionUtils.swift */; };
@@ -65,6 +66,7 @@
 		0DF36A7BB4BC78F14417D052 /* Pods-Kitty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.debug.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.debug.xcconfig"; sourceTree = "<group>"; };
 		2CE04161BD20CEAB213E3388 /* Pods_Kitty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kitty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4112B9695CB0386679A95D7F /* Pods-Kitty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.release.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.release.xcconfig"; sourceTree = "<group>"; };
+		733081842A03A4F80027A063 /* AddCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewModel.swift; sourceTree = "<group>"; };
 		7E1798C329F0EE5F0003C20E /* ItemExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemExpenseViewController.swift; sourceTree = "<group>"; };
 		7E1798C429F0EE5F0003C20E /* ItemExpenseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemExpenseViewController.xib; sourceTree = "<group>"; };
 		7E1798C729F0F7FA0003C20E /* FunctionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionUtils.swift; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		733081832A03A4EC0027A063 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				733081842A03A4F80027A063 /* AddCategoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7E1798C229F0EE1E0003C20E /* ItemExpenseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +404,7 @@
 		7EB7D08429FBAF0200F4E294 /* AddCategory */ = {
 			isa = PBXGroup;
 			children = (
+				733081832A03A4EC0027A063 /* ViewModel */,
 				7EB7D08529FBAF1600F4E294 /* View */,
 			);
 			path = AddCategory;
@@ -634,6 +645,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				733081852A03A4F80027A063 /* AddCategoryViewModel.swift in Sources */,
 				7EB7D07C29FA2D6100F4E294 /* CustomNavigationBar.swift in Sources */,
 				7EFABEFB29F8C9E300C1F9A9 /* Money.swift in Sources */,
 				7EA34CB229ED25E5001B51C9 /* LoginViewController.swift in Sources */,

@@ -8,4 +8,5 @@ target 'Kitty' do
   # Pods for Kitty
   pod 'RealmSwift'
   pod 'DropDown'
+  pod 'FloatingPanel'
 end

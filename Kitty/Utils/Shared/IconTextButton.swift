@@ -52,6 +52,8 @@ extension IconTextButton {
         self.backgroundColor = backgroundColor
         buttonLabel.font = font
         buttonLabel.textColor = textColor
+        iconImageView.setImageColor(color: textColor ?? .black
+        )
         layer.cornerRadius = cornerRadius
         layer.borderWidth = borderWidth
         layer.borderColor = UIColor(named: borderColor)?.cgColor
@@ -65,6 +67,7 @@ extension IconTextButton {
 
     private func buildLeadingIcon() {
         addSubview(iconImageView)
+        
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),

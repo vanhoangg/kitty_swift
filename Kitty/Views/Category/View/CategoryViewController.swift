@@ -8,8 +8,16 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
+    
+    //Properties
+    struct ViewData{
+        let isShowCategoryName:Bool?
+        let titleLabel:String?
+        let isShowButton:Bool?
+    }
+    var viewData:ViewData!
     // MARK: IBOutlet
-
+    
     @IBOutlet var addCategoryButton: UIButton!
     @IBOutlet var categoryCollectionView: UICollectionView!
     @IBOutlet var chooseCategoryLabel: UILabel!
@@ -21,13 +29,12 @@ class CategoryViewController: UIViewController {
     {
         return CategoryViewModel()
     }()
-
+    
     // MARK: LifeCycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         build()
-        
     }
 }
 
@@ -44,29 +51,38 @@ extension CategoryViewController {
     }
     
     private func build() {
+        print("ViewData\(viewData)")
         configureChooseCategoryLabel()
         configureAddButtonCategory()
         configureCategoryCollectionView()
     }
 
     private func configureChooseCategoryLabel() {
-        chooseCategoryLabel.text = "Choose Category".uppercased()
+        chooseCategoryLabel.text = (viewData?.titleLabel ??  "Choose Category").uppercased()
         chooseCategoryLabel.font = UIFont.CustomFont(.medium, size: 10)
         chooseCategoryLabel.textColor = UIColor(named: AssetColor.SecondaryTextColor)
         chooseCategoryLabel.textAlignment = .center
     }
 
     private func configureAddButtonCategory() {
-        addCategoryButton.cornerRadius = 4
-        addCategoryButton.borderWidth = 1
-        addCategoryButton.borderColor = UIColor(named: AssetColor.borderColor)
-        addCategoryButton.setTitle("Add new category", for: .normal)
+        if (viewData?.isShowButton ?? true) {
+            addCategoryButton.cornerRadius = 4
+            addCategoryButton.borderWidth = 1
+            addCategoryButton.borderColor = UIColor(named: AssetColor.borderColor)
+            addCategoryButton.setTitle("Add new category", for: .normal)
+            addCategoryButton.addTarget(self, action: #selector(onTap), for: .touchUpInside) } else { addCategoryButton.removeFromSuperview()}
     }
 
     private func configureCategoryCollectionView() {
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         categoryCollectionView.register(nib, forCellWithReuseIdentifier: identifer)
+    }
+    @objc private func onTap(){
+    
+        if let onTapAddCategory = categoryViewModel.onClickAddCategory{
+            onTapAddCategory()
+        }
     }
 }
 
@@ -81,7 +97,8 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath) as! CategoryCollectionViewCell
 
         if let listCategory = categoryViewModel.listCategory {
-            cell.configure(viewData: CategoryCollectionViewCell.ViewData(categoryName: listCategory[indexPath.row].categoryName, iconUrl: listCategory[indexPath.row].iconUrl, iconBackgroundColor: listCategory[indexPath.row].backgroundColor))
+          
+            cell.configure(viewData: CategoryCollectionViewCell.ViewData(categoryName: listCategory[indexPath.row].categoryName, iconUrl: listCategory[indexPath.row].iconUrl, iconBackgroundColor: listCategory[indexPath.row].backgroundColor,isShowCategoryName: viewData?.isShowCategoryName))
         }
 
         return cell
@@ -94,4 +111,5 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         dismiss(animated: true, completion: nil)
 
     }
+
 }
