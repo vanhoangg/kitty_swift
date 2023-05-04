@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,11 +38,11 @@
                         </constraints>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ3-HE-Hq6">
-                        <rect key="frame" x="8" y="40" width="320" height="694"/>
+                        <rect key="frame" x="8" y="40" width="320" height="705"/>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="ZQ3-HE-Hq6" secondAttribute="bottom" id="3J6-fP-II3"/>
+                    <constraint firstAttribute="bottom" secondItem="ZQ3-HE-Hq6" secondAttribute="bottom" priority="250" id="9Ku-C7-WLb"/>
                     <constraint firstItem="ZQ3-HE-Hq6" firstAttribute="top" secondItem="3fc-jf-IRe" secondAttribute="bottom" id="MBQ-Ty-Q1q"/>
                     <constraint firstItem="3fc-jf-IRe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Uod-Zc-fqP"/>
                     <constraint firstAttribute="trailing" secondItem="3fc-jf-IRe" secondAttribute="trailing" constant="16" id="ZHy-eY-tC0"/>

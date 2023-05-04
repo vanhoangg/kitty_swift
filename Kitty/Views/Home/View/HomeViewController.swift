@@ -88,8 +88,8 @@ extension HomeViewController {
         
 
 //        historyTableView.bounces = false
-        historyTableView.rowHeight = UITableView.automaticDimension
-        historyTableView.estimatedRowHeight = 200
+//        historyTableView.rowHeight = UITableView.automaticDimension
+//        historyTableView.estimatedRowHeight = 200
 //        historyTableView.sizeToFit()
         
     }

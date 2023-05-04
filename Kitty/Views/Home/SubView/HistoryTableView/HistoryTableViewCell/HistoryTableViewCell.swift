@@ -72,15 +72,12 @@ extension HistoryTableViewCell {
             itemExpenseController.view.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 itemExpenseController.view.heightAnchor.constraint(greaterThanOrEqualToConstant: 56 ),
-                itemExpenseController.view.widthAnchor.constraint(equalTo: listItemExpenseStackView.widthAnchor),
             ])
             
             
             itemExpenseController.bindData(viewData: ItemExpenseViewController.ViewData(itemCategoryIconText: listItemExpenseViewData?[index].category?.iconUrl, itemTitleValue: listItemExpenseViewData?[index].value ?? 0, itemSubText: listItemExpenseViewData?[index].category?.categoryName, itemTitleText: listItemExpenseViewData?[index].valueDescription, itemCategoryIconBackgroundColor: listItemExpenseViewData?[index].category?.backgroundColor))
-            
-            itemExpenseController.view.layoutIfNeeded()
-         
+//            listItemExpenseStackView.layoutIfNeeded()
         }
-//        listItemExpenseStackView.updateConstraintsIfNeeded()
+        
     }
 }

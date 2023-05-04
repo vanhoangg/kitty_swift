@@ -394,7 +394,6 @@
 		7EB7D08429FBAF0200F4E294 /* AddCategory */ = {
 			isa = PBXGroup;
 			children = (
-				7EB7D08629FBAF1C00F4E294 /* ViewModel */,
 				7EB7D08529FBAF1600F4E294 /* View */,
 			);
 			path = AddCategory;
@@ -407,13 +406,6 @@
 				7EB7D08829FBAF3A00F4E294 /* AddCategoryViewController.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7EB7D08629FBAF1C00F4E294 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7EFABEC529F6541800C1F9A9 /* Database */ = {
@@ -489,36 +481,12 @@
 		7EFABEF829F8C9C800C1F9A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7EFABF0529F8CAD200C1F9A9 /* Category */,
-				7EFABF0229F8CA4B00C1F9A9 /* User */,
-				7EFABEF929F8C9D100C1F9A9 /* Money */,
+				7EFABEF429F7CCCA00C1F9A9 /* Category.swift */,
+				7EFABF0329F8CA5800C1F9A9 /* User.swift */,
+				7EFABEFA29F8C9E300C1F9A9 /* Money.swift */,
 				7EB7D08229FB783200F4E294 /* MonthlyHistory.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		7EFABEF929F8C9D100C1F9A9 /* Money */ = {
-			isa = PBXGroup;
-			children = (
-				7EFABEFA29F8C9E300C1F9A9 /* Money.swift */,
-			);
-			path = Money;
-			sourceTree = "<group>";
-		};
-		7EFABF0229F8CA4B00C1F9A9 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				7EFABF0329F8CA5800C1F9A9 /* User.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		7EFABF0529F8CAD200C1F9A9 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				7EFABEF429F7CCCA00C1F9A9 /* Category.swift */,
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		93F38ACEEDA03BEBB3E6F104 /* Pods */ = {

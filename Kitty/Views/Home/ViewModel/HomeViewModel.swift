@@ -34,6 +34,7 @@ class HomeViewModel :MonthlyStatisticProtocol{
         var listMonthlyHistory:[Money]? = []
         var listMonthlyExpense:[Money]? = []
         var listDailyExpenseHistory:[DailyExpenseHistory]? = []
+        let filterDate = Date().toString(pattern: "MM-YYYY")
         
         
 //        DataManager.instance.save()
@@ -41,7 +42,7 @@ class HomeViewModel :MonthlyStatisticProtocol{
             listMoney in
             /// Query table Money key : Month - Year
             listMonthlyHistory = listMoney?.filter({ money in
-                return (money.createAt?.contains("2023") ?? false) && (money.createAt?.contains("April") ?? false)
+                return (money.createAt?.contains(filterDate) ?? false)
             })
             /// Query Data Money Type
             listMonthlyHistory?.forEach({ moneyElement in

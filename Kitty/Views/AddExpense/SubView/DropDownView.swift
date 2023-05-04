@@ -20,7 +20,7 @@ class DropDownView: UIView {
     let menu: DropDown = .init()
 
     struct ViewData {
-        let listDataSource: [String] = ["Expense", "Balance", "Income"]
+        let listDataSource: [String] = ["Expense", "Income"]
         let initValue:String?
     }
 

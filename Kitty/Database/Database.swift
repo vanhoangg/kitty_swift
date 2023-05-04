@@ -53,9 +53,10 @@ final class DataManager {
             print("error: database is not found")
             return
         }
-        try! database.write {
-            database.add(DummyData.listCategory)
-        }
+        if (database.objects(Category.self).isEmpty){
+            try! database.write {
+                database.add(DummyData.listCategory)
+            } }
     }
 }
 

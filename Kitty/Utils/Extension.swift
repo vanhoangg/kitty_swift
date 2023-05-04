@@ -11,7 +11,7 @@ import UIKit
 
 
 extension Date{
-    func toString(pattern:String? = "dd-MMMM-yyyy") -> String{
+    func toString(pattern:String? = "dd-MM-yyyy") -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = pattern
         let dateString = dateFormatter.string(from: self)

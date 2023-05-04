@@ -41,16 +41,16 @@ extension HistoryTableView : UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in _: UITableView) -> Int {
         return viewData?.listDailyExpenseHistory?.count ?? 0
     }
-//    override var contentSize: CGSize {
-//        didSet {
-//            invalidateIntrinsicContentSize()
-//            setNeedsLayout()
-//        }
-//    }
-//
-//    override var intrinsicContentSize: CGSize {
-//        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
-//    }
+    override var contentSize: CGSize {
+        didSet {
+            invalidateIntrinsicContentSize()
+            setNeedsLayout()
+        }
+    }
+
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
+    }
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 1
     }
@@ -79,9 +79,11 @@ extension HistoryTableView : UITableViewDelegate , UITableViewDataSource {
             dailyHistory.expenses?.forEach({ elementMoney in
                 totalDailyExpense += (elementMoney.value ?? 0)
             })
-//            let categoryDictionary = Dictionary(grouping: dailyHistory.expenses ?? [], by: { $0.createAt })
+//            let categoryDictionary = Dictionary(grouping: dailyHistory.expenses ?? [], by: { $0.createAt })   .
+            tableView.beginUpdates()
+      
             cell.loadData(viewData: HistoryTableViewCell.ViewData(dayName: dailyHistory.dayId, dailyExpense: totalDailyExpense, listItemExpenseViewData: dailyHistory.expenses))
-
+            tableView.endUpdates()
         }
         return cell
     }
