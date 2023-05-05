@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -24,21 +25,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ff-DA-qMK" userLabel="Dropdown View" customClass="DropDownView" customModule="Kitty" customModuleProvider="target">
-                    <rect key="frame" x="16" y="68" width="382" height="48"/>
+                    <rect key="frame" x="16" y="72" width="382" height="48"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="uWF-Kr-Rs3"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s8t-Eh-e0u" userLabel="Category View">
-                    <rect key="frame" x="16" y="140" width="382" height="48"/>
+                    <rect key="frame" x="16" y="144" width="382" height="48"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="FwO-QJ-wjQ"/>
                     </constraints>
                 </view>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter amout" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dau-l8-Xxg" customClass="CurrencyTextField" customModule="Kitty" customModuleProvider="target">
-                    <rect key="frame" x="16" y="212" width="382" height="48"/>
+                    <rect key="frame" x="16" y="216" width="382" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="2tk-C9-M6p"/>
                     </constraints>
@@ -47,7 +48,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description (Optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nee-og-t55" customClass="CustomTextField" customModule="Kitty" customModuleProvider="target">
-                    <rect key="frame" x="16" y="284" width="382" height="48"/>
+                    <rect key="frame" x="16" y="288" width="382" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="WHk-b1-ea8"/>
                     </constraints>
@@ -55,9 +56,9 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-xN-vPP">
-                    <rect key="frame" x="16" y="806" width="382" height="40"/>
+                    <rect key="frame" x="16" y="798" width="382" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="xJh-3N-LZz"/>
+                        <constraint firstAttribute="height" constant="48" id="xJh-3N-LZz"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Add new expense" cornerStyle="capsule"/>

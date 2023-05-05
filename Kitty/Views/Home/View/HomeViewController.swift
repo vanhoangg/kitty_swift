@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
     lazy var homeViewModel: MonthlyStatisticProtocol = {
         return HomeViewModel()
     }()
@@ -26,7 +27,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
-
         build()
     }
    
@@ -35,16 +35,16 @@ class HomeViewController: UIViewController {
 
     private func build() {
 //        configCalendarView()
-        
-        configHistoryTableView()
+//        configHistoryTableView()
         configFloatingButton()
         bindData()
     }
 }
 
-// MARK: - Extension
+
 
 extension HomeViewController {
+    // MARK: - Method
     private func configFloatingButton() {
         let addButton = IconTextButton()
         view.addSubview(addButton)
@@ -60,7 +60,16 @@ extension HomeViewController {
         addButton.configureStyle(cornerRadius: 22, borderWidth: 0, backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor), textColor: .white)
         addButton.addTarget(self, action: #selector(onPressAddExpense), for: .touchUpInside)
     }
+    private func bindData() {
+        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyHistory?.monthlyExpense ?? 0) ), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
 
+        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyHistory?.monthlyBalance ?? 0), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
+
+        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyHistory?.monthlyIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
+        historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyExpenseHistory: homeViewModel.monthlyHistory?.listDailyExpenseHistory))
+        historyTableView.reloadData()
+    }
+    // MARK: Action
     @objc func onPressAddExpense() {
         let addExpenseViewController = AddExpenseViewController()
         addExpenseViewController.refreshHomeData = { [weak self] result in
@@ -75,26 +84,14 @@ extension HomeViewController {
         
     }
 
-    private func bindData() {
-        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyHistory?.monthlyExpense ?? 0) ), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
+   
 
-        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyHistory?.monthlyBalance ?? 0), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
-
-        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyHistory?.monthlyIncome ?? 0), title: "Income",valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
-//        
-        historyTableView.loadData(viewData:  HistoryTableView.ViewData(listDailyExpenseHistory: homeViewModel.monthlyHistory?.listDailyExpenseHistory))
-        historyTableView.reloadData()
-    }
-
-    private func configHistoryTableView() {
-        
-
+//    private func configHistoryTableView() {
 //        historyTableView.bounces = false
 //        historyTableView.rowHeight = UITableView.automaticDimension
 //        historyTableView.estimatedRowHeight = 200
 //        historyTableView.sizeToFit()
-        
-    }
+//    }
 }
 
 extension HomeViewController : UINavigationControllerDelegate {

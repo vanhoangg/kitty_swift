@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		733081852A03A4F80027A063 /* AddCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733081842A03A4F80027A063 /* AddCategoryViewModel.swift */; };
+		73F52E952A04DADF0080A1FD /* MediaCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F52E932A04DADF0080A1FD /* MediaCategoryViewController.swift */; };
+		73F52E962A04DADF0080A1FD /* MediaCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F52E942A04DADF0080A1FD /* MediaCategoryViewController.xib */; };
+		73F52E982A04DD580080A1FD /* MediaCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F52E972A04DD580080A1FD /* MediaCategoryViewModel.swift */; };
 		7E1798C529F0EE5F0003C20E /* ItemExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1798C329F0EE5F0003C20E /* ItemExpenseViewController.swift */; };
 		7E1798C629F0EE5F0003C20E /* ItemExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1798C429F0EE5F0003C20E /* ItemExpenseViewController.xib */; };
 		7E1798C829F0F7FA0003C20E /* FunctionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1798C729F0F7FA0003C20E /* FunctionUtils.swift */; };
@@ -67,6 +70,9 @@
 		2CE04161BD20CEAB213E3388 /* Pods_Kitty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kitty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4112B9695CB0386679A95D7F /* Pods-Kitty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.release.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.release.xcconfig"; sourceTree = "<group>"; };
 		733081842A03A4F80027A063 /* AddCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewModel.swift; sourceTree = "<group>"; };
+		73F52E932A04DADF0080A1FD /* MediaCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCategoryViewController.swift; sourceTree = "<group>"; };
+		73F52E942A04DADF0080A1FD /* MediaCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCategoryViewController.xib; sourceTree = "<group>"; };
+		73F52E972A04DD580080A1FD /* MediaCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCategoryViewModel.swift; sourceTree = "<group>"; };
 		7E1798C329F0EE5F0003C20E /* ItemExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemExpenseViewController.swift; sourceTree = "<group>"; };
 		7E1798C429F0EE5F0003C20E /* ItemExpenseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemExpenseViewController.xib; sourceTree = "<group>"; };
 		7E1798C729F0F7FA0003C20E /* FunctionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionUtils.swift; sourceTree = "<group>"; };
@@ -142,6 +148,24 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		73F52E8F2A04BB0A0080A1FD /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				73F52E912A04BBE20080A1FD /* ListMediaCategory */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		73F52E912A04BBE20080A1FD /* ListMediaCategory */ = {
+			isa = PBXGroup;
+			children = (
+				73F52E932A04DADF0080A1FD /* MediaCategoryViewController.swift */,
+				73F52E942A04DADF0080A1FD /* MediaCategoryViewController.xib */,
+				73F52E972A04DD580080A1FD /* MediaCategoryViewModel.swift */,
+			);
+			path = ListMediaCategory;
+			sourceTree = "<group>";
+		};
 		7E1798C229F0EE1E0003C20E /* ItemExpenseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +223,6 @@
 			children = (
 				7EB7D08429FBAF0200F4E294 /* AddCategory */,
 				7EB7D07729FA274400F4E294 /* Main */,
-				7EFABEE529F7C9CC00C1F9A9 /* Category */,
 				7EFABEC829F68B4500C1F9A9 /* AddExpense */,
 				7EA34CC729ED2706001B51C9 /* Report */,
 				7EA34CAE29ED25A5001B51C9 /* Setting */,
@@ -220,6 +243,7 @@
 		7E99F84B29ECE8D400BDDF92 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				7EFABEEB29F7CA3E00C1F9A9 /* CategoryCollectionViewCell */,
 				7EA34C9B29ECFEF3001B51C9 /* IconTextButton.swift */,
 				7EA34CD329ED32C5001B51C9 /* LogoImageView.swift */,
 				7E834F5429F269E500F3363E /* CustomTableView.swift */,
@@ -404,6 +428,7 @@
 		7EB7D08429FBAF0200F4E294 /* AddCategory */ = {
 			isa = PBXGroup;
 			children = (
+				73F52E8F2A04BB0A0080A1FD /* SubView */,
 				733081832A03A4EC0027A063 /* ViewModel */,
 				7EB7D08529FBAF1600F4E294 /* View */,
 			);
@@ -448,45 +473,29 @@
 		7EFABED629F783E300C1F9A9 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				7EFABEE529F7C9CC00C1F9A9 /* ListCategory */,
 				7EB7D06929F8CC5500F4E294 /* DropDownView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
 		};
-		7EFABEE529F7C9CC00C1F9A9 /* Category */ = {
+		7EFABEE529F7C9CC00C1F9A9 /* ListCategory */ = {
 			isa = PBXGroup;
 			children = (
-				7EFABEF029F7CC6000C1F9A9 /* ViewModel */,
-				7EFABEE629F7C9D600C1F9A9 /* View */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		7EFABEE629F7C9D600C1F9A9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				7EFABEEB29F7CA3E00C1F9A9 /* CategoryCell */,
+				7EFABEF229F7CC9300C1F9A9 /* CategoryViewModel.swift */,
 				7EFABEE729F7C9DC00C1F9A9 /* CategoryViewController.swift */,
 				7EFABEE829F7C9DC00C1F9A9 /* CategoryViewController.xib */,
 			);
-			path = View;
+			path = ListCategory;
 			sourceTree = "<group>";
 		};
-		7EFABEEB29F7CA3E00C1F9A9 /* CategoryCell */ = {
+		7EFABEEB29F7CA3E00C1F9A9 /* CategoryCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				7EFABEEC29F7CA6200C1F9A9 /* CategoryCollectionViewCell.swift */,
 				7EFABEED29F7CA6200C1F9A9 /* CategoryCollectionViewCell.xib */,
 			);
-			path = CategoryCell;
-			sourceTree = "<group>";
-		};
-		7EFABEF029F7CC6000C1F9A9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				7EFABEF229F7CC9300C1F9A9 /* CategoryViewModel.swift */,
-			);
-			path = ViewModel;
+			path = CategoryCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		7EFABEF829F8C9C800C1F9A9 /* Model */ = {
@@ -584,6 +593,7 @@
 				7EB7D08A29FBAF3A00F4E294 /* AddCategoryViewController.xib in Resources */,
 				7EB7D07229F8CCDE00F4E294 /* AddExpenseViewController.xib in Resources */,
 				7E99F84129ECE84400BDDF92 /* LaunchScreen.storyboard in Resources */,
+				73F52E962A04DADF0080A1FD /* MediaCategoryViewController.xib in Resources */,
 				7EFABEEF29F7CA6200C1F9A9 /* CategoryCollectionViewCell.xib in Resources */,
 				7E99F83E29ECE84400BDDF92 /* Assets.xcassets in Resources */,
 				7EFABEEA29F7C9DC00C1F9A9 /* CategoryViewController.xib in Resources */,
@@ -670,9 +680,11 @@
 				7EB7D08129FA5AEE00F4E294 /* StorageService.swift in Sources */,
 				7E9A745129EE51F00002051C /* ItemMonthlyReportView.swift in Sources */,
 				7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */,
+				73F52E982A04DD580080A1FD /* MediaCategoryViewModel.swift in Sources */,
 				7EFABEE929F7C9DC00C1F9A9 /* CategoryViewController.swift in Sources */,
 				7EFABEDE29F7BC0500C1F9A9 /* CustomTextField.swift in Sources */,
 				7EB7D08929FBAF3A00F4E294 /* AddCategoryViewController.swift in Sources */,
+				73F52E952A04DADF0080A1FD /* MediaCategoryViewController.swift in Sources */,
 				7E99F83529ECE83F00BDDF92 /* AppDelegate.swift in Sources */,
 				7EB7D07129F8CCDE00F4E294 /* AddExpenseViewController.swift in Sources */,
 				7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */,
