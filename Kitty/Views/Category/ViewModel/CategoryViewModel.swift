@@ -4,33 +4,49 @@ import Foundation
 
 
 protocol CategoryListProtocol {
-    func getCategory()
+    associatedtype T
+    func getCategoryData()
     var choosenCategoryCallBack: ((Category?) -> Void)? { get set }
     
     var onClickAddCategory: (() -> Void)? {get set}
     
-    var listCategory: [Category]? {get set}
+    var listData: [T]? {get set}
+}
+protocol MediaCategoryProtocol {
+    associatedtype T
+    var listData: [T]? {get set}
+    func getMediaCategoryData()
 }
 
-class CategoryViewModel: CategoryListProtocol {
+class CategoryViewModel<T>: CategoryListProtocol , MediaCategoryProtocol {
+    func getCategoryData() {
+        categoryStorageServices.fetchCategory {
+            results in
+            listData = results?.toArray(ofType: T.self)
+        }
+    }
+    func getMediaCategoryData() {
+        categoryStorageServices.fetchMediaCategory {
+            results in
+            listData = results?.toArray(ofType: T.self)
+        }
+    }
     
-    var listCategory: [Category]?
+    typealias T = T
+    var listData: [T]?
     var onClickAddCategory: (() -> Void)?
     var choosenCategoryCallBack: ((Category?) -> Void)?
  
-    let categoryStorageServices: StorageServiceProtocol
+    let categoryStorageServices: CategoryStorageProtocol
    
-    init(service: StorageServiceProtocol = StorageService.init()) {
+    init(service: CategoryStorageProtocol = StorageService.init()) {
         self.categoryStorageServices = service
         self.getCategory()
     }
     
     
     func getCategory() {
-        categoryStorageServices.fetchCategory {
-            results in
-            listCategory = results?.toArray(ofType: Category.self)
-        }
+     
     }
     
 }

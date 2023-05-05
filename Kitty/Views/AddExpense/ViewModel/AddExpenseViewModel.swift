@@ -17,18 +17,18 @@ protocol UpdateExpenseInfomationProtocol{
     var amountValue: Double? {get set}
     var descriptionAmount: String? {get set}
 }
+
 class AddExpenseViewModel :UpdateExpenseInfomationProtocol{
     var choosenCategory: Category?
     var choosenMoneyType: MoneyEnum? = MoneyEnum.expense
     var amountValue: Double?
     var descriptionAmount: String?
     
-    let storageServices:StorageServiceProtocol
+    let storageServices:MoneyStorageProtocol
     
     
-    init(services:StorageServiceProtocol = StorageService.init()){
+    init(services:MoneyStorageProtocol = StorageService.init()){
         self.storageServices = services
-//        DataManager.instance.save()
     }
     
     func setChoosenCategory(choosenCategory: Category?) {

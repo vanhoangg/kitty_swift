@@ -11,16 +11,15 @@ import RealmSwift
 class Category: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var categoryName: String?
-//    @Persisted var type: CategoryEnum = .unknow
+
     
-    @Persisted var iconUrl: String?
-    @Persisted var backgroundColor: String?
+    @Persisted var media: MediaCategory?
+
     
-    convenience init(categoryName: String?, iconUrl: String?,backgroundColor:String?) {
+    convenience init(categoryName: String?, media: MediaCategory?) {
         self.init()
         self.categoryName = categoryName
-        self.iconUrl = iconUrl
-        self.backgroundColor = backgroundColor
+        self.media = media
     }
 }
 
@@ -29,7 +28,15 @@ enum CategoryEnum: String, PersistableEnum {
     case gifts
     case unknow
 }
-
+class MediaCategory :Object {
+    @Persisted var iconUrl: String?
+    @Persisted var backgroundColor: String?
+    convenience init(iconUrl: String?, backgroundColor: String?) {
+        self.init()
+        self.iconUrl = iconUrl
+        self.backgroundColor = backgroundColor
+    }
+}
 extension Category {
 //    var iconUrl: String {
 //        switch type {

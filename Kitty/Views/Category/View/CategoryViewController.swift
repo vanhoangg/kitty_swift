@@ -25,9 +25,10 @@ class CategoryViewController: UIViewController {
     // MARK: Properties
     let identifer = "categoryCell"
     let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: .main)
-    lazy var categoryViewModel :CategoryListProtocol =
+    lazy var categoryViewModel :any CategoryListProtocol =
     {
-        return CategoryViewModel()
+        print(viewData.titleLabel)
+        return CategoryViewModel<Category>()
     }()
     
     // MARK: LifeCycle
@@ -98,7 +99,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
 
         if let listCategory = categoryViewModel.listCategory {
           
-            cell.configure(viewData: CategoryCollectionViewCell.ViewData(categoryName: listCategory[indexPath.row].categoryName, iconUrl: listCategory[indexPath.row].iconUrl, iconBackgroundColor: listCategory[indexPath.row].backgroundColor,isShowCategoryName: viewData?.isShowCategoryName))
+            cell.configure(viewData: CategoryCollectionViewCell.ViewData(categoryName: listCategory[indexPath.row].categoryName, iconUrl: listCategory[indexPath.row].media?.iconUrl, iconBackgroundColor: listCategory[indexPath.row].media?.backgroundColor,isShowCategoryName: viewData?.isShowCategoryName))
         }
 
         return cell

@@ -8,33 +8,39 @@
 import Foundation
 
 import RealmSwift
-protocol StorageServiceProtocol {
+protocol CategoryStorageProtocol {
     func fetchCategory(completion: (Results<Category>?) -> Void)
+    func fetchMediaCategory(completion: (Results<MediaCategory>?) -> Void)
+    
+}
+protocol MoneyStorageProtocol {
     func saveExpense(money:Money ,completion: (Bool) -> Void)
+    func fetchMoney(completion: (Results<Money>?) -> Void)
 }
 
-class StorageService : StorageServiceProtocol {
-    
-    
+struct StorageService  {
     let database = DataManager.instance.database
-    func fetchCategory(completion: (Results<Category>?) -> Void) {
+}
+extension StorageService : MoneyStorageProtocol {
+    func fetchMoney(completion: (Results<Money>?) -> Void) {
         // realm
         guard let database = database else {
             print("error: database is not found")
             return
         }
-        let response = database.objects(Category.self)
-        print(response)
-
+        
+        let response = database.objects(Money.self).sorted(byKeyPath: "createAt", ascending: true)
         completion(response)
     }
+    
+    
     func saveExpense(money:Money ,completion: (Bool) -> Void){
         guard let database = database else {
             print("error: database is not found")
             return
         }
         do{
-                   // realm
+            // realm
             try database.write{
                 database.add(money)
                 completion(true)
@@ -42,10 +48,33 @@ class StorageService : StorageServiceProtocol {
             }
             
         } catch {
-                completion(false)
-            }
-        
+            completion(false)
         }
+        
+    }
 }
 
-
+extension StorageService : CategoryStorageProtocol {
+    func fetchMediaCategory(completion: (Results<MediaCategory>?) -> Void){
+        // realm
+        guard let database = database else {
+            print("error: database is not found")
+            return
+        }
+        let response = database.objects(MediaCategory.self)
+        
+        
+        completion(response)
+    }
+    func fetchCategory(completion: (Results<Category>?) -> Void) {
+        // realm
+        guard let database = database else {
+            print("error: database is not found")
+            return
+        }
+        let response = database.objects(Category.self)
+        
+        
+        completion(response)
+    }
+}

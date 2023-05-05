@@ -14,17 +14,17 @@ protocol MonthlyStatisticProtocol {
     func loadApi()
 }
 class HomeViewModel :MonthlyStatisticProtocol{
-    
+    let storageService: MoneyStorageProtocol
     var monthlyHistory: MonthlyHistory?
     
     
     var refreshData: (() -> ())?
-    
+    init(service: MoneyStorageProtocol = StorageService.init()) {
+        self.storageService = service
+        self.loadApi()
+    }
   
     
-    init(){
-        loadApi()
-    }
     
     
     func loadApi() {
@@ -38,7 +38,7 @@ class HomeViewModel :MonthlyStatisticProtocol{
         
         
 //        DataManager.instance.save()
-        DataManager.instance.fetchData {
+        storageService.fetchMoney {
             listMoney in
             /// Query table Money key : Month - Year
             listMonthlyHistory = listMoney?.filter({ money in
