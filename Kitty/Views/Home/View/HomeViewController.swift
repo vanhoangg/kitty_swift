@@ -56,6 +56,7 @@ extension HomeViewController {
             addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 48 / 130, constant: 0),
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+        
         ])
         addButton.configureStyle(cornerRadius: 22, borderWidth: 0, backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor), textColor: .white)
         addButton.addTarget(self, action: #selector(onPressAddExpense), for: .touchUpInside)
@@ -87,10 +88,13 @@ extension HomeViewController {
    
 
 //    private func configHistoryTableView() {
+        
+
 //        historyTableView.bounces = false
 //        historyTableView.rowHeight = UITableView.automaticDimension
 //        historyTableView.estimatedRowHeight = 200
 //        historyTableView.sizeToFit()
+
 //    }
 }
 

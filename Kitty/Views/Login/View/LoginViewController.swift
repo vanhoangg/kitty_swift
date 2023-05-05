@@ -28,6 +28,8 @@ class LoginViewController: UIViewController {
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 56),
             loginButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 40 / 780, constant: 0),
+       
+            
         ])
         loginButton.addTarget(self, action: #selector(onPressRegister), for: .touchUpInside)
     }

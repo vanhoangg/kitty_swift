@@ -49,7 +49,6 @@ extension IconTextButton {
 
     func configureStyle(cornerRadius: CGFloat = 4, borderWidth: CGFloat = 1, borderColor: String = AssetColor.borderColor, backgroundColor: UIColor? = .clear, textColor: UIColor? = UIColor(named: "24"), font: UIFont = UIFont.CustomFont(.regular, size: 14)) {
         //        setTitle("ABCXYZ", for: .normal)
-        self.contentMode = .center
         self.backgroundColor = backgroundColor
         buttonLabel.font = font
         buttonLabel.textColor = textColor
@@ -61,9 +60,6 @@ extension IconTextButton {
     }
 
     private func build() {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(view)
         buildLeadingIcon()
         buildLabel()
         configureStyle()
@@ -75,10 +71,9 @@ extension IconTextButton {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
             iconImageView.widthAnchor.constraint(equalTo: iconImageView.heightAnchor, multiplier: 1, constant: 0),
             //            iconImageView.widthAnchor.constraint(equalTo: self.widthAnchor,multiplier: 16/248,constant: 0),
-//            iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
         ])
     }
 
@@ -88,8 +83,8 @@ extension IconTextButton {
         NSLayoutConstraint.activate([
             buttonLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 6),
             buttonLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            buttonLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            buttonLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
+            buttonLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
         ])
     }
 }

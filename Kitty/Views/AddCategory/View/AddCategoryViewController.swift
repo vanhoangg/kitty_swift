@@ -31,7 +31,7 @@ class AddCategoryViewController: UIViewController {
     private func build(){
         categoryNameTextField.addTarget(self, action: #selector(onChangeCategoryNameTextField), for: .editingChanged)
         configureIconButton()
-        configureSubmitButton()
+        
     }
     private func configureIconButton(){
         let gesture = UITapGestureRecognizer(target: self, action: #selector(onTapChooseIconCategory))
@@ -40,22 +40,7 @@ class AddCategoryViewController: UIViewController {
         gesture.numberOfTouchesRequired = 1
         addImageView.setImageColor(color: UIColor(named: AssetColor.ThirdTextColor).unsafelyUnwrapped)
     }
-    private func configureSubmitButton() {
-        let addButton = IconTextButton()
-        view.addSubview(addButton)
-
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.configure(viewData: IconTextButton.IconTextButtonViewData(text: "Add new category", image: UIImage(named: AssetIcon.icAdd)))
-
-        NSLayoutConstraint.activate([
-            addButton.heightAnchor.constraint(equalToConstant: 48),
-            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
-            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
-            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-        ])
-        addButton.configureStyle(cornerRadius: 22, borderWidth: 0, backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor), textColor: .white)
-        addButton.addTarget(self, action: #selector(onPressAddNewCategory), for: .touchUpInside)
-    }
+    
  
   
 
