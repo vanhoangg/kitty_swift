@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
 
     private func build() {
 //        configCalendarView()
-//        configHistoryTableView()
+        configHistoryTableView()
         configFloatingButton()
         bindData()
     }
@@ -87,15 +87,15 @@ extension HomeViewController {
 
    
 
-//    private func configHistoryTableView() {
+    private func configHistoryTableView() {
         
 
-//        historyTableView.bounces = false
+        historyTableView.bounces = false
 //        historyTableView.rowHeight = UITableView.automaticDimension
 //        historyTableView.estimatedRowHeight = 200
-//        historyTableView.sizeToFit()
+        historyTableView.sizeToFit()
 
-//    }
+    }
 }
 
 extension HomeViewController : UINavigationControllerDelegate {

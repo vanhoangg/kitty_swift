@@ -11,6 +11,7 @@ import RealmSwift
 protocol CategoryStorageProtocol {
     func fetchCategory(completion: (Results<Category>?) -> Void)
     func fetchMediaCategory(completion: (Results<MediaCategory>?) -> Void)
+    func createNewCategory(category:Category,completion: (Bool) -> Void)
     
 }
 protocol MoneyStorageProtocol {
@@ -76,5 +77,23 @@ extension StorageService : CategoryStorageProtocol {
         
         
         completion(response)
+    }
+    func createNewCategory(category:Category,completion: (Bool) -> Void) {
+        // realm
+        guard let database = database else {
+            print("error: database is not found")
+            return
+        }
+        do{
+            // realm
+            try database.write{
+                database.add(category)
+                completion(true)
+            }
+            
+        } catch {
+            completion(false)
+        }
+        
     }
 }

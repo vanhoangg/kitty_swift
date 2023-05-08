@@ -56,9 +56,9 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-xN-vPP">
-                    <rect key="frame" x="16" y="798" width="382" height="48"/>
+                    <rect key="frame" x="16" y="806" width="382" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="xJh-3N-LZz"/>
+                        <constraint firstAttribute="height" constant="40" id="xJh-3N-LZz"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="filled" title="Add new expense" cornerStyle="capsule"/>

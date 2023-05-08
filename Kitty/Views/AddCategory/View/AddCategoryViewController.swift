@@ -31,6 +31,7 @@ class AddCategoryViewController: UIViewController {
     private func build(){
         categoryNameTextField.addTarget(self, action: #selector(onChangeCategoryNameTextField), for: .editingChanged)
         configureIconButton()
+        addLoginButton()
         
     }
     private func configureIconButton(){
@@ -40,7 +41,30 @@ class AddCategoryViewController: UIViewController {
         gesture.numberOfTouchesRequired = 1
         addImageView.setImageColor(color: UIColor(named: AssetColor.ThirdTextColor).unsafelyUnwrapped)
     }
+    // MARK: Method
+    private func addLoginButton() {
+        let loginButton = UIButton()
+        
+        loginButton.setTitle("Add new Category", for: .normal)
+        loginButton.titleLabel?.font = UIFont.CustomFont(.medium,size: 14)
+        loginButton.titleLabel?.textAlignment = .center
+        loginButton.cornerRadius = 16
+        loginButton.backgroundColor = .systemBlue
+        view.addSubview(loginButton)
+        
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+//            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
+            loginButton.heightAnchor.constraint(equalToConstant: 40),
+            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -16)
+       
+            
+        ])
     
+        loginButton.addTarget(self, action: #selector(onPressAddNewCategory), for: .touchUpInside)
+    }
  
   
 
@@ -49,7 +73,7 @@ class AddCategoryViewController: UIViewController {
 extension AddCategoryViewController {
     
     @objc private func onChangeCategoryNameTextField(){
-        addCategoryViewModel.setCategoryName(value: categoryNameTextField.text)
+        addCategoryViewModel.setCategoryName(categoryName:categoryNameTextField.text)
     }
     @objc private func onTapChooseIconCategory(){
         let fpc = FloatingPanelController()
@@ -63,6 +87,7 @@ extension AddCategoryViewController {
             guard let backgroundColor = result?.backgroundColor else {return}
             self.addImageView.image = UIImage(named: iconUrl )
             self.imageBorderDashView.backgroundColor = UIColor(named: backgroundColor)
+            self.addCategoryViewModel.setMediaCategory(iconUrl: iconUrl, backgroundColor: backgroundColor)
        }
         fpc.set(contentViewController: mediaCategoryViewController)
         fpc.isRemovalInteractionEnabled = true
@@ -72,6 +97,29 @@ extension AddCategoryViewController {
         
     }
     @objc private func onPressAddNewCategory(){
-        addCategoryViewModel.setCategoryName(value: categoryNameTextField.text)
+        addCategoryViewModel.createNewCategory { value in
+            if(value){
+                // Create new Alert
+                var dialogMessage = UIAlertController( title: "", message: "New category addedd successfully! ", preferredStyle: .alert)
+                
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                    for controller in self.navigationController!.viewControllers as Array {
+                        if controller.isKind(of: HomeViewController.self) {
+                            self.navigationController!.popToViewController(controller, animated: true)
+                            break
+                        }
+                    }
+                 })
+                
+                
+                dialogMessage.addAction(ok)
+                self.present(dialogMessage, animated: true, completion: nil)
+                
+             
+             
+                
+            }
+        }
     }
 }

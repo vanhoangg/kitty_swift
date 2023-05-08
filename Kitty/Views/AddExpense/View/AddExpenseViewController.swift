@@ -26,9 +26,9 @@ class AddExpenseViewController: UIViewController {
             if finish {
                 self.refreshHomeData?(true)
                 self.navigationController?.popViewController(animated: true)
-                      } else {
-                          print("Error")
-                      }
+            } else {
+                print("Error")
+            }
         }
         
     }
@@ -42,6 +42,7 @@ class AddExpenseViewController: UIViewController {
         textTitle.textColor = UIColor(named: AssetColor.PrimaryTextColor) ?? .black
         return textTitle
     }()
+    
     // MARK: LifeCycle
     
     override func viewDidLoad() {
@@ -60,7 +61,7 @@ class AddExpenseViewController: UIViewController {
         }
         categoryTitleLabel.text = addExpenseViewModel.choosenCategory?.categoryName ?? "Choose Category"
     }
-   
+    
     // MARK: Config
     private func configureCategoryView() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(onTapChooseCategory))
@@ -83,35 +84,35 @@ class AddExpenseViewController: UIViewController {
         
         amountTextField.passTextFieldText = { [weak self] enteredStringAmount, amountAsDouble in
             self?.addExpenseViewModel.setAmountValue(value: amountAsDouble)
-               
-              }
+            
+        }
         
         descriptionTextField.addTarget(self, action: #selector(onChangedDescription), for: .editingChanged)
     }
-  // MARK:
+    // MARK:
     
 }
 
 extension AddExpenseViewController {
     // MARK: Method
     
-     @objc func onTapChooseCategory() {
-         let fpc = FloatingPanelController()
+    @objc func onTapChooseCategory() {
+        let fpc = FloatingPanelController()
         let categoryViewController = CategoryViewController()
         categoryViewController.categoryViewModel.choosenCategoryCallBack = { [weak self] result in
             self?.addExpenseViewModel.setChoosenCategory(choosenCategory: result)
             self?.bindData()
         }
-         categoryViewController.categoryViewModel.onClickAddCategory = { () -> Void in
-             let viewController = AddCategoryViewController()
-             self.dismiss(animated: true, completion: nil)
-             self.navigationController?.pushViewController(viewController, animated: true)
-         }
-         fpc.set(contentViewController: categoryViewController)
-         fpc.isRemovalInteractionEnabled = true
-         fpc.backdropView.dismissalTapGestureRecognizer.isEnabled = true
-         fpc.contentMode = .fitToBounds
-         self.present(fpc, animated: true, completion: nil)
+        categoryViewController.categoryViewModel.onClickAddCategory = { () -> Void in
+            let viewController = AddCategoryViewController()
+            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        fpc.set(contentViewController: categoryViewController)
+        fpc.isRemovalInteractionEnabled = true
+        fpc.backdropView.dismissalTapGestureRecognizer.isEnabled = true
+        fpc.contentMode = .fitToBounds
+        self.present(fpc, animated: true, completion: nil)
     }
     
     private func hideKeyboardOnTapAround() {
@@ -120,11 +121,11 @@ extension AddExpenseViewController {
         view.addGestureRecognizer(tap)
     }
     
-     @objc func hideKeyboard() {
+    @objc func hideKeyboard() {
         view.endEditing(true)
     }
     
-     @objc func onChangedDescription(){
+    @objc func onChangedDescription(){
         self.addExpenseViewModel.setDescriptionAmount(description:descriptionTextField.text)
     }
 }

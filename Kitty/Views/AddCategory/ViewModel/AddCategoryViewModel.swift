@@ -9,29 +9,45 @@ import Foundation
 
 
 protocol AddCategoryProtocol{
-    var categoryName:String? { get set}
-    var iconUrl:String? { get set}
-    var backgroundColor:String? { get set}
-    func setCategoryName(value:String?)
-    func setIconUrl(value:String?)
-    func setBackgroundColor(value:String?)
+    var newCategory:Category { get set}
+    func setMediaCategory(iconUrl:String?,backgroundColor:String?)
+    func setCategoryName(categoryName:String?)
+    func createNewCategory(completion:(Bool)->Void)
+    
 }
 class AddCategoryViewModel : AddCategoryProtocol {
-    var categoryName: String?
-    
-    var iconUrl: String?
-    
-    var backgroundColor: String?
     
     
-    func setCategoryName(value:String?){
-            categoryName = value
+    var newCategory:Category = Category()
+    let categoryStorageServices: CategoryStorageProtocol
+    
+    init(service: CategoryStorageProtocol = StorageService.init()) {
+        self.categoryStorageServices = service
     }
-    func setIconUrl(value:String?){
-            iconUrl = value
+    func setMediaCategory(iconUrl:String?,backgroundColor:String?){
+        let newMediaCategory = MediaCategory(iconUrl: iconUrl, backgroundColor: backgroundColor)
+        newCategory.media = newMediaCategory
     }
-    func setBackgroundColor(value:String?){
-            backgroundColor = value
+    func setCategoryName(categoryName:String?){
+        newCategory.categoryName = categoryName
     }
-
+    //    func setCategory(_ categoryName:String? = nil,_ iconUrl:String? = nil, _ backgroundColor:String? = nil  ){
+    //        if let newCategoryName = categoryName {
+    //            newCategory?.categoryName = newCategoryName
+    //        }
+    //        if let newIconUrl = iconUrl {
+    //
+    //        }
+    //        if let newBackgroundColor = backgroundColor {
+    //            newCategory?.media?.backgroundColor = newBackgroundColor
+    //        }
+    //        print("newCategory \(newCategory)")
+    //    }
+    func createNewCategory(completion:(Bool)->Void){
+        print("newCategory \(newCategory)")
+        
+        
+        categoryStorageServices.createNewCategory(category:newCategory , completion: completion)
+    }
+    
 }
