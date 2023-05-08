@@ -15,8 +15,10 @@ class HomeViewController: UIViewController {
 
     // MARK: - IBoutlet
 
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet var homeStatStackView: UIStackView!
-    @IBOutlet var calendarView: UIView!
+    
     @IBOutlet var historyTableView: HistoryTableView!
     @IBOutlet var expenseMonthlyReportView: ItemMonthlyReportView!
     @IBOutlet var incomeMonthlyReportView: ItemMonthlyReportView!
@@ -34,7 +36,7 @@ class HomeViewController: UIViewController {
     // MARK: - Method
 
     private func build() {
-//        configCalendarView()
+        configCalendarView()
         configHistoryTableView()
         configFloatingButton()
         bindData()
@@ -76,6 +78,8 @@ extension HomeViewController {
         addExpenseViewController.refreshHomeData = { [weak self] result in
             if result {
                 self?.homeViewModel.loadApi()
+                self?.homeViewModel.setCurrentFilterDate(filterDate: Date())
+                self?.datePicker.setDate(Date(), animated: true)
                 self?.bindData()
             }
             
@@ -96,6 +100,30 @@ extension HomeViewController {
         historyTableView.sizeToFit()
 
     }
+    private func configCalendarView(){
+        
+        datePicker.datePickerMode = .date
+
+              // Posiiton date picket within a view
+        
+        datePicker.preferredDatePickerStyle = .compact
+        
+
+
+
+              // Set some of UIDatePicker properties
+              datePicker.timeZone = NSTimeZone.local
+//              datePicker.backgroundColor = UIColor.white
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+      
+
+    }
+    
+     @objc func datePickerValueChanged(_ sender: UIDatePicker){
+         homeViewModel.setCurrentFilterDate(filterDate: sender.date)
+         bindData()
+         print("Selected value \(sender.date)")
+     }
 }
 
 extension HomeViewController : UINavigationControllerDelegate {

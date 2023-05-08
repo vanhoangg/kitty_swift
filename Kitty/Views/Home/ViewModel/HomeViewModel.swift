@@ -10,22 +10,28 @@ import Foundation
 
 protocol MonthlyStatisticProtocol {
     var monthlyHistory: MonthlyHistory? { get set }
-    var refreshData: (()-> ())? { get set }
+    
     func loadApi()
+    func setCurrentFilterDate(filterDate:Date)
 }
 class HomeViewModel :MonthlyStatisticProtocol{
+    
     let storageService: MoneyStorageProtocol
     var monthlyHistory: MonthlyHistory?
+    var currentFilterDate:Date = Date()
     
     
-    var refreshData: (() -> ())?
+    
     init(service: MoneyStorageProtocol = StorageService.init()) {
         self.storageService = service
         self.loadApi()
     }
   
     
-    
+    func setCurrentFilterDate(filterDate:Date) {
+        currentFilterDate = filterDate
+        self.loadApi()
+    }
     
     func loadApi() {
         var monthlyExpense: Double = 0.0
@@ -34,8 +40,8 @@ class HomeViewModel :MonthlyStatisticProtocol{
         var listMonthlyHistory:[Money]? = []
         var listMonthlyExpense:[Money]? = []
         var listDailyExpenseHistory:[DailyExpenseHistory]? = []
-        let filterDate = Date().toString(pattern: "MM-YYYY")
-        
+        let filterDate = currentFilterDate.toString(pattern: "MM-YYYY")
+        print(filterDate)
         
 //        DataManager.instance.save()
         storageService.fetchMoney {
