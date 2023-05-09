@@ -24,7 +24,7 @@ class AddCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-       build()
+        build()
     }
     
     // MARK: Method
@@ -54,20 +54,20 @@ class AddCategoryViewController: UIViewController {
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            //            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
             loginButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -16)
-       
+            
             
         ])
-    
+        
         loginButton.addTarget(self, action: #selector(onPressAddNewCategory), for: .touchUpInside)
     }
- 
-  
-
+    
+    
+    
 }
 //MARK: Action
 extension AddCategoryViewController {
@@ -77,18 +77,18 @@ extension AddCategoryViewController {
     }
     @objc private func onTapChooseIconCategory(){
         let fpc = FloatingPanelController()
-       let mediaCategoryViewController = MediaCategoryViewController()
+        let mediaCategoryViewController = MediaCategoryViewController()
         mediaCategoryViewController.mediaCategoryViewModel.chooseIconCategoryCallBack = { result in
             guard let iconUrl = result?.iconUrl else
-                {
-                    return
-                }
+            {
+                return
+            }
             
             guard let backgroundColor = result?.backgroundColor else {return}
             self.addImageView.image = UIImage(named: iconUrl )
             self.imageBorderDashView.backgroundColor = UIColor(named: backgroundColor)
             self.addCategoryViewModel.setMediaCategory(iconUrl: iconUrl, backgroundColor: backgroundColor)
-       }
+        }
         fpc.set(contentViewController: mediaCategoryViewController)
         fpc.isRemovalInteractionEnabled = true
         fpc.backdropView.dismissalTapGestureRecognizer.isEnabled = true
@@ -110,14 +110,14 @@ extension AddCategoryViewController {
                             break
                         }
                     }
-                 })
+                })
                 
                 
                 dialogMessage.addAction(ok)
                 self.present(dialogMessage, animated: true, completion: nil)
                 
-             
-             
+                
+                
                 
             }
         }

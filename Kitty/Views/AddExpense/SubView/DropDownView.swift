@@ -13,48 +13,44 @@ class DropDownView: UIView {
     // MARK: - CallBack
     var choosenMonneyType : ((String?) -> Void)?
     // MARK: - Properties
-
-    
-
-
     let menu: DropDown = .init()
-
+    
     struct ViewData {
         let listDataSource: [String] = ["Expense", "Income"]
         let initValue:String?
     }
-
+    
     var textTitle: UILabel = {
         let title = UILabel()
         title.font = UIFont.CustomFont(.regular, size: 16)
         title.textColor = UIColor(named: AssetColor.PrimaryTextColor) ?? .black
-
+        
         return title
     }()
-
+    
     var dropDownImageView: UIImageView = {
         let iconDropDown = UIImageView()
         iconDropDown.image = UIImage(named: AssetIcon.icArrowDown)
-
+        
         return iconDropDown
     }()
-
+    
     // MARK: - LifeCycle
-
+    
     init(frame: CGRect, viewData: ViewData) {
         
         super.init(frame: frame)
         build()
         configure(viewData: viewData)
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         build()
     }
-
+    
     // MARK: - Method
-
+    
     private func build() {
         layer.cornerRadius = 5
         layer.borderWidth = 0.2
@@ -67,7 +63,7 @@ class DropDownView: UIView {
         buildTextTitle()
         buildIconRightView()
     }
-
+    
     // Menu : DropDown
     private func buildMenuDropDown() {
         menu.anchorView = self
@@ -75,15 +71,15 @@ class DropDownView: UIView {
         (menu as UIView).cornerRadius = 5
         menu.textFont = UIFont.CustomFont(.regular, size: 16)
         menu.textColor = UIColor(named: AssetColor.PrimaryTextColor) ?? .black
-      
-       
+        
+        
         
         
         menu.selectionAction = { [unowned self] (_: Int, item: String) in
             self.textTitle.text = item
             self.choosenMonneyType?(item)
         }
-       
+        
     }
     
     // Title Dropdown
@@ -96,7 +92,7 @@ class DropDownView: UIView {
         ])
         
     }
-
+    
     // Icon Right
     private func buildIconRightView() {
         addSubview(dropDownImageView)
@@ -106,15 +102,15 @@ class DropDownView: UIView {
             dropDownImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
-
+    
     func configure(viewData: ViewData) {
         
         menu.dataSource = viewData.listDataSource
         menu.selectRow(at: menu.dataSource.firstIndex(of: viewData.initValue ?? "Expense"))
         textTitle.text = menu.selectedItem
-
+        
     }
-
+    
     @objc func onTapDropDownView() {
         menu.show()
     }

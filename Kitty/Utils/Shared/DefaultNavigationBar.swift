@@ -8,26 +8,26 @@
 import UIKit
 
 class DefaultNavigationBar: UINavigationBar {
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         build()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         build()
     }
     
     
-     private func build(){
+    private func build(){
         self.backgroundColor = UIColor(named: AssetColor.backgroundColor)
-         self.isTranslucent = false
-         self.titleTextAttributes = [.font: UIFont.CustomFont(.regular,size: 16)]
-       
-         self.items?.first?.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: AssetIcon.icArrowDown), style: .done, target: self, action: nil)
-         
+        self.isTranslucent = false
+        self.titleTextAttributes = [.font: UIFont.CustomFont(.regular,size: 16)]
+        
+        self.items?.first?.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: AssetIcon.icArrowDown), style: .done, target: self, action: nil)
+        
     }
     
-
+    
 }

@@ -21,7 +21,7 @@ struct AssetColor {
     static let buttonBackgroundColor: String = "buttonBackgroundColor"
     static let backgroundColor: String = "backgroundColor"
     
-    // MARK: Category Background Color
+    // MARK: - Category Background Color
     
     static let bankBackgroundColor: String = "bankBackgroundColor"
     static let coffeeBackgroundColor: String = "coffeeBackgroundColor"
@@ -50,7 +50,7 @@ enum AssetIcon {
     
     
     
-    // MARK: CategoryIcon
+    // MARK: - CategoryIcon
     
     static let icBank: String = "ic_bank"
     static let icParty: String = "ic_celebration"
@@ -75,7 +75,7 @@ enum AssetIcon {
     
     
     
-    // MARK: Another
+    // MARK: - Another
     static let icWallet: String = "ic_wallet"
     static let icCalendar: String = "ic_calendar"
     static let icGoogle: String = "ic_google"
@@ -87,7 +87,7 @@ enum AssetIcon {
     static let icArrowDown: String = "ic_arrow_down"
     
     
-    // MARK: Tabbar Icon
+    // MARK: - Tabbar Icon
     static let icHome: String = "ic_home"
     static let icSetting: String = "ic_setting"
     static let icReport: String = "ic_report"

@@ -10,18 +10,18 @@ import UIKit
 class CustomNavigationBar: UIView {
     var titleText: String?
     var actions: UIView?
-
+    
     required init(titleText: String? = nil, actions: UIView? = nil) {
         super.init(frame: CGRect.zero)
-
+        
         buildNavigationBar(titleText: titleText, actions: actions)
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         buildNavigationBar()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         buildNavigationBar()
@@ -36,7 +36,7 @@ extension CustomNavigationBar {
             titleLabel.text = titleText
             addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
+            
             NSLayoutConstraint.activate([
                 titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
                 titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -50,7 +50,7 @@ extension CustomNavigationBar {
                 logoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             ])
         }
-
+        
         if actions != nil {
             addSubview(actions!)
             actions!.translatesAutoresizingMaskIntoConstraints = false

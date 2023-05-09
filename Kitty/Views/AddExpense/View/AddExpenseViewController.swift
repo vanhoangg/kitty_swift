@@ -10,7 +10,7 @@ import UIKit
 import FloatingPanel
 
 class AddExpenseViewController: UIViewController {
-    // MARK: IBOutlet
+    // MARK: - IBOutlet
     
     
     @IBOutlet var dropDownView: DropDownView!
@@ -20,7 +20,7 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var descriptionTextField: CustomTextField!
     @IBOutlet weak var amountTextField: CurrencyTextField!
     
-    // MARK: IBAction
+    // MARK: - IBAction
     @IBAction func onTapAddButton(_ sender: UIButton) {
         self.addExpenseViewModel.saveExpense { finish in
             if finish {
@@ -32,7 +32,7 @@ class AddExpenseViewController: UIViewController {
         }
         
     }
-    // MARK: Property
+    // MARK: - Property
     var refreshHomeData: ((Bool) -> Void)?
     lazy var addExpenseViewModel: UpdateExpenseInfomationProtocol = {return  AddExpenseViewModel()}()
     let categoryTitleLabel : UILabel = {
@@ -43,7 +43,7 @@ class AddExpenseViewController: UIViewController {
         return textTitle
     }()
     
-    // MARK: LifeCycle
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ class AddExpenseViewController: UIViewController {
         categoryTitleLabel.text = addExpenseViewModel.choosenCategory?.categoryName ?? "Choose Category"
     }
     
-    // MARK: Config
+    // MARK: - Config
     private func configureCategoryView() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(onTapChooseCategory))
         categoryView.addGestureRecognizer(gesture)
@@ -81,20 +81,16 @@ class AddExpenseViewController: UIViewController {
     }
     private func configureTextField(){
         amountTextField.keyboardType = .numberPad
-        
         amountTextField.passTextFieldText = { [weak self] enteredStringAmount, amountAsDouble in
             self?.addExpenseViewModel.setAmountValue(value: amountAsDouble)
-            
         }
-        
         descriptionTextField.addTarget(self, action: #selector(onChangedDescription), for: .editingChanged)
     }
-    // MARK:
     
 }
 
 extension AddExpenseViewController {
-    // MARK: Method
+    // MARK: - Method
     
     @objc func onTapChooseCategory() {
         let fpc = FloatingPanelController()

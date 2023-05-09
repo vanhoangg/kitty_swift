@@ -8,7 +8,7 @@
 import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
-    // MARK: ViewData
+    // MARK: - ViewData
     
     static let nib = UINib(nibName: "CategoryCollectionViewCell", bundle: .main)
     struct ViewData {
@@ -25,20 +25,20 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    // MARK: IBOutlet
+    // MARK: - IBOutlet
     
     @IBOutlet var shapeView: RoundedUIView!
     @IBOutlet var categoryNameLabel: UILabel!
     @IBOutlet var iconCategoryImageView: UIImageView!
     
-    // MARK: LifeCycle
+    // MARK: - LifeCycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         build()
     }
     
-    // MARK: Method
+    // MARK: - Method
     
     private func build() {
         categoryNameLabel.font = UIFont.CustomFont(.regular, size: 12)

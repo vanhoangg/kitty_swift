@@ -29,13 +29,13 @@ extension Results {
                 array.append(result)
             }
         }
-
+        
         return array
     }
 }
 
 extension UIView {
-
+    
     func removeAllSubViews() {
         _ = self.subviews.map({ view in
             view.removeFromSuperview()
@@ -93,7 +93,7 @@ extension String {
             formatter.locale = Locale(identifier: "en_US") // Here indian locale with english language is used
             formatter.numberStyle = .currency
             formatter.currencySymbol = " ₹ "
-//            formatter.minimumFractionDigits = 0
+            //            formatter.minimumFractionDigits = 0
             
             
             formatter.maximumFractionDigits = 0
@@ -109,7 +109,7 @@ extension String {
 @IBDesignable public class RoundedUIView: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
-
+        
         layer.cornerRadius = frame.width / 2
         layer.masksToBounds = true
     }
@@ -160,7 +160,7 @@ extension UIView {
             layer.cornerRadius = newValue
         }
     }
-
+    
     @IBInspectable
     var borderWidth: CGFloat {
         get {
@@ -170,7 +170,7 @@ extension UIView {
             layer.borderWidth = newValue
         }
     }
-
+    
     @IBInspectable
     var borderColor: UIColor? {
         get {
@@ -187,7 +187,7 @@ extension UIView {
             }
         }
     }
-
+    
     @IBInspectable
     var shadowRadius: CGFloat {
         get {
@@ -197,7 +197,7 @@ extension UIView {
             layer.shadowRadius = newValue
         }
     }
-
+    
     @IBInspectable
     var shadowOpacity: Float {
         get {
@@ -207,7 +207,7 @@ extension UIView {
             layer.shadowOpacity = newValue
         }
     }
-
+    
     @IBInspectable
     var shadowOffset: CGSize {
         get {
@@ -217,7 +217,7 @@ extension UIView {
             layer.shadowOffset = newValue
         }
     }
-
+    
     @IBInspectable
     var shadowColor: UIColor? {
         get {
@@ -236,9 +236,9 @@ extension UIView {
     }
 }
 extension UIImageView {
-  func setImageColor(color: UIColor) {
-    let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
-    self.image = templateImage
-    self.tintColor = color
-  }
+    func setImageColor(color: UIColor) {
+        let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+        self.image = templateImage
+        self.tintColor = color
+    }
 }

@@ -88,7 +88,7 @@ class FunctionUtils {
         components.month = monthRawValue
         components.year = calendar.component(.year, from: now)
         let newDate = calendar.date(from: components)
-
+        
         return newDate
     }
 }

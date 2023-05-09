@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 struct DummyData {
-    static let listCategory: [Category] = [Category(categoryName: "Gift", media: MediaCategory(iconUrl: AssetIcon.icHealth,backgroundColor: AssetColor.healthBackgroundColor)), Category(categoryName: "Health", media: MediaCategory(iconUrl: AssetIcon.icGift,backgroundColor: AssetColor.giftBackgroundColor))]
+//    static let listCategory: [Category] = [Category(categoryName: "Gift", media: MediaCategory(iconUrl: AssetIcon.icHealth,backgroundColor: AssetColor.healthBackgroundColor)), Category(categoryName: "Health", media: MediaCategory(iconUrl: AssetIcon.icGift,backgroundColor: AssetColor.giftBackgroundColor))]
     static let listMediaCategory: [MediaCategory] =
     [
         MediaCategory(iconUrl: AssetIcon.icHealth,backgroundColor: AssetColor.healthBackgroundColor),
@@ -63,7 +63,7 @@ final class DataManager {
         }
         if (database.objects(MediaCategory.self).isEmpty){
             try! database.write {
-                database.add(DummyData.listCategory)
+//                database.add(DummyData.listCategory)
                 database.add(DummyData.listMediaCategory)
                 
             } }

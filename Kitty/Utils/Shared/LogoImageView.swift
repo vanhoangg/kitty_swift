@@ -12,12 +12,12 @@ class LogoView: UIView {
         super.init(frame: frame)
         buildLogoView()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         buildLogoView()
     }
-
+    
     private func buildLogoView() {
         let logoImageView = UIImageView()
         logoImageView.contentMode = .scaleAspectFit
@@ -28,13 +28,13 @@ class LogoView: UIView {
         addSubview(logoLabel)
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             logoImageView.heightAnchor.constraint(equalToConstant: 24),
             logoImageView.widthAnchor.constraint(equalTo: logoImageView.heightAnchor, multiplier: 1, constant: 0),
             logoImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             logoLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-
+            
             logoLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 4),
         ])
     }
@@ -47,7 +47,7 @@ class LogoLabel: UILabel {
         font = UIFont(name: "Inter-Bold", size: 20)
         text = "Kitty"
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

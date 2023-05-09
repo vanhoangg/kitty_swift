@@ -10,7 +10,7 @@ import RealmSwift
 
 class Money: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
-  
+    
     @Persisted var category: Category?
     @Persisted var value: Double?
     @Persisted var valueDescription: String?
@@ -20,7 +20,7 @@ class Money: Object {
     
     
     
-
+    
     convenience init(_ description: String? , category: Category?, value: Double?, type: MoneyEnum?,createAt:String?)
     {
         self.init()

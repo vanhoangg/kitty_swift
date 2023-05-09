@@ -11,10 +11,10 @@ import RealmSwift
 class Category: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var categoryName: String?
-
+    
     
     @Persisted var media: MediaCategory?
-
+    
     
     convenience init(categoryName: String?, media: MediaCategory?) {
         self.init()
@@ -38,25 +38,25 @@ class MediaCategory :Object {
     }
 }
 extension Category {
-//    var iconUrl: String {
-//        switch type {
-//        case CategoryEnum.health:
-//            return AssetIcon.icHealth
-//        case CategoryEnum.gifts:
-//            return AssetIcon.icGift
-//        default:
-//            return AssetIcon.icHealth
-//        }
-//    }
-//
-//    var colorBackground: String {
-//        switch type {
-//        case CategoryEnum.health:
-//            return AssetColor.healthBackgroundColor
-//        case CategoryEnum.gifts:
-//            return AssetColor.giftBackgroundColor
-//        default:
-//            return AssetColor.transportationBackgroundColor
-//        }
-//    }
+    //    var iconUrl: String {
+    //        switch type {
+    //        case CategoryEnum.health:
+    //            return AssetIcon.icHealth
+    //        case CategoryEnum.gifts:
+    //            return AssetIcon.icGift
+    //        default:
+    //            return AssetIcon.icHealth
+    //        }
+    //    }
+    //
+    //    var colorBackground: String {
+    //        switch type {
+    //        case CategoryEnum.health:
+    //            return AssetColor.healthBackgroundColor
+    //        case CategoryEnum.gifts:
+    //            return AssetColor.giftBackgroundColor
+    //        default:
+    //            return AssetColor.transportationBackgroundColor
+    //        }
+    //    }
 }

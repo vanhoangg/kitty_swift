@@ -9,11 +9,10 @@ import UIKit
 
 class HistoryTableView: UITableView {
     struct ViewData {
-        
         let listDailyExpenseHistory: [DailyExpenseHistory]?
     }
 
-    var viewData:ViewData?
+    var viewData: ViewData?
     override init(frame _: CGRect, style _: UITableView.Style) {
         super.init(frame: CGRect.zero, style: .plain)
         initTableView()
@@ -24,7 +23,8 @@ class HistoryTableView: UITableView {
         initTableView()
     }
 
-    // MARK: Method
+    // MARK: - Method
+
     private func initTableView() {
         register(HistoryTableViewCell.nib(), forCellReuseIdentifier: HistoryTableViewCell.identifer)
         delegate = self
@@ -37,10 +37,12 @@ class HistoryTableView: UITableView {
         reloadData()
     }
 }
-extension HistoryTableView : UITableViewDelegate , UITableViewDataSource {
+
+extension HistoryTableView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in _: UITableView) -> Int {
         return viewData?.listDailyExpenseHistory?.count ?? 0
     }
+
     override var contentSize: CGSize {
         didSet {
             invalidateIntrinsicContentSize()
@@ -51,6 +53,7 @@ extension HistoryTableView : UITableViewDelegate , UITableViewDataSource {
     override var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
     }
+
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return 1
     }
@@ -73,19 +76,17 @@ extension HistoryTableView : UITableViewDelegate , UITableViewDataSource {
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
         cell.selectionStyle = .none
-        if let dailyHistory = viewData?.listDailyExpenseHistory?[indexPath.section
-        ] {
-            var totalDailyExpense:Double = 0
-            dailyHistory.expenses?.forEach({ elementMoney in
+        if let dailyHistory = viewData?.listDailyExpenseHistory?[indexPath.section] {
+            var totalDailyExpense: Double = 0
+            dailyHistory.expenses?.forEach { elementMoney in
                 totalDailyExpense += (elementMoney.value ?? 0)
-            })
+            }
 //            let categoryDictionary = Dictionary(grouping: dailyHistory.expenses ?? [], by: { $0.createAt })   .
             tableView.beginUpdates()
-      
+
             cell.loadData(viewData: HistoryTableViewCell.ViewData(dayName: dailyHistory.dayId, dailyExpense: totalDailyExpense, listItemExpenseViewData: dailyHistory.expenses))
             tableView.endUpdates()
         }
         return cell
     }
-    
 }

@@ -4,7 +4,7 @@ import Foundation
 
 
 protocol CategoryListProtocol {
-
+    
     func getCategoryData()
     var choosenCategoryCallBack: ((Category?) -> Void)? { get set }
     
@@ -24,13 +24,13 @@ class CategoryViewModel: CategoryListProtocol  {
         self.categoryStorageServices = service
         self.getCategoryData()
     }
-   
+    
     func getCategoryData() {
         categoryStorageServices.fetchCategory {
             results in
             listData = results?.toArray(ofType: Category.self)
         }
     }
-   
+    
     
 }
