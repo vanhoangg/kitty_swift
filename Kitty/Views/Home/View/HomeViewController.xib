@@ -13,12 +13,16 @@
         <array key="Inter-Bold.ttf">
             <string>Inter-Bold</string>
         </array>
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Kitty" customModuleProvider="target">
             <connections>
                 <outlet property="balanceMonthlyReportView" destination="3rZ-4P-Me5" id="M0V-wI-ce9"/>
                 <outlet property="calendarView" destination="W0j-Zj-7kk" id="vef-dp-N09"/>
+                <outlet property="datePickerLabel" destination="dUq-0P-o2k" id="TtJ-Yi-GYM"/>
                 <outlet property="expenseMonthlyReportView" destination="3CX-RX-sjD" id="8O7-O8-sjF"/>
                 <outlet property="historyTableView" destination="Qv6-ko-luU" id="4Dv-3L-eoU"/>
                 <outlet property="homeStatStackView" destination="391-fI-hk5" id="vFW-EI-5Wu"/>
@@ -42,7 +46,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kitty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXs-xG-6Jm" userLabel="Logo Label">
-                            <rect key="frame" x="45.5" y="15.5" width="47.5" height="24.5"/>
+                            <rect key="frame" x="45.5" y="15.499999999999998" width="47.5" height="24.5"/>
                             <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="20"/>
                             <color key="textColor" name="42"/>
                             <nil key="highlightedColor"/>
@@ -91,7 +95,7 @@
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W0j-Zj-7kk" userLabel="Calendar View">
-                            <rect key="frame" x="130.5" y="8" width="153" height="39.5"/>
+                            <rect key="frame" x="163" y="8" width="88" height="39.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-t4-NqL">
                                     <rect key="frame" x="12" y="11.5" width="16" height="16"/>
@@ -99,12 +103,22 @@
                                         <constraint firstAttribute="width" secondItem="JdA-t4-NqL" secondAttribute="height" multiplier="1:1" id="fBu-DW-fLs"/>
                                     </constraints>
                                 </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUq-0P-o2k">
+                                    <rect key="frame" x="36" y="8" width="36" height="23.5"/>
+                                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                    <color key="textColor" name="42"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" name="backgroundColor"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="dUq-0P-o2k" secondAttribute="bottom" constant="8" id="9J6-b0-PKf"/>
                                 <constraint firstItem="JdA-t4-NqL" firstAttribute="leading" secondItem="W0j-Zj-7kk" secondAttribute="leading" constant="12" id="IoI-LW-2QK"/>
                                 <constraint firstItem="JdA-t4-NqL" firstAttribute="centerY" secondItem="W0j-Zj-7kk" secondAttribute="centerY" id="MY2-wX-GEK"/>
-                                <constraint firstAttribute="width" secondItem="W0j-Zj-7kk" secondAttribute="height" multiplier="124:32" constant="1" id="rfe-Ie-a7a"/>
+                                <constraint firstItem="dUq-0P-o2k" firstAttribute="leading" secondItem="JdA-t4-NqL" secondAttribute="trailing" constant="8" id="cEe-BN-Kce"/>
+                                <constraint firstAttribute="trailing" secondItem="dUq-0P-o2k" secondAttribute="trailing" constant="16" id="w4d-wY-FMe"/>
+                                <constraint firstItem="dUq-0P-o2k" firstAttribute="top" secondItem="W0j-Zj-7kk" secondAttribute="top" constant="8" id="wvL-VG-3UL"/>
+                                <constraint firstItem="dUq-0P-o2k" firstAttribute="centerY" secondItem="W0j-Zj-7kk" secondAttribute="centerY" id="xNa-OR-4MY"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

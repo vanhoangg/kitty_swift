@@ -8,73 +8,79 @@
 import UIKit
 
 class MonthYearPickerViewController: UIViewController {
+    // MARK: Properties
     let identifer = "MonthYearPickerCell"
     @IBOutlet weak var monthCollectionView: UICollectionView!
+    lazy var monthYearPickerViewModel : MonthYearPickerProtocol = {
+        return MonthYearPickerViewModel()
+    }()
     
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         build()
-        
-        // Do any additional setup after loading the view.
     }
+    // MARK: Method
     private func build(){
         configureMonthCollectionView()
     }
     private func configureMonthCollectionView(){
         monthCollectionView.delegate = self
-        monthCollectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: identifer)
+        
         monthCollectionView.dataSource = self
+        monthCollectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: identifer)
     }
 }
-extension MonthYearPickerViewController: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return 12
-    }
+// MARK: UICollectionDelegateFlowLayout
+extension MonthYearPickerViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let yourWidth = (collectionView.bounds.width ) / 4.0
         let yourHeight = yourWidth/2
-
+        
         return CGSize(width: yourWidth, height: yourHeight)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: 16, left: 22, bottom: 16, right: 22)
     }
+    
+}
+// MARK: UICollectionViewDelegate , UICollectionViewDataSource
+extension MonthYearPickerViewController: UICollectionViewDelegate , UICollectionViewDataSource  {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        return monthYearPickerViewModel.listMonth.count
+    }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 8
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 16
-//    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath)
-        
-        
+        if (monthYearPickerViewModel.listMonth[indexPath.row] == monthYearPickerViewModel.selectedMonth) {
+            cell.backgroundColor = .systemBlue
+        }
         cell.cornerRadius = 6
         cell.borderColor = UIColor(named: AssetColor.borderColor)
         cell.borderWidth = 1
+        let title = UILabel(frame: CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height))
+        title.text = monthYearPickerViewModel.listMonth[indexPath.row].title()
+        title.textAlignment = .center
+        cell.contentView.addSubview(title)
         return cell
     }
-
+    
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("===OnClick====")
-//        self.navigationController?.popViewController(animated: true)
+        monthYearPickerViewModel.callback?(monthYearPickerViewModel.listMonth[indexPath.row])
+        //        monthCollectionView.reloadData()
         dismiss(animated: true, completion: nil)
-
+        
     }
     
     
 }
+// MARK: UIPopoverPresentationControllerDelegate
 extension MonthYearPickerViewController: UIPopoverPresentationControllerDelegate {
-    // 1
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .popover
     }
-    
-
-    // 2
     func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
         popoverPresentationController.containerView?.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }

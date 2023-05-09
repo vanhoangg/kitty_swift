@@ -44,7 +44,6 @@ class AddCategoryViewModel : AddCategoryProtocol {
     //        print("newCategory \(newCategory)")
     //    }
     func createNewCategory(completion:(Bool)->Void){
-        print("newCategory \(newCategory)")
         
         
         categoryStorageServices.createNewCategory(category:newCategory , completion: completion)

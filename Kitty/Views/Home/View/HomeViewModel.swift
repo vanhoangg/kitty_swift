@@ -8,17 +8,28 @@
 import Foundation
 
 
+
 protocol MonthlyStatisticProtocol {
     var monthlyHistory: MonthlyHistory? { get set }
-    
     func loadApi()
-    func setCurrentFilterDate(filterDate:Date)
 }
-class HomeViewModel :MonthlyStatisticProtocol{
+protocol MonthPickerProtocol {
+    var currentFilterDate:Date? {get set}
+    
+    func setCurrentFilterDate(filterDate:Date?)
+    
+    
+}
+class HomeViewModel :MonthlyStatisticProtocol , MonthPickerProtocol{
+    
+    
+    
+    
+    
     
     let storageService: MoneyStorageProtocol
     var monthlyHistory: MonthlyHistory?
-    var currentFilterDate:Date = Date()
+    var currentFilterDate:Date? = Date()
     
     
     
@@ -28,9 +39,9 @@ class HomeViewModel :MonthlyStatisticProtocol{
     }
   
     
-    func setCurrentFilterDate(filterDate:Date) {
+    func setCurrentFilterDate(filterDate:Date?) {
         currentFilterDate = filterDate
-        self.loadApi()
+        loadApi()
     }
     
     func loadApi() {
@@ -40,10 +51,7 @@ class HomeViewModel :MonthlyStatisticProtocol{
         var listMonthlyHistory:[Money]? = []
         var listMonthlyExpense:[Money]? = []
         var listDailyExpenseHistory:[DailyExpenseHistory]? = []
-        let filterDate = currentFilterDate.toString()
-        print(filterDate)
-        
-//        DataManager.instance.save()
+        guard let filterDate = currentFilterDate?.toString() else {return}
         storageService.fetchMoney {
             listMoney in
             /// Query table Money key : Month - Year
@@ -71,7 +79,7 @@ class HomeViewModel :MonthlyStatisticProtocol{
         dictionary.forEach { (key: String?, value: [Money]) in
             listDailyExpenseHistory?.append(DailyExpenseHistory(dayId: key, expenses: value))
         }
-//        print("listDailyExpenseHistory \(listDailyExpenseHistory)")
+        
         
         monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance,listDailyExpenseHistory: listDailyExpenseHistory)
     }

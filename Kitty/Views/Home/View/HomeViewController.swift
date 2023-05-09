@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController{
     
-    lazy var homeViewModel: MonthlyStatisticProtocol = {
+    lazy var homeViewModel: MonthlyStatisticProtocol & MonthPickerProtocol = {
         return HomeViewModel()
     }()
     
@@ -25,6 +25,7 @@ class HomeViewController: UIViewController{
     @IBOutlet var expenseMonthlyReportView: ItemMonthlyReportView!
     @IBOutlet var incomeMonthlyReportView: ItemMonthlyReportView!
     @IBOutlet var balanceMonthlyReportView: ItemMonthlyReportView!
+    @IBOutlet weak var datePickerLabel: UILabel!
     
     // MARK: - LifeCycle
     
@@ -67,6 +68,7 @@ extension HomeViewController {
         addButton.addTarget(self, action: #selector(onPressAddExpense), for: .touchUpInside)
     }
     private func bindData() {
+        
         expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyHistory?.monthlyExpense ?? 0) ), title: "Expenses",valueColor: UIColor(named: AssetColor.red)))
         
         balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyHistory?.monthlyBalance ?? 0), title: "Balance",valueColor: UIColor(named: AssetColor.gray)))
@@ -110,19 +112,19 @@ extension HomeViewController {
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1
         
+        
     }
     
     @objc func onTapCalendarView(){
-        
-        // Create your view controller
-//        let monthYearPicker = UIViewController()
-//
-//        // Set background so that its visible
-//        monthYearPicker.view.backgroundColor = .blue
-        
-        // Set your popover size.
-        
         let monthYearPicker = MonthYearPickerViewController()
+        monthYearPicker.monthYearPickerViewModel.selectedMonth = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
+        monthYearPicker.monthYearPickerViewModel.callback = { [self] (selectedMonth)  in
+            let filterDate :Date? = FunctionUtils.createDateFromMonth(monthRawValue: selectedMonth.rawValue)
+            
+            homeViewModel.setCurrentFilterDate(filterDate: filterDate)
+            self.bindData()
+        }
+        
         monthYearPicker.modalPresentationStyle = .popover
         monthYearPicker.preferredContentSize = CGSize(width: screenWidth, height: screenWidth*0.8)
         monthYearPicker.popoverPresentationController?.delegate = self

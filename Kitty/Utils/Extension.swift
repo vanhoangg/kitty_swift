@@ -13,7 +13,6 @@ let screenHeight = UIScreen.main.bounds.size.height
 
 
 
-
 extension Date{
     func toString(pattern:String? = StringUtils.defaultPatternDate) -> String{
         let dateFormatter = DateFormatter()
