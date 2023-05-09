@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		733081852A03A4F80027A063 /* AddCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733081842A03A4F80027A063 /* AddCategoryViewModel.swift */; };
+		7360A1322A08E08B00AFEDD7 /* MonthYearPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */; };
+		7360A1332A08E08B00AFEDD7 /* MonthYearPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7360A1312A08E08B00AFEDD7 /* MonthYearPickerViewController.xib */; };
+		7360A1352A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A1342A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift */; };
 		73F52E952A04DADF0080A1FD /* MediaCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F52E932A04DADF0080A1FD /* MediaCategoryViewController.swift */; };
 		73F52E962A04DADF0080A1FD /* MediaCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F52E942A04DADF0080A1FD /* MediaCategoryViewController.xib */; };
 		73F52E982A04DD580080A1FD /* MediaCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F52E972A04DD580080A1FD /* MediaCategoryViewModel.swift */; };
@@ -70,6 +73,9 @@
 		2CE04161BD20CEAB213E3388 /* Pods_Kitty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kitty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4112B9695CB0386679A95D7F /* Pods-Kitty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.release.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.release.xcconfig"; sourceTree = "<group>"; };
 		733081842A03A4F80027A063 /* AddCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewModel.swift; sourceTree = "<group>"; };
+		7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerViewController.swift; sourceTree = "<group>"; };
+		7360A1312A08E08B00AFEDD7 /* MonthYearPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthYearPickerViewController.xib; sourceTree = "<group>"; };
+		7360A1342A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerViewModel.swift; sourceTree = "<group>"; };
 		73F52E932A04DADF0080A1FD /* MediaCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCategoryViewController.swift; sourceTree = "<group>"; };
 		73F52E942A04DADF0080A1FD /* MediaCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCategoryViewController.xib; sourceTree = "<group>"; };
 		73F52E972A04DD580080A1FD /* MediaCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCategoryViewModel.swift; sourceTree = "<group>"; };
@@ -146,6 +152,16 @@
 				733081842A03A4F80027A063 /* AddCategoryViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7360A12F2A08E06C00AFEDD7 /* MonthYearPicker */ = {
+			isa = PBXGroup;
+			children = (
+				7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */,
+				7360A1312A08E08B00AFEDD7 /* MonthYearPickerViewController.xib */,
+				7360A1342A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift */,
+			);
+			path = MonthYearPicker;
 			sourceTree = "<group>";
 		};
 		73F52E8F2A04BB0A0080A1FD /* SubView */ = {
@@ -277,6 +293,7 @@
 		7E9A744F29EE51CC0002051C /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				7360A12F2A08E06C00AFEDD7 /* MonthYearPicker */,
 				7E1798C229F0EE1E0003C20E /* ItemExpenseView */,
 				7E9A745329EE6DBB0002051C /* HistoryTableView */,
 				7E9A745229EE6DAD0002051C /* ItemMonthlyReportView */,
@@ -586,6 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7360A1332A08E08B00AFEDD7 /* MonthYearPickerViewController.xib in Resources */,
 				7EA34CCC29ED271A001B51C9 /* ReportViewController.xib in Resources */,
 				7EA34CB329ED25E5001B51C9 /* LoginViewController.xib in Resources */,
 				7EDFC5CD29EF966700C8AE30 /* HistoryTableViewCell.xib in Resources */,
@@ -668,10 +686,12 @@
 				7EFABEEE29F7CA6200C1F9A9 /* CategoryCollectionViewCell.swift in Sources */,
 				7E9A745D29EE7A010002051C /* HomeViewModel.swift in Sources */,
 				7EB7D06A29F8CC5500F4E294 /* DropDownView.swift in Sources */,
+				7360A1322A08E08B00AFEDD7 /* MonthYearPickerViewController.swift in Sources */,
 				7EB7D08329FB783200F4E294 /* MonthlyHistory.swift in Sources */,
 				7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */,
 				7EB7D07A29FA276A00F4E294 /* MainViewController.swift in Sources */,
 				7E834F5529F269E500F3363E /* CustomTableView.swift in Sources */,
+				7360A1352A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift in Sources */,
 				7E1798C529F0EE5F0003C20E /* ItemExpenseViewController.swift in Sources */,
 				7EFABEC729F6542900C1F9A9 /* Database.swift in Sources */,
 				7E9A745B29EE705C0002051C /* HistoryTableView.swift in Sources */,

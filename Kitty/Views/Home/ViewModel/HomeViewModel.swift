@@ -40,7 +40,7 @@ class HomeViewModel :MonthlyStatisticProtocol{
         var listMonthlyHistory:[Money]? = []
         var listMonthlyExpense:[Money]? = []
         var listDailyExpenseHistory:[DailyExpenseHistory]? = []
-        let filterDate = currentFilterDate.toString(pattern: "MM-YYYY")
+        let filterDate = currentFilterDate.toString()
         print(filterDate)
         
 //        DataManager.instance.save()

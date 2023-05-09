@@ -18,10 +18,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Kitty" customModuleProvider="target">
             <connections>
                 <outlet property="balanceMonthlyReportView" destination="3rZ-4P-Me5" id="M0V-wI-ce9"/>
-                <outlet property="datePicker" destination="aVD-tn-v3W" id="cpd-x3-mE8"/>
+                <outlet property="calendarView" destination="W0j-Zj-7kk" id="vef-dp-N09"/>
                 <outlet property="expenseMonthlyReportView" destination="3CX-RX-sjD" id="8O7-O8-sjF"/>
                 <outlet property="historyTableView" destination="Qv6-ko-luU" id="4Dv-3L-eoU"/>
                 <outlet property="homeStatStackView" destination="391-fI-hk5" id="vFW-EI-5Wu"/>
+                <outlet property="icCalendarView" destination="JdA-t4-NqL" id="bXv-Rj-MdO"/>
                 <outlet property="incomeMonthlyReportView" destination="kbr-GC-M0w" id="pfr-rT-KZP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -93,24 +94,17 @@
                             <rect key="frame" x="130.5" y="8" width="153" height="39.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-t4-NqL">
-                                    <rect key="frame" x="12" y="2.5" width="34.5" height="34.5"/>
+                                    <rect key="frame" x="12" y="11.5" width="16" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="JdA-t4-NqL" secondAttribute="height" multiplier="1:1" id="fBu-DW-fLs"/>
                                     </constraints>
                                 </imageView>
-                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="aVD-tn-v3W">
-                                    <rect key="frame" x="54" y="2" width="91" height="35"/>
-                                </datePicker>
                             </subviews>
                             <color key="backgroundColor" name="backgroundColor"/>
                             <constraints>
-                                <constraint firstItem="aVD-tn-v3W" firstAttribute="height" secondItem="JdA-t4-NqL" secondAttribute="height" id="8ev-ND-WhZ"/>
-                                <constraint firstItem="aVD-tn-v3W" firstAttribute="centerY" secondItem="W0j-Zj-7kk" secondAttribute="centerY" id="CTC-Oq-IUg"/>
                                 <constraint firstItem="JdA-t4-NqL" firstAttribute="leading" secondItem="W0j-Zj-7kk" secondAttribute="leading" constant="12" id="IoI-LW-2QK"/>
-                                <constraint firstItem="aVD-tn-v3W" firstAttribute="leading" secondItem="JdA-t4-NqL" secondAttribute="trailing" constant="8" id="JSy-Pa-8WJ"/>
                                 <constraint firstItem="JdA-t4-NqL" firstAttribute="centerY" secondItem="W0j-Zj-7kk" secondAttribute="centerY" id="MY2-wX-GEK"/>
                                 <constraint firstAttribute="width" secondItem="W0j-Zj-7kk" secondAttribute="height" multiplier="124:32" constant="1" id="rfe-Ie-a7a"/>
-                                <constraint firstAttribute="trailing" secondItem="aVD-tn-v3W" secondAttribute="trailing" constant="8" id="zFQ-Et-rB2"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

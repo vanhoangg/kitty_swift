@@ -72,7 +72,7 @@ extension HistoryTableView : UITableViewDelegate , UITableViewDataSource {
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor
         cell.clipsToBounds = true
-        
+        cell.selectionStyle = .none
         if let dailyHistory = viewData?.listDailyExpenseHistory?[indexPath.section
         ] {
             var totalDailyExpense:Double = 0

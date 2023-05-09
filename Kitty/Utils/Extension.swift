@@ -8,10 +8,14 @@
 import RealmSwift
 import UIKit
 
+let screenWidth = UIScreen.main.bounds.size.width
+let screenHeight = UIScreen.main.bounds.size.height
+
+
 
 
 extension Date{
-    func toString(pattern:String? = "dd-MM-yyyy") -> String{
+    func toString(pattern:String? = StringUtils.defaultPatternDate) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = pattern
         let dateString = dateFormatter.string(from: self)

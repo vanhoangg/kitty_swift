@@ -36,10 +36,10 @@ class MediaCategoryViewController: UIViewController {
 }
 extension MediaCategoryViewController : UICollectionViewDelegate , UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return mediaCategoryViewModel.listData?.count ?? 0
+        return 12
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let yourWidth = (collectionView.bounds.width ) / 4.0
+        let yourWidth = (collectionView.bounds.width ) / 3.0
         let yourHeight = yourWidth/2
 
         return CGSize(width: yourWidth, height: yourHeight)
