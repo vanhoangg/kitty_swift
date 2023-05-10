@@ -37,8 +37,9 @@ class MediaCategoryViewController: UIViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MediaCategoryViewController :UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let yourWidth = (collectionView.bounds.width ) / 3.0
-        let yourHeight = yourWidth/2
+        print("bound width\(collectionView.bounds.width)" )
+        let yourWidth = (collectionView.bounds.width ) / 4.0
+        let yourHeight = yourWidth * 0.6
         
         return CGSize(width: yourWidth, height: yourHeight)
     }
@@ -51,7 +52,7 @@ extension MediaCategoryViewController :UICollectionViewDelegateFlowLayout{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 15
+        return 0
     }
 }
 // MARK: - UICollectionViewDataSource && UICollectionViewDelegate
@@ -77,7 +78,7 @@ extension MediaCategoryViewController : UICollectionViewDelegate , UICollectionV
         mediaCategoryViewModel.chooseIconCategoryCallBack?(mediaCategoryViewModel.listData?[indexPath.row])
         print("===OnClick====")
         //        self.navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
         
     }
 }

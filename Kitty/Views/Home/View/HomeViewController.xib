@@ -104,7 +104,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUq-0P-o2k">
-                                    <rect key="frame" x="36" y="8" width="36" height="23.5"/>
+                                    <rect key="frame" x="36" y="11" width="36" height="17"/>
                                     <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                     <color key="textColor" name="42"/>
                                     <nil key="highlightedColor"/>
@@ -112,17 +112,15 @@
                             </subviews>
                             <color key="backgroundColor" name="backgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="dUq-0P-o2k" secondAttribute="bottom" constant="8" id="9J6-b0-PKf"/>
                                 <constraint firstItem="JdA-t4-NqL" firstAttribute="leading" secondItem="W0j-Zj-7kk" secondAttribute="leading" constant="12" id="IoI-LW-2QK"/>
                                 <constraint firstItem="JdA-t4-NqL" firstAttribute="centerY" secondItem="W0j-Zj-7kk" secondAttribute="centerY" id="MY2-wX-GEK"/>
                                 <constraint firstItem="dUq-0P-o2k" firstAttribute="leading" secondItem="JdA-t4-NqL" secondAttribute="trailing" constant="8" id="cEe-BN-Kce"/>
                                 <constraint firstAttribute="trailing" secondItem="dUq-0P-o2k" secondAttribute="trailing" constant="16" id="w4d-wY-FMe"/>
-                                <constraint firstItem="dUq-0P-o2k" firstAttribute="top" secondItem="W0j-Zj-7kk" secondAttribute="top" constant="8" id="wvL-VG-3UL"/>
                                 <constraint firstItem="dUq-0P-o2k" firstAttribute="centerY" secondItem="W0j-Zj-7kk" secondAttribute="centerY" id="xNa-OR-4MY"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="15"/>
+                                    <real key="value" value="0.0"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                     <real key="value" value="0.0"/>

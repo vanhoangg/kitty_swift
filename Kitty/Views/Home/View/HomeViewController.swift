@@ -64,6 +64,8 @@ extension HomeViewController {
     }
     
     private func configCalendarView() {
+        calendarView.cornerRadius = calendarView.frame.height * 0.375
+        print(calendarView.frame.height)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(onTapCalendarView))
         calendarView.addGestureRecognizer(gesture)
         gesture.numberOfTapsRequired = 1
@@ -71,7 +73,7 @@ extension HomeViewController {
     }
     
     private func bindData() {
-        datePickerLabel.text = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.monthYearPatternDate)
+        datePickerLabel.text = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)
         expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyHistory?.monthlyExpense ?? 0)), title: "Expenses", valueColor: UIColor(named: AssetColor.red)))
         
         balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyHistory?.monthlyBalance ?? 0), title: "Balance", valueColor: UIColor(named: AssetColor.gray)))

@@ -11,5 +11,6 @@ struct StringUtils {
     static var reportLabel: String = "Statistics"
     static var defaultPatternDate:String = "dd-MM-yyyy"
     static var onlyMonthPatternDate:String = "MMMM"
-    static var monthYearPatternDate:String = "MMMM-YYYY"
+    static var stringMonthYearPatternDate:String = "MMMM-YYYY"
+    static var numMonthYearPatternDate:String = "MM-YYYY"
 }

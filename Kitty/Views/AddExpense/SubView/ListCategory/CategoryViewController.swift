@@ -29,6 +29,10 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
         build()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        print("ABC")
+    }
 }
 
 // MARK: - Method
@@ -108,7 +112,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
 extension CategoryViewController :UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let yourWidth = (collectionView.bounds.width ) / 4.0
-        let yourHeight = yourWidth
+        let yourHeight = yourWidth * 0.9
         
         return CGSize(width: yourWidth, height: yourHeight)
     }
@@ -119,7 +123,7 @@ extension CategoryViewController :UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }

@@ -9,25 +9,29 @@ import UIKit
 import FloatingPanel
 
 class AddCategoryViewController: UIViewController {
-    // MARK: IBOutlet
+    // MARK: - IBOutlet
     @IBOutlet weak var imageBorderDashView: RectangularDashedView!
-    
     @IBOutlet weak var categoryNameTextField: CustomTextField!
     @IBOutlet weak var addImageView: UIImageView!
     
-    // MARK: Properties
+    // MARK: - Properties
     lazy var addCategoryViewModel : AddCategoryProtocol = {
         return AddCategoryViewModel()
     }()
     
-    // MARK: Life Cycle
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         build()
     }
-    
-    // MARK: Method
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        print("Dismiss")
+        self.navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+  
+    // MARK: - Method
     private func build(){
         categoryNameTextField.addTarget(self, action: #selector(onChangeCategoryNameTextField), for: .editingChanged)
         configureIconButton()
@@ -100,20 +104,16 @@ extension AddCategoryViewController {
         addCategoryViewModel.createNewCategory { value in
             if(value){
                 // Create new Alert
-                var dialogMessage = UIAlertController( title: "", message: "New category addedd successfully! ", preferredStyle: .alert)
-                
-                
-                let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                    for controller in self.navigationController!.viewControllers as Array {
-                        if controller.isKind(of: HomeViewController.self) {
-                            self.navigationController!.popToViewController(controller, animated: true)
-                            break
-                        }
-                    }
+                let dialogMessage = UIAlertController( title: "", message: "New category addedd successfully! ", preferredStyle: .actionSheet)
+
+                let dialogAction = UIAlertAction(title: "OK", style: .destructive, handler: { (action) -> Void in
+                    
+                    self.navigationController?.popToRootViewController(animated: true)
+
                 })
                 
                 
-                dialogMessage.addAction(ok)
+                dialogMessage.addAction(dialogAction)
                 self.present(dialogMessage, animated: true, completion: nil)
                 
                 

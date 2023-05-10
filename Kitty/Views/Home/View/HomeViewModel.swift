@@ -38,7 +38,9 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
         var listMonthlyHistory: [Money]? = []
         var listMonthlyExpense: [Money]? = []
         var listDailyExpenseHistory: [DailyExpenseHistory]? = []
-        guard let filterDate = currentFilterDate?.toString() else { return }
+        
+        guard let filterDate = currentFilterDate?.toString(pattern: StringUtils.numMonthYearPatternDate) else { return }
+        print("filterDate\(filterDate)")
         storageService.fetchMoney {
             listMoney in
             /// Query table Money key : Month - Year

@@ -46,8 +46,7 @@ class ReportViewController: UIViewController {
         chartView.addSubview(chartStackView)
         chartStackView.translatesAutoresizingMaskIntoConstraints = false
         chartStackView.layer.cornerRadius = 8
-        chartStackView.layer.borderWidth
-        = 1
+        chartStackView.layer.borderWidth = 1
         chartStackView.layer.borderColor = UIColor(named: "B2EBF2")?.cgColor
         chartStackView.clipsToBounds = true
         NSLayoutConstraint.activate([
