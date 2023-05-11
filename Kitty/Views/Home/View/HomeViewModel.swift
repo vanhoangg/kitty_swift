@@ -10,6 +10,7 @@ import Foundation
 protocol MonthlyStatisticProtocol {
     var monthlyHistory: MonthlyHistory? { get set }
     func loadApi()
+
 }
 
 protocol MonthPickerProtocol {
@@ -25,33 +26,36 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
         self.storageService = service
         loadApi()
     }
-    
+
     func setCurrentFilterDate(filterDate: Date?) {
         currentFilterDate = filterDate
         loadApi()
     }
-    
+
     func loadApi() {
         var monthlyExpense = 0.0
         var monthlyIncome = 0.0
         var monthlyBalance = 0.0
-        var listMonthlyHistory: [Money]? = []
-        var listMonthlyExpense: [Money]? = []
-        var listDailyExpenseHistory: [DailyExpenseHistory]? = []
-        
+        var listMonthlyHistory: [Money] = []
+        var listMonthlyExpense: [Money] = []
+        var listDailyExpenseHistory: [DailyExpenseHistory] = []
+
         guard let filterDate = currentFilterDate?.toString(pattern: StringUtils.numMonthYearPatternDate) else { return }
         print("filterDate\(filterDate)")
-        storageService.fetchMoney {
-            listMoney in
+        storageService.fetchMoney { results in
+            guard let listMoney = results else {
+                return
+            }
+
             /// Query table Money key : Month - Year
-            listMonthlyHistory = listMoney?.filter { money in
+            listMonthlyHistory = listMoney.filter { money in
                 money.createAt?.contains(filterDate) ?? false
             }
             /// Query Data Money Type
-            listMonthlyHistory?.forEach { moneyElement in
+            listMonthlyHistory.forEach { moneyElement in
                 if moneyElement.type == MoneyEnum.expense {
                     monthlyExpense += (moneyElement.value ?? 0)
-                    listMonthlyExpense?.append(moneyElement)
+                    listMonthlyExpense.append(moneyElement)
                 } else if moneyElement.type == MoneyEnum.income {
                     monthlyIncome += (moneyElement.value ?? 0)
                 }
@@ -59,10 +63,10 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
             monthlyBalance = monthlyIncome - monthlyExpense
         }
         /// Create Dictionary to Group by createAt
-        let dictionary = Dictionary(grouping: listMonthlyExpense ?? [], by: { $0.createAt })
+        let dictionary = Dictionary(grouping: listMonthlyExpense, by: { $0.createAt })
         /// Convert Dictionary To Array
         dictionary.forEach { (key: String?, value: [Money]) in
-            listDailyExpenseHistory?.append(DailyExpenseHistory(dayId: key, expenses: value))
+            listDailyExpenseHistory.append(DailyExpenseHistory(dayId: key, expenses: value))
         }
         monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance, listDailyExpenseHistory: listDailyExpenseHistory)
     }

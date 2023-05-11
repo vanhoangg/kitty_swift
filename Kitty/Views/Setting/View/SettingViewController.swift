@@ -17,7 +17,7 @@ class SettingViewController: UIViewController {
         iconSearchImageView.translatesAutoresizingMaskIntoConstraints = false
         iconMoreImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            iconMoreImageView.leadingAnchor.constraint(equalTo: iconMoreImageView.trailingAnchor),
+            iconMoreImageView.leadingAnchor.constraint(equalTo: iconMoreImageView.trailingAnchor)
         ])
         actionNavigationBar.addSubview(iconSearchImageView)
         actionNavigationBar.addSubview(iconMoreImageView)
@@ -36,7 +36,7 @@ class SettingViewController: UIViewController {
             customNavigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             customNavigationBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             customNavigationBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            customNavigationBar.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 48 / 780, constant: 1),
+            customNavigationBar.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 48 / 780, constant: 1)
         ])
         // Do any additional setup after loading the view.
     }

@@ -1,5 +1,5 @@
 import Foundation
-enum Months : Int{
+enum Months: Int {
     case January = 1
     case February = 2
     case March = 3
@@ -12,7 +12,7 @@ enum Months : Int{
     case October = 10
     case November = 11
     case December = 12
-    
+
 }
 extension Months {
     func title() -> String {
@@ -43,21 +43,21 @@ extension Months {
             return "Dec"
         }
     }
-    
+
 }
 extension String {
     func getMonthType() -> Months {
-        
+
         switch self {
         case "January":
             return Months.January
-        case "February" :
+        case "February":
             return Months.February
         case  "March":
             return Months.March
-        case "April" :
+        case "April":
             return Months.April
-        case "May" :
+        case "May":
             return Months.May
         case "June":
             return Months.June
@@ -80,15 +80,15 @@ extension String {
 }
 
 class FunctionUtils {
-    static func createDateFromMonth(monthRawValue:Int?,pattern:String? = StringUtils.defaultPatternDate) -> Date? {
+    static func createDateFromMonth(monthRawValue: Int?, pattern: String? = StringUtils.defaultPatternDate) -> Date? {
         let calendar = Calendar.current
         var components = DateComponents()
-        var now = Date()
+        let now = Date()
         components.day = calendar.component(.day, from: now)
         components.month = monthRawValue
         components.year = calendar.component(.year, from: now)
         let newDate = calendar.date(from: components)
-        
+
         return newDate
     }
 }

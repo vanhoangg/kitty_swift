@@ -7,7 +7,7 @@
 
 import Foundation
 import RealmSwift
-//class User: Object {
+// class User: Object {
 //    @Persisted(primaryKey: true) var _id: ObjectId
 //
 //    @Persisted var userName: String?
@@ -16,4 +16,4 @@ import RealmSwift
 //        self.init()
 //        self.userName = userName
 //    }
-//}
+// }

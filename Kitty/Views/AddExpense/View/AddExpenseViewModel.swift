@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol UpdateExpenseInfomationProtocol{
+protocol UpdateExpenseInfomationProtocol {
     func setChoosenCategory(choosenCategory: Category?)
     func setMoneyType(type: MoneyEnum?)
     func setAmountValue(value: Double?)
@@ -18,19 +18,18 @@ protocol UpdateExpenseInfomationProtocol{
     var descriptionAmount: String? {get set}
 }
 
-class AddExpenseViewModel :UpdateExpenseInfomationProtocol{
+class AddExpenseViewModel: UpdateExpenseInfomationProtocol {
     var choosenCategory: Category?
     var choosenMoneyType: MoneyEnum? = MoneyEnum.expense
     var amountValue: Double?
     var descriptionAmount: String?
-    
-    let storageServices:MoneyStorageProtocol
-    
-    
-    init(services:MoneyStorageProtocol = StorageService.init()){
+
+    let storageServices: MoneyStorageProtocol
+
+    init(services: MoneyStorageProtocol = StorageService.init()) {
         self.storageServices = services
     }
-    
+
     func setChoosenCategory(choosenCategory: Category?) {
         self.choosenCategory = choosenCategory
     }
@@ -43,14 +42,14 @@ class AddExpenseViewModel :UpdateExpenseInfomationProtocol{
     func setDescriptionAmount(description: String?) {
         self.descriptionAmount = description
     }
-    func saveExpense(completion: (Bool) -> Void){
+    func saveExpense(completion: (Bool) -> Void) {
         let currentDate = Date()
         print("descriptionAmount == \(descriptionAmount)")
         print("choosenCategory == \(choosenCategory)")
         print("choosenMoneyType == \(choosenMoneyType)")
         print("amountValue == \(amountValue)")
-        
-        let money = Money(descriptionAmount, category: choosenCategory, value: amountValue, type: choosenMoneyType,createAt: currentDate.toString())
-        storageServices.saveExpense(money: money,completion:completion)
+
+        let money = Money(descriptionAmount, category: choosenCategory, value: amountValue, type: choosenMoneyType, createAt: currentDate.toString())
+        storageServices.saveExpense(money: money, completion: completion)
     }
 }

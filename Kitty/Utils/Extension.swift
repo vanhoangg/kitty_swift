@@ -11,10 +11,8 @@ import UIKit
 let screenWidth = UIScreen.main.bounds.size.width
 let screenHeight = UIScreen.main.bounds.size.height
 
-
-
-extension Date{
-    func toString(pattern:String? = StringUtils.defaultPatternDate) -> String{
+extension Date {
+    func toString(pattern: String? = StringUtils.defaultPatternDate) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = pattern
         let dateString = dateFormatter.string(from: self)
@@ -29,13 +27,13 @@ extension Results {
                 array.append(result)
             }
         }
-        
+
         return array
     }
 }
 
 extension UIView {
-    
+
     func removeAllSubViews() {
         _ = self.subviews.map({ view in
             view.removeFromSuperview()
@@ -94,8 +92,7 @@ extension String {
             formatter.numberStyle = .currency
             formatter.currencySymbol = " ₹ "
             //            formatter.minimumFractionDigits = 0
-            
-            
+
             formatter.maximumFractionDigits = 0
             // Change to `.currency` if needed
             if let str = formatter.string(from: NSNumber(value: value)) {
@@ -109,13 +106,13 @@ extension String {
 @IBDesignable public class RoundedUIView: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
-        
+
         layer.cornerRadius = frame.width / 2
         layer.masksToBounds = true
     }
 }
 class RectangularDashedView: UIView {
-    
+
     override var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -128,9 +125,9 @@ class RectangularDashedView: UIView {
     @IBInspectable var dashColor: UIColor = .clear
     @IBInspectable var dashLength: CGFloat = 0
     @IBInspectable var betweenDashesSpace: CGFloat = 0
-    
+
     var dashBorder: CAShapeLayer?
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         dashBorder?.removeFromSuperlayer()
@@ -160,7 +157,7 @@ extension UIView {
             layer.cornerRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var borderWidth: CGFloat {
         get {
@@ -170,7 +167,7 @@ extension UIView {
             layer.borderWidth = newValue
         }
     }
-    
+
     @IBInspectable
     var borderColor: UIColor? {
         get {
@@ -187,7 +184,7 @@ extension UIView {
             }
         }
     }
-    
+
     @IBInspectable
     var shadowRadius: CGFloat {
         get {
@@ -197,7 +194,7 @@ extension UIView {
             layer.shadowRadius = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOpacity: Float {
         get {
@@ -207,7 +204,7 @@ extension UIView {
             layer.shadowOpacity = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowOffset: CGSize {
         get {
@@ -217,7 +214,7 @@ extension UIView {
             layer.shadowOffset = newValue
         }
     }
-    
+
     @IBInspectable
     var shadowColor: UIColor? {
         get {

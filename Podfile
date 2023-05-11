@@ -9,4 +9,5 @@ target 'Kitty' do
   pod 'RealmSwift'
   pod 'DropDown'
   pod 'FloatingPanel'
+  pod 'SwiftLint'
 end

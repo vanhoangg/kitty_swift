@@ -7,20 +7,15 @@
 
 import Foundation
 
-
-
 protocol MediaCategoryProtocol {
-    var listData:[MediaCategory]? {get set}
+    var listData: [MediaCategory]? {get set}
     func getData()
-    var chooseIconCategoryCallBack: ((MediaCategory?)->Void)? {get set}
+    var chooseIconCategoryCallBack: ((MediaCategory?) -> Void)? {get set}
 }
 
-
-class MediaCategoryViewModel : MediaCategoryProtocol {
+class MediaCategoryViewModel: MediaCategoryProtocol {
     var chooseIconCategoryCallBack: ((MediaCategory?) -> Void)?
-    
-    
-    
+
     let categoryStorageServices: CategoryStorageProtocol
     var listData: [MediaCategory]?
     init(service: CategoryStorageProtocol = StorageService.init()) {
@@ -32,6 +27,5 @@ class MediaCategoryViewModel : MediaCategoryProtocol {
             listData  = mediaCategory?.toArray(ofType: MediaCategory.self)
         }
     }
-    
-    
+
 }

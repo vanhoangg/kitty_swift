@@ -10,19 +10,14 @@ import RealmSwift
 
 class Money: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
-    
+
     @Persisted var category: Category?
     @Persisted var value: Double?
     @Persisted var valueDescription: String?
     @Persisted var type: MoneyEnum?
-    @Persisted var createAt:String?
-    
-    
-    
-    
-    
-    convenience init(_ description: String? , category: Category?, value: Double?, type: MoneyEnum?,createAt:String?)
-    {
+    @Persisted var createAt: String?
+
+    convenience init(_ description: String?, category: Category?, value: Double?, type: MoneyEnum?, createAt: String?) {
         self.init()
         self.value = value
         self.valueDescription = description
@@ -51,10 +46,10 @@ extension MoneyEnum {
             return "Income"
         }
     }
-    
+
 }
 extension String {
-    var getMoneyEnum : MoneyEnum {
+    var getMoneyEnum: MoneyEnum {
         switch self {
         case "Balance":
             return MoneyEnum.balance
@@ -65,6 +60,6 @@ extension String {
         default:
             return MoneyEnum.expense
         }
-        
+
     }
 }

@@ -7,28 +7,26 @@
 
 import Foundation
 
+protocol AddCategoryProtocol {
+    var newCategory: Category { get set}
+    func setMediaCategory(iconUrl: String?, backgroundColor: String?)
+    func setCategoryName(categoryName: String?)
+    func createNewCategory(completion: (Bool) -> Void)
 
-protocol AddCategoryProtocol{
-    var newCategory:Category { get set}
-    func setMediaCategory(iconUrl:String?,backgroundColor:String?)
-    func setCategoryName(categoryName:String?)
-    func createNewCategory(completion:(Bool)->Void)
-    
 }
-class AddCategoryViewModel : AddCategoryProtocol {
-    
-    
-    var newCategory:Category = Category()
+class AddCategoryViewModel: AddCategoryProtocol {
+
+    var newCategory: Category = Category()
     let categoryStorageServices: CategoryStorageProtocol
-    
+
     init(service: CategoryStorageProtocol = StorageService.init()) {
         self.categoryStorageServices = service
     }
-    func setMediaCategory(iconUrl:String?,backgroundColor:String?){
+    func setMediaCategory(iconUrl: String?, backgroundColor: String?) {
         let newMediaCategory = MediaCategory(iconUrl: iconUrl, backgroundColor: backgroundColor)
         newCategory.media = newMediaCategory
     }
-    func setCategoryName(categoryName:String?){
+    func setCategoryName(categoryName: String?) {
         newCategory.categoryName = categoryName
     }
     //    func setCategory(_ categoryName:String? = nil,_ iconUrl:String? = nil, _ backgroundColor:String? = nil  ){
@@ -43,10 +41,9 @@ class AddCategoryViewModel : AddCategoryProtocol {
     //        }
     //        print("newCategory \(newCategory)")
     //    }
-    func createNewCategory(completion:(Bool)->Void){
-        
-        
-        categoryStorageServices.createNewCategory(category:newCategory , completion: completion)
+    func createNewCategory(completion: (Bool) -> Void) {
+
+        categoryStorageServices.createNewCategory(category: newCategory, completion: completion)
     }
-    
+
 }

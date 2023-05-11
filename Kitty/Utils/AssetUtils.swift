@@ -11,7 +11,7 @@ import UIKit
 /// Type 1 :
 /// How to use :  UIColor(named: AssetColor.defaultTextColor)
 struct AssetColor {
-    
+
     static let PrimaryTextColor: String = "21"
     static let SecondaryTextColor: String = "42"
     static let ThirdTextColor: String = "61"
@@ -20,9 +20,9 @@ struct AssetColor {
     static let gray: String = "gray"
     static let buttonBackgroundColor: String = "buttonBackgroundColor"
     static let backgroundColor: String = "backgroundColor"
-    
+
     // MARK: - Category Background Color
-    
+
     static let bankBackgroundColor: String = "bankBackgroundColor"
     static let coffeeBackgroundColor: String = "coffeeBackgroundColor"
     static let constructionBackgroundColor: String = "constructionBackgroundColor"
@@ -42,16 +42,13 @@ struct AssetColor {
     static let giftBackgroundColor: String = "giftBackgroundColor"
     static let healthBackgroundColor: String = "healthBackgroundColor"
     static let sportBackgroundColor: String = "sportBackgroundColor"
-    
-    
+
 }
 
 enum AssetIcon {
-    
-    
-    
+
     // MARK: - CategoryIcon
-    
+
     static let icBank: String = "ic_bank"
     static let icParty: String = "ic_celebration"
     static let icCoffee: String = "ic_coffee"
@@ -71,10 +68,7 @@ enum AssetIcon {
     static let icSport: String = "ic_sport"
     static let icTransportation: String = "ic_transportation"
     static let icVolunteer: String = "ic_volunteer"
-    
-    
-    
-    
+
     // MARK: - Another
     static let icWallet: String = "ic_wallet"
     static let icCalendar: String = "ic_calendar"
@@ -85,8 +79,7 @@ enum AssetIcon {
     static let icSearch: String = "ic_search"
     static let icAdd: String = "ic_add_circle"
     static let icArrowDown: String = "ic_arrow_down"
-    
-    
+
     // MARK: - Tabbar Icon
     static let icHome: String = "ic_home"
     static let icSetting: String = "ic_setting"
@@ -94,8 +87,7 @@ enum AssetIcon {
     static let icHomeActive: String = "ic_home_active"
     static let icSettingActive: String = "ic_setting_active"
     static let icReportActive: String = "ic_report_active"
-    
-    
+
 }
 
 /// Type 2
@@ -107,8 +99,8 @@ extension UIFont {
         case medium = "-Medium"
         case bold = "-bold"
     }
-    
-    static func CustomFont(_ type: CustomFontType = .semibold, size: CGFloat = UIFont.systemFontSize) -> UIFont {
+
+    static func customFont(_ type: CustomFontType = .semibold, size: CGFloat = UIFont.systemFontSize) -> UIFont {
         return UIFont(name: "Inter\(type.rawValue)", size: size)!
     }
 }

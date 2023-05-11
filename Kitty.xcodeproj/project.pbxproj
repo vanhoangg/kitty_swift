@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		732AE0152A0C9B720025093F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732AE0142A0C9B720025093F /* Error.swift */; };
 		733081852A03A4F80027A063 /* AddCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733081842A03A4F80027A063 /* AddCategoryViewModel.swift */; };
 		7360A1322A08E08B00AFEDD7 /* MonthYearPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */; };
 		7360A1332A08E08B00AFEDD7 /* MonthYearPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7360A1312A08E08B00AFEDD7 /* MonthYearPickerViewController.xib */; };
@@ -72,6 +73,7 @@
 		0DF36A7BB4BC78F14417D052 /* Pods-Kitty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.debug.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.debug.xcconfig"; sourceTree = "<group>"; };
 		2CE04161BD20CEAB213E3388 /* Pods_Kitty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kitty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4112B9695CB0386679A95D7F /* Pods-Kitty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.release.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.release.xcconfig"; sourceTree = "<group>"; };
+		732AE0142A0C9B720025093F /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		733081842A03A4F80027A063 /* AddCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewModel.swift; sourceTree = "<group>"; };
 		7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerViewController.swift; sourceTree = "<group>"; };
 		7360A1312A08E08B00AFEDD7 /* MonthYearPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthYearPickerViewController.xib; sourceTree = "<group>"; };
@@ -116,7 +118,7 @@
 		7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationBar.swift; sourceTree = "<group>"; };
 		7EB7D08029FA5AEE00F4E294 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7EB7D08229FB783200F4E294 /* MonthlyHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyHistory.swift; sourceTree = "<group>"; };
-		7EB7D08729FBAF3A00F4E294 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		7EB7D08729FBAF3A00F4E294 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		7EB7D08829FBAF3A00F4E294 /* AddCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCategoryViewController.xib; sourceTree = "<group>"; };
 		7ECC579929EE3B1C00C09F30 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7EDFC5CA29EF966700C8AE30 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				7EFABF0329F8CA5800C1F9A9 /* User.swift */,
 				7EFABEFA29F8C9E300C1F9A9 /* Money.swift */,
 				7EB7D08229FB783200F4E294 /* MonthlyHistory.swift */,
+				732AE0142A0C9B720025093F /* Error.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				7E99F82E29ECE83F00BDDF92 /* Frameworks */,
 				7E99F82F29ECE83F00BDDF92 /* Resources */,
 				C44D670B840C6F36EA599724 /* [CP] Embed Pods Frameworks */,
+				730F6E472A0CC7DF003F2B8B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -595,6 +599,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		730F6E472A0CC7DF003F2B8B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		C44D670B840C6F36EA599724 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,6 +674,7 @@
 				7EA34CC529ED2703001B51C9 /* SettingViewController.swift in Sources */,
 				7EFABEEE29F7CA6200C1F9A9 /* CategoryCollectionViewCell.swift in Sources */,
 				7E9A745D29EE7A010002051C /* HomeViewModel.swift in Sources */,
+				732AE0152A0C9B720025093F /* Error.swift in Sources */,
 				7EB7D06A29F8CC5500F4E294 /* DropDownView.swift in Sources */,
 				7360A1322A08E08B00AFEDD7 /* MonthYearPickerViewController.swift in Sources */,
 				7EB7D08329FB783200F4E294 /* MonthlyHistory.swift in Sources */,

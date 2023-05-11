@@ -9,7 +9,7 @@ import UIKit
 
 class CustomTextField: UITextField {
     // MARK: Floating Custom
-    
+
     //    var floatingLabel: UILabel = UILabel(frame: CGRect.zero) // Label
     //    var floatingLabelHeight: CGFloat = 14 // Default height
     //    @IBInspectable
@@ -72,42 +72,42 @@ class CustomTextField: UITextField {
         super.init(frame: frame)
         build()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         build()
     }
-    
+
     private func build() {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: bounds.height))
         leftView = paddingView
         rightView = paddingView
-        
+
         leftViewMode = .always
         rightViewMode = .always
         borderColor = UIColor(named: AssetColor.borderColor)
-        
+
         textColor = UIColor(named: AssetColor.PrimaryTextColor)
-        font = UIFont.CustomFont(.regular, size: 16)
+        font = UIFont.customFont(.regular, size: 16)
     }
 }
 class CurrencyTextField: CustomTextField {
-    //1
+    // 1
     var passTextFieldText: ((String, Double?) -> Void)?
-    
-    //2
-    
-    //Used to send clean double value back
+
+    // 2
+
+    // Used to send clean double value back
     private var amountAsDouble: Double?
-    
+
     var startingValue: Double? {
         didSet {
             let nsNumber = NSNumber(value: startingValue ?? 0.0)
             self.text = numberFormatter.string(from: nsNumber)
         }
     }
-    
-    //3
+
+    // 3
     private lazy var numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -116,80 +116,78 @@ class CurrencyTextField: CustomTextField {
         formatter.currencySymbol = " ₹"
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 0
-        //locale and currencyCode set in currency property observer
+        // locale and currencyCode set in currency property observer
         return formatter
     }()
-    
-    //4
+
+    // 4
     private var roundingPlaces: Int {
         return numberFormatter.maximumFractionDigits
     }
-    
-    //5
+
+    // 5
     private var isSymbolOnRight = false
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         setup()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        //If using in SBs
+        // If using in SBs
         setup()
     }
-    
-    //6
+
+    // 6
     private func setup() {
         self.keyboardType = .numberPad
         self.contentScaleFactor = 0.5
         delegate = self
-        
+
         self.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
-    
-    //AFTER entered string is registered in the textField
+
+    // AFTER entered string is registered in the textField
     @objc private func textFieldDidChange() {
         updateTextField()
     }
-    
-    //7
-    //Placed in separate method so when the user selects an account with a different currency, it will immediately be reflected
+
+    // 7
+    // Placed in separate method so when the user selects an account with a different currency, it will immediately be reflected
     private func updateTextField() {
         var cleanedAmount = ""
-        
-        for character in self.text ?? "" {
-            if character.isNumber {
+
+        for character in (self.text ?? "") where character.isNumber {
                 cleanedAmount.append(character)
-            }
         }
-        
+
         if isSymbolOnRight {
             cleanedAmount = String(cleanedAmount.dropLast())
         }
-        
-        //Format the number based on number of decimal digits
+
+        // Format the number based on number of decimal digits
         if self.roundingPlaces > 0 {
-            //ie. USD
+            // ie. USD
             let amount = Double(cleanedAmount) ?? 0.0
             amountAsDouble = (amount / 100.0)
             let amountAsString = numberFormatter.string(from: NSNumber(value: amountAsDouble ?? 0.0)) ?? ""
-            
+
             self.text = amountAsString
         } else {
-            //ie. JPY
+            // ie. JPY
             let amountAsNumber = Double(cleanedAmount) ?? 0.0
             amountAsDouble = amountAsNumber
             self.text = numberFormatter.string(from: NSNumber(value: amountAsNumber)) ?? ""
         }
-        
+
         passTextFieldText?(self.text!, amountAsDouble)
     }
-    
-    //8
-    //Prevents the user from moving the cursor in the textField
-    //Source: https://stackoverflow.com/questions/16419095/prevent-user-from-setting-cursor-position-on-uitextfield
+
+    // 8
+    // Prevents the user from moving the cursor in the textField
+    // Source: https://stackoverflow.com/questions/16419095/prevent-user-from-setting-cursor-position-on-uitextfield
     override func closestPosition(to point: CGPoint) -> UITextPosition? {
         let beginning = self.beginningOfDocument
         let end = self.position(from: beginning, offset: self.text?.count ?? 0)
@@ -197,22 +195,21 @@ class CurrencyTextField: CustomTextField {
     }
 }
 
-
 extension CurrencyTextField: UITextFieldDelegate {
-    
-    //9
-    //BEFORE entered string is registered in the textField
+
+    // 9
+    // BEFORE entered string is registered in the textField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let lastCharacterInTextField = (textField.text ?? "").last
-        
-        //Note - not the most straight forward implementation but this subclass supports both right and left currencies
+
+        // Note - not the most straight forward implementation but this subclass supports both right and left currencies
         if string == "" && lastCharacterInTextField!.isNumber == false {
-            //For hitting backspace and currency is on the right side
+            // For hitting backspace and currency is on the right side
             isSymbolOnRight = true
         } else {
             isSymbolOnRight = false
         }
-        
+
         return true
     }
 }
