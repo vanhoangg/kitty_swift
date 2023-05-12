@@ -20,10 +20,23 @@ class MediaCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         build()
+        bindData()
         // Do any additional setup after loading the view.
     }
 
     // MARK: - Method
+    private func bindData() {
+        mediaCategoryViewModel.didLoadListMediaCategorySuccess = {
+            self.mediaCategoryCollectionView.reloadData()
+        }
+        mediaCategoryViewModel.didLoadListMediaCategoryFail = { error in
+            self.showErrorAlert(message: error.localizedDescription, title: "OK") {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+
+    }
+
     private func build() {
         configureMediaCategoryCollectionView()
     }
@@ -58,7 +71,7 @@ extension MediaCategoryViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDataSource && UICollectionViewDelegate
 extension MediaCategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return 12
+        return mediaCategoryViewModel.listData?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

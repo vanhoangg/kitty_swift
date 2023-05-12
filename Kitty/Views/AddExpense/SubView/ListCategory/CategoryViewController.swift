@@ -28,6 +28,7 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         build()
+        bindData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -45,7 +46,16 @@ extension CategoryViewController {
             self?.categoryCollectionView.reloadData()
         }
     }
-
+    private func bindData() {
+        categoryViewModel.didLoadListCategoryFail = {error in
+            self.showErrorAlert(message: error.localizedDescription, title: "OK") {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        categoryViewModel.didLoadListCategorySuccess = {
+            self.reloadData()
+        }
+    }
     private func build() {
         configureChooseCategoryLabel()
         configureAddButtonCategory()
@@ -88,16 +98,18 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath) as! CategoryCollectionViewCell
-
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath) as? CategoryCollectionViewCell
+        guard let categoryCollectionViewCell = cell else {
+            return UICollectionViewCell()
+        }
         if let itemIndexCategory = categoryViewModel.listData?[indexPath.row] {
             let categoryCollectionViewData = CategoryCollectionViewCell.ViewData(
                 categoryName: itemIndexCategory.categoryName, iconUrl: itemIndexCategory.media?.iconUrl,
                 iconBackgroundColor: itemIndexCategory.media?.backgroundColor,
                 isShowCategoryName: true)
-            cell.configure(viewData: categoryCollectionViewData)
+            categoryCollectionViewCell.configure(viewData: categoryCollectionViewData)
         }
-        return cell
+        return categoryCollectionViewCell
     }
 
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {

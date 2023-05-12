@@ -33,31 +33,25 @@ struct DummyData {
 
 final class DataManager {
     static let instance: DataManager = {
-        let realm = try! Realm()
+        let realm = try? Realm()
         let dataManager = DataManager(database: realm)
-        print("File \(String(describing: realm.configuration.fileURL))")
+        print("File \(String(describing: realm?.configuration.fileURL))")
         // config
         dataManager.initDatabase(realm)
-
         return dataManager
     }()
-
     // properties
-    var database: Realm
-
-    init(database: Realm) {
+    var database: Realm?
+    init(database: Realm?) {
         self.database = database
     }
-
     // config database
-
     private func initDatabase(_ realm: Realm?) {
-
-        if database.objects(MediaCategory.self).isEmpty {
-                try? database.write {
-                    database.add(DummyData.listMediaCategory)
-                }
+        guard let notNullDatabase = database else {return}
+        if notNullDatabase.objects(MediaCategory.self).isEmpty {
+            try? notNullDatabase.write {
+                notNullDatabase.add(DummyData.listMediaCategory)
+            }
         }
     }
-
 }

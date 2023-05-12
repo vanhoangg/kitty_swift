@@ -9,24 +9,11 @@ import UIKit
 
 class ItemMonthlyReportView: UIView {
     // MARK: - Properties
-
     struct ViewData {
         let icon: String?
-        let value: String?
         let title: String?
         let valueColor: UIColor?
     }
-
-    private var viewData: ViewData? {
-        didSet {
-            iconImageView.image = UIImage(named: viewData?.icon ?? AssetIcon.icWallet)
-            valueLabel
-                .text = viewData?.value?.currencyFormatting()
-            titleLabel.text = viewData?.title
-            valueLabel.textColor = viewData?.valueColor
-        }
-    }
-
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -34,7 +21,6 @@ class ItemMonthlyReportView: UIView {
         imageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         return imageView
     }()
-
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.sizeToFit()
@@ -54,21 +40,27 @@ class ItemMonthlyReportView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         build()
+        bind()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         build()
+        bind()
     }
 }
 
 extension ItemMonthlyReportView {
     // MARK: - Method
-
-    func loadData(viewData: ViewData) {
-        self.viewData = viewData
+    func configure(_ viewData: ViewData) {
+        iconImageView.image = UIImage(named: viewData.icon ?? "").unsafelyUnwrapped
+        titleLabel.text = viewData.title
+        valueLabel.textColor = viewData.valueColor
     }
-
+    func bind(value: String? = "0") {
+        valueLabel
+            .text = value?.currencyFormatting()
+    }
     private func build() {
         addSubview(iconImageView)
         addSubview(valueLabel)

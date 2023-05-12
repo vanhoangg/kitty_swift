@@ -20,12 +20,12 @@ class AddExpenseViewController: UIViewController {
 
     // MARK: - IBAction
     @IBAction func onTapAddButton(_ sender: UIButton) {
-        self.addExpenseViewModel.saveExpense { finish in
+        self.addExpenseViewModel.saveExpense { (finish, error) in
             if finish {
                 self.refreshHomeData?(true)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                print("Error")
+                self.showErrorAlert(message: error.localizedDescription, title: "Back")
             }
         }
 

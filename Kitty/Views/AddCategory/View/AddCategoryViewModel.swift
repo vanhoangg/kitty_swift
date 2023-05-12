@@ -11,7 +11,7 @@ protocol AddCategoryProtocol {
     var newCategory: Category { get set}
     func setMediaCategory(iconUrl: String?, backgroundColor: String?)
     func setCategoryName(categoryName: String?)
-    func createNewCategory(completion: (Bool) -> Void)
+    func createNewCategory(completion: (Bool, Error) -> Void)
 
 }
 class AddCategoryViewModel: AddCategoryProtocol {
@@ -41,7 +41,7 @@ class AddCategoryViewModel: AddCategoryProtocol {
     //        }
     //        print("newCategory \(newCategory)")
     //    }
-    func createNewCategory(completion: (Bool) -> Void) {
+    func createNewCategory(completion: (Bool, Error) -> Void) {
 
         categoryStorageServices.createNewCategory(category: newCategory, completion: completion)
     }

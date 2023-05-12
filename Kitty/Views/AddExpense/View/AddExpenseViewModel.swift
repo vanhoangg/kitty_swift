@@ -11,7 +11,7 @@ protocol UpdateExpenseInfomationProtocol {
     func setMoneyType(type: MoneyEnum?)
     func setAmountValue(value: Double?)
     func setDescriptionAmount(description: String?)
-    func saveExpense(completion: (Bool) -> Void)
+    func saveExpense(completion: (Bool, Error) -> Void)
     var choosenCategory: Category? {get set}
     var choosenMoneyType: MoneyEnum? {get set}
     var amountValue: Double? {get set}
@@ -42,13 +42,8 @@ class AddExpenseViewModel: UpdateExpenseInfomationProtocol {
     func setDescriptionAmount(description: String?) {
         self.descriptionAmount = description
     }
-    func saveExpense(completion: (Bool) -> Void) {
+    func saveExpense(completion: (Bool, Error) -> Void) {
         let currentDate = Date()
-        print("descriptionAmount == \(descriptionAmount)")
-        print("choosenCategory == \(choosenCategory)")
-        print("choosenMoneyType == \(choosenMoneyType)")
-        print("amountValue == \(amountValue)")
-
         let money = Money(descriptionAmount, category: choosenCategory, value: amountValue, type: choosenMoneyType, createAt: currentDate.toString())
         storageServices.saveExpense(money: money, completion: completion)
     }

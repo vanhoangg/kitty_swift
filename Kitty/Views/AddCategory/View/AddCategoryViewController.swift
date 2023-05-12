@@ -97,21 +97,15 @@ extension AddCategoryViewController {
 
     }
     @objc private func onPressAddNewCategory() {
-        addCategoryViewModel.createNewCategory { value in
+        addCategoryViewModel.createNewCategory { (value, error) in
             if value {
-                // Create new Alert
-                let dialogMessage = UIAlertController( title: "", message: "New category addedd successfully! ", preferredStyle: .actionSheet)
+               self.showActionDialog(message: "New category addedd successfully! ", actionTitle: "Back to home") {
+                  self.navigationController?.popToRootViewController(animated: true)
+               }
+            } else {
+              self.showErrorAlert( message: error.localizedDescription, title: "Clear")
+           }
 
-                let dialogAction = UIAlertAction(title: "OK", style: .destructive, handler: { (_) -> Void in
-
-                    self.navigationController?.popToRootViewController(animated: true)
-
-                })
-
-                dialogMessage.addAction(dialogAction)
-                self.present(dialogMessage, animated: true, completion: nil)
-
-            }
         }
     }
 }

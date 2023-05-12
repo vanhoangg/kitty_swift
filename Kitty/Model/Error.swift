@@ -26,7 +26,7 @@ enum KTError: Error, Equatable {
         case .errorMalformedURL:
             return "URL String is malformed."
         case .errorDataNotExist:
-            return "Data is not exist."
+            return "Database is not exist."
         case .errorDecodedData:
             return "Can not decode data."
         case .errorUnknown:

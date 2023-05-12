@@ -47,7 +47,6 @@ extension Months {
 }
 extension String {
     func getMonthType() -> Months {
-
         switch self {
         case "January":
             return Months.January

@@ -239,3 +239,22 @@ extension UIImageView {
         self.tintColor = color
     }
 }
+
+extension UIViewController {
+    func showErrorAlert(message: String, title: String, action: (() -> Void)? = nil ) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: title, style: .destructive) { _ in
+            action?()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
+    func showActionDialog(message: String, actionTitle: String, action: (() -> Void)? = nil ) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: actionTitle, style: .destructive) { _ in
+            action?()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
+}

@@ -11,9 +11,13 @@ protocol MediaCategoryProtocol {
     var listData: [MediaCategory]? {get set}
     func getData()
     var chooseIconCategoryCallBack: ((MediaCategory?) -> Void)? {get set}
+    var didLoadListMediaCategorySuccess: (() -> Void)? {get set}
+    var didLoadListMediaCategoryFail: ((Error) -> Void)? {get set}
 }
 
 class MediaCategoryViewModel: MediaCategoryProtocol {
+    var didLoadListMediaCategorySuccess: (() -> Void)?
+    var didLoadListMediaCategoryFail: ((Error) -> Void)?
     var chooseIconCategoryCallBack: ((MediaCategory?) -> Void)?
 
     let categoryStorageServices: CategoryStorageProtocol
@@ -23,8 +27,14 @@ class MediaCategoryViewModel: MediaCategoryProtocol {
         self.getData()
     }
     func getData() {
-        categoryStorageServices.fetchMediaCategory { mediaCategory in
-            listData  = mediaCategory?.toArray(ofType: MediaCategory.self)
+        categoryStorageServices.fetchMediaCategory { result in
+            switch result {
+            case .success(let resultMediaCategory):
+                listData = resultMediaCategory.toArray(ofType: MediaCategory.self)
+                didLoadListMediaCategorySuccess?()
+            case .failure(let error):
+                didLoadListMediaCategoryFail?(error)
+            }
         }
     }
 

@@ -8,7 +8,9 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    lazy var homeViewModel: MonthlyStatisticProtocol & MonthPickerProtocol = HomeViewModel()
+    private lazy var homeViewModel: MonthlyStatisticProtocol & MonthPickerProtocol = {
+        return HomeViewModel()
+    }()
 
     // MARK: - IBoutlet
 
@@ -26,28 +28,35 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
+        /// Build UI
         build()
+        /// Configure
+        bindData()
+        /// Load Data
+        homeViewModel.fetchListDataExpense()
     }
 
     // MARK: - Method
 
     private func build() {
+        configureMonthlyReportView()
         configCalendarView()
         configHistoryTableView()
         configFloatingButton()
-        bindData()
     }
 }
 
 extension HomeViewController {
-
+    private func configureMonthlyReportView() {
+        self.expenseMonthlyReportView.configure(ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, title: "Expenses", valueColor: UIColor(named: AssetColor.red)))
+        self.balanceMonthlyReportView.configure(ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, title: "Balance", valueColor: UIColor(named: AssetColor.gray)))
+        self.incomeMonthlyReportView.configure(ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, title: "Income", valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
+    }
     private func configFloatingButton() {
         let addButton = IconTextButton()
         view.addSubview(addButton)
-
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.configure(viewData: IconTextButton.IconTextButtonViewData(text: "Add new", image: UIImage(named: AssetIcon.icAdd)))
-
         NSLayoutConstraint.activate([
             addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 48 / 130, constant: 0),
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -71,16 +80,23 @@ extension HomeViewController {
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1
     }
-
     private func bindData() {
         datePickerLabel.text = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)
-        expenseMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icPayment, value: String(-(homeViewModel.monthlyHistory?.monthlyExpense ?? 0)), title: "Expenses", valueColor: UIColor(named: AssetColor.red)))
-
-        balanceMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icWallet, value: String(homeViewModel.monthlyHistory?.monthlyBalance ?? 0), title: "Balance", valueColor: UIColor(named: AssetColor.gray)))
-
-        incomeMonthlyReportView.loadData(viewData: ItemMonthlyReportView.ViewData(icon: AssetIcon.icBank, value: String(homeViewModel.monthlyHistory?.monthlyIncome ?? 0), title: "Income", valueColor: UIColor(named: AssetColor.PrimaryTextColor)))
-        historyTableView.loadData(viewData: HistoryTableView.ViewData(listDailyExpenseHistory: homeViewModel.monthlyHistory?.listDailyExpenseHistory))
-        historyTableView.reloadData()
+        homeViewModel.didLoadDataSuccess = { [weak self] monthlyHistory in
+            self?.expenseMonthlyReportView.bind( value: String(-(monthlyHistory.monthlyExpense ?? 0)))
+            self?.balanceMonthlyReportView.bind(value: String(monthlyHistory.monthlyBalance ?? 0) )
+            self?.incomeMonthlyReportView.bind(value: String(monthlyHistory.monthlyIncome ?? 0))
+            self?.historyTableView.loadData(viewData: HistoryTableView.ViewData(listDailyExpenseHistory: monthlyHistory.listDailyExpenseHistory))
+            self?.reloadData()
+        }
+        homeViewModel.didloadDataFailed = { [weak self] error in
+            self?.showErrorAlert(message: error.localizedDescription, title: "Back") {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    private func reloadData() {
+        self.historyTableView.reloadData()
     }
 
     // MARK: - Action
@@ -89,9 +105,8 @@ extension HomeViewController {
         let addExpenseViewController = AddExpenseViewController()
         addExpenseViewController.refreshHomeData = { [weak self] result in
             if result {
-                self?.homeViewModel.loadApi()
+                self?.homeViewModel.fetchListDataExpense()
                 self?.homeViewModel.setCurrentFilterDate(filterDate: Date())
-                self?.bindData()
             }
         }
         addExpenseViewController.hidesBottomBarWhenPushed = true

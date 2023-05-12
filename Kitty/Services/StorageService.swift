@@ -9,59 +9,63 @@ import Foundation
 
 import RealmSwift
 protocol CategoryStorageProtocol {
-    func fetchCategory(completion: (Results<Category>?) -> Void)
-    func fetchMediaCategory(completion: (Results<MediaCategory>?) -> Void)
-    func createNewCategory(category: Category, completion: (Bool) -> Void)
-
+    func fetchCategory(completion: (Result<Results<Category>, Error>) -> Void)
+    func fetchMediaCategory(completion: (Result<Results<MediaCategory>, Error>) -> Void)
+    func createNewCategory(category: Category, completion: (Bool, Error) -> Void)
 }
 protocol MoneyStorageProtocol {
-    func saveExpense(money: Money, completion: (Bool) -> Void)
-    func fetchMoney(completion: (Results<Money>?) -> Void)
+    func saveExpense(money: Money, completion: (Bool, Error) -> Void)
+    func fetchMoney(completion: (Result<Results<Money>, Error>) -> Void)
 }
 
-struct StorageService {
-    let database = DataManager.instance.database
-}
-extension StorageService: MoneyStorageProtocol {
-    func fetchMoney(completion: (Results<Money>?) -> Void) {
-        let response = database.objects(Money.self).sorted(byKeyPath: "createAt", ascending: true)
-        return completion(response)
-    }
-
-    func saveExpense(money: Money, completion: (Bool) -> Void) {
-        do {
-            try database.write {
-                database.add(money)
-                return completion(true)
-            }
-        } catch {
-            return completion(false)
+struct StorageService: MoneyStorageProtocol {
+    let realm = DataManager.instance.database
+    func fetchMoney(completion: (Result<Results<Money>, Error>) -> Void) {
+        if let results = realm?.objects(Money.self).sorted(byKeyPath: "createAt", ascending: true) {
+            completion(.success(results))
+        } else {
+            completion(.failure(KTError.errorDataNotExist))
         }
 
+        //        completion(.failure(KTError.errorDataNotExist))
+    }
+    func saveExpense(money: Money, completion: (Bool, Error) -> Void) {
+
+        do {
+            try realm?.write {
+                realm?.add(money)
+                return completion(true, KTError.errorUnknown)
+            }
+        } catch let error {
+            return completion(false, error)
+        }
     }
 }
 
 extension StorageService: CategoryStorageProtocol {
-    func fetchMediaCategory(completion: (Results<MediaCategory>?) -> Void) {
-        let response = database.objects(MediaCategory.self)
-
-        return completion(response)
-    }
-    func fetchCategory(completion: (Results<Category>?) -> Void) {
-        let response = database.objects(Category.self)
-
-        return completion(response)
-    }
-    func createNewCategory(category: Category, completion: (Bool) -> Void) {
-        do {
-            try database.write {
-                database.add(category)
-               return completion(true)
-            }
-
-        } catch {
-            return completion(false)
+    func fetchMediaCategory(completion: (Result<Results<MediaCategory>, Error>) -> Void) {
+        if let results = realm?.objects(MediaCategory.self).distinct(by: ["iconUrl"]) {
+            return completion(.success(results))
+        } else {
+            return completion(.failure(KTError.errorDataNotExist))
         }
+    }
+    func fetchCategory(completion: (Result<Results<Category>, Error>) -> Void) {
+        if let results = realm?.objects(Category.self) {
+            return completion(.success(results))
+        } else {
+            return completion(.failure(KTError.errorDataNotExist))
+        }
+    }
+    func createNewCategory(category: Category, completion: (Bool, Error) -> Void) {
 
+        do {
+            try realm?.write {
+                realm?.add(category)
+                return completion(true, KTError.errorUnknown)
+            }
+        } catch let error {
+            return completion(false, error)
+        }
     }
 }
