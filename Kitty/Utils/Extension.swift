@@ -41,19 +41,13 @@ extension UIView {
     }
 }
 
-extension CGFloat {
-    static var random: CGFloat {
-        return CGFloat(arc4random()) / CGFloat(UInt32.max)
-    }
-}
-
 extension UIColor {
-    static func random() -> UIColor {
+    static func random(_ opacity: CGFloat = 1.0) -> UIColor {
         return UIColor(
-            red: .random,
-            green: .random,
-            blue: .random,
-            alpha: 1.0
+            red: CGFloat.random(in: 0...1),
+            green: CGFloat.random(in: 0...1),
+            blue: CGFloat.random(in: 0...1),
+            alpha: opacity
         )
     }
 }

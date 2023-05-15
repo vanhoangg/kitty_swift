@@ -17,16 +17,6 @@ class Money: Object {
     @Persisted var type: MoneyEnum?
     @Persisted var createAt: String?
 
-    convenience init(_ description: String?, category: Category?, value: Double?, type: MoneyEnum?, createAt: String?) {
-        self.init()
-        self.value = value
-        self.valueDescription = description
-        self.createAt = createAt
-        if let category = category {
-            self.category = category
-        }
-        self.type = type
-    }
 }
 
 enum MoneyEnum: String, PersistableEnum {

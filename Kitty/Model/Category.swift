@@ -14,11 +14,7 @@ class Category: Object {
 
     @Persisted var media: MediaCategory?
 
-    convenience init(categoryName: String?, media: MediaCategory?) {
-        self.init()
-        self.categoryName = categoryName
-        self.media = media
-    }
+    
 }
 
 enum CategoryEnum: String, PersistableEnum {

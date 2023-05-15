@@ -23,7 +23,9 @@ class AddCategoryViewModel: AddCategoryProtocol {
         self.categoryStorageServices = service
     }
     func setMediaCategory(iconUrl: String?, backgroundColor: String?) {
-        let newMediaCategory = MediaCategory(iconUrl: iconUrl, backgroundColor: backgroundColor)
+        let newMediaCategory = MediaCategory()
+        newMediaCategory.iconUrl = iconUrl
+        newMediaCategory.backgroundColor = backgroundColor
         newCategory.media = newMediaCategory
     }
     func setCategoryName(categoryName: String?) {

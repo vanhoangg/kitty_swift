@@ -44,7 +44,12 @@ class AddExpenseViewModel: UpdateExpenseInfomationProtocol {
     }
     func saveExpense(completion: (Bool, Error) -> Void) {
         let currentDate = Date()
-        let money = Money(descriptionAmount, category: choosenCategory, value: amountValue, type: choosenMoneyType, createAt: currentDate.toString())
+        let money = Money()
+        money.valueDescription = descriptionAmount
+        money.category = choosenCategory
+        money.value = amountValue
+        money.type = choosenMoneyType
+        money.createAt = currentDate.toString()
         storageServices.saveExpense(money: money, completion: completion)
     }
 }

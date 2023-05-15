@@ -26,11 +26,8 @@ struct StorageService: MoneyStorageProtocol {
         } else {
             completion(.failure(KTError.errorDataNotExist))
         }
-
-        //        completion(.failure(KTError.errorDataNotExist))
     }
     func saveExpense(money: Money, completion: (Bool, Error) -> Void) {
-
         do {
             try realm?.write {
                 realm?.add(money)

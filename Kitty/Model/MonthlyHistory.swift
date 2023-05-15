@@ -17,8 +17,5 @@ struct MonthlyHistory {
 struct DailyExpenseHistory {
     let dayId: String?
     let expenses: [Money]?
-    init(dayId: String?, expenses: [Money]?) {
-        self.dayId = dayId
-        self.expenses = expenses
-    }
+   
 }

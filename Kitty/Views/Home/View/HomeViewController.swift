@@ -107,6 +107,7 @@ extension HomeViewController {
             if result {
                 self?.homeViewModel.fetchListDataExpense()
                 self?.homeViewModel.setCurrentFilterDate(filterDate: Date())
+                self?.bindData()
             }
         }
         addExpenseViewController.hidesBottomBarWhenPushed = true

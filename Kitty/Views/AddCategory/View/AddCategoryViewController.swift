@@ -83,7 +83,6 @@ extension AddCategoryViewController {
             guard let iconUrl = result?.iconUrl else {
                 return
             }
-
             guard let backgroundColor = result?.backgroundColor else {return}
             self.addImageView.image = UIImage(named: iconUrl )
             self.imageBorderDashView.backgroundColor = UIColor(named: backgroundColor)
