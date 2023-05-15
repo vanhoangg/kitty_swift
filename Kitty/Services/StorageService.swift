@@ -9,60 +9,58 @@ import Foundation
 
 import RealmSwift
 protocol CategoryStorageProtocol {
-    func fetchCategory(completion: (Result<Results<Category>, Error>) -> Void)
-    func fetchMediaCategory(completion: (Result<Results<MediaCategory>, Error>) -> Void)
-    func createNewCategory(category: Category, completion: (Bool, Error) -> Void)
+    func fetchCategory(success: (([Category]) -> Void)?, failure: ((Error) -> Void)?)
+    func fetchMediaCategory(success: (([MediaCategory]) -> Void)?, failure: ((Error) -> Void)?)
+    func createNewCategory(category: Category, success: (() -> Void)?, failure: ((Error) -> Void)?)
 }
 protocol MoneyStorageProtocol {
-    func saveExpense(money: Money, completion: (Bool, Error) -> Void)
-    func fetchMoney(completion: (Result<Results<Money>, Error>) -> Void)
+    func saveExpense(money: Money, success: (() -> Void)?, failure: ((Error) -> Void)?)
+    func fetchMoney(success: (([Money]) -> Void)?, failure: ((Error) -> Void)?)
 }
 
 struct StorageService: MoneyStorageProtocol {
-    let realm = DataManager.instance.database
-    func fetchMoney(completion: (Result<Results<Money>, Error>) -> Void) {
-        if let results = realm?.objects(Money.self).sorted(byKeyPath: "createAt", ascending: true) {
-            completion(.success(results))
-        } else {
-            completion(.failure(KTError.errorDataNotExist))
+    let dataManager: IDataManager = {
+        return DataManager.sharedInstance
+    }()
+
+    func fetchMoney(success: (([Money]) -> Void)?, failure: ((Error) -> Void)?) {
+        dataManager.getRecord { (listData: Results<Money>)  in
+            success?(listData.toArray(ofType: Money.self))
+        } failure: { error in
+            failure?(error)
         }
     }
-    func saveExpense(money: Money, completion: (Bool, Error) -> Void) {
-        do {
-            try realm?.write {
-                realm?.add(money)
-                return completion(true, KTError.errorUnknown)
-            }
-        } catch let error {
-            return completion(false, error)
+    func saveExpense(money: Money, success: (() -> Void)?, failure: ((Error) -> Void)?) {
+        dataManager.saveRecord(record: money) {
+            success?()
+        } failure: { error in
+            failure?( error)
         }
     }
 }
 
 extension StorageService: CategoryStorageProtocol {
-    func fetchMediaCategory(completion: (Result<Results<MediaCategory>, Error>) -> Void) {
-        if let results = realm?.objects(MediaCategory.self).distinct(by: ["iconUrl"]) {
-            return completion(.success(results))
-        } else {
-            return completion(.failure(KTError.errorDataNotExist))
+    func fetchMediaCategory(success: (([MediaCategory]) -> Void)?, failure: ((Error) -> Void)?) {
+        dataManager.getRecord { (listData: Results<MediaCategory>) in
+            let results = listData.distinct(by: ["iconUrl"]).toArray(ofType: MediaCategory.self)
+            success?(results)
+        } failure: { error in
+            failure?(error)
         }
     }
-    func fetchCategory(completion: (Result<Results<Category>, Error>) -> Void) {
-        if let results = realm?.objects(Category.self) {
-            return completion(.success(results))
-        } else {
-            return completion(.failure(KTError.errorDataNotExist))
+    func fetchCategory(success: (([Category]) -> Void)?, failure: ((Error) -> Void)?) {
+        dataManager.getRecord { (listData: Results<Category>) in
+            let results = listData.toArray(ofType: Category.self)
+            success?(results)
+        } failure: { error in
+            failure?(error)
         }
     }
-    func createNewCategory(category: Category, completion: (Bool, Error) -> Void) {
-
-        do {
-            try realm?.write {
-                realm?.add(category)
-                return completion(true, KTError.errorUnknown)
-            }
-        } catch let error {
-            return completion(false, error)
+    func createNewCategory(category: Category, success: (() -> Void)?, failure: ((Error) -> Void)?) {
+        dataManager.saveRecord(record: category) {
+            success?()
+        } failure: { error in
+            failure?( error)
         }
     }
 }

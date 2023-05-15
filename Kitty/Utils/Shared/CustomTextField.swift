@@ -6,7 +6,68 @@
 //
 
 import UIKit
+class CustomTextFieldView: UIView, UITextFieldDelegate {
+    private let textField = UITextField()
+    private let errorMessage = UILabel()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupTextField()
+        setupErrorMessage()
+        bind()
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupTextField()
+        setupErrorMessage()
+        bind()
+
+    }
+    private func bind() {
+        errorMessage.text = "Error Message"
+    }
+    private func setupTextField() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: textField.bounds.height))
+        textField.leftView = paddingView
+        textField.rightView = paddingView
+        textField.leftViewMode = .always
+        textField.rightViewMode = .always
+        textField.borderColor = UIColor(named: AssetColor.borderColor)
+        textField.borderStyle = .roundedRect
+        textField.textColor = UIColor(named: AssetColor.PrimaryTextColor)
+        textField.font = UIFont.customFont(.regular, size: 16)
+        self.addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            textField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            textField.heightAnchor.constraint(equalToConstant: 48),
+            textField.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            textField.topAnchor.constraint(equalTo: self.topAnchor),
+            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+
+    }
+
+    func setupErrorMessage() {
+        errorMessage.translatesAutoresizingMaskIntoConstraints = false
+
+        errorMessage.textColor = .red
+        errorMessage.isHidden = true
+        self.addSubview(errorMessage)
+        NSLayoutConstraint.activate([
+            errorMessage.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
+            errorMessage.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 6.0)
+        ])
+    }
+    /* use a UITextFieldDelegate method to change the textField's border color
+     to blue again after the user has corrected the mistake
+     (for example, after the user starts typing into the textField again) */
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.blue.cgColor
+        errorMessage.isHidden = true
+    }
+}
 class CustomTextField: UITextField {
     // MARK: Floating Custom
 

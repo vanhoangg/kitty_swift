@@ -17,5 +17,5 @@ struct MonthlyHistory {
 struct DailyExpenseHistory {
     let dayId: String?
     let expenses: [Money]?
-   
+
 }

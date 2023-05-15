@@ -75,7 +75,7 @@ extension MediaCategoryViewController: UICollectionViewDelegate, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath) as! CategoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifer, for: indexPath) as? CategoryCollectionViewCell ?? CategoryCollectionViewCell()
 
         if let itemIndexCategory = mediaCategoryViewModel.listData?[indexPath.row] {
             let mediaCategoryCollectionViewData = CategoryCollectionViewCell.ViewData(

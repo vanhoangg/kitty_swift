@@ -14,6 +14,7 @@ enum KTError: Error, Equatable {
     case errorDataNotExist
     case errorDecodedData
     case errorUnknown
+    case errorEmptyData
 
     var localizedDescription: String {
         switch self {
@@ -31,6 +32,8 @@ enum KTError: Error, Equatable {
             return "Can not decode data."
         case .errorUnknown:
             return "Unknown error"
+        case .errorEmptyData:
+            return "Empty data"
         }
     }
 }

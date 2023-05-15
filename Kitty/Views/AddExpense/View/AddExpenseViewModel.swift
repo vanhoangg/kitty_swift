@@ -11,14 +11,19 @@ protocol UpdateExpenseInfomationProtocol {
     func setMoneyType(type: MoneyEnum?)
     func setAmountValue(value: Double?)
     func setDescriptionAmount(description: String?)
-    func saveExpense(completion: (Bool, Error) -> Void)
+    func saveExpense(success: (() -> Void)?, failure: ((Error) -> Void)?)
     var choosenCategory: Category? {get set}
     var choosenMoneyType: MoneyEnum? {get set}
     var amountValue: Double? {get set}
     var descriptionAmount: String? {get set}
+
 }
 
 class AddExpenseViewModel: UpdateExpenseInfomationProtocol {
+    var didSuccessAddMoneyRecord: (() -> Void)?
+
+    var didFailureAddMoneyRecord: ((Error) -> Void)?
+
     var choosenCategory: Category?
     var choosenMoneyType: MoneyEnum? = MoneyEnum.expense
     var amountValue: Double?
@@ -42,7 +47,7 @@ class AddExpenseViewModel: UpdateExpenseInfomationProtocol {
     func setDescriptionAmount(description: String?) {
         self.descriptionAmount = description
     }
-    func saveExpense(completion: (Bool, Error) -> Void) {
+    func saveExpense(success: (() -> Void)?, failure: ((Error) -> Void)?) {
         let currentDate = Date()
         let money = Money()
         money.valueDescription = descriptionAmount
@@ -50,6 +55,10 @@ class AddExpenseViewModel: UpdateExpenseInfomationProtocol {
         money.value = amountValue
         money.type = choosenMoneyType
         money.createAt = currentDate.toString()
-        storageServices.saveExpense(money: money, completion: completion)
+        storageServices.saveExpense(money: money, success: {
+            success?()
+        }, failure: { error in
+            failure?(error)
+        })
     }
 }

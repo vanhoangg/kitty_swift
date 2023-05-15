@@ -1,10 +1,3 @@
-//
-//  Extension.swift
-//  Kitty
-//
-//  Created by Dinh Van Hoang on 18/04/2023.
-//
-
 import RealmSwift
 import UIKit
 
@@ -20,15 +13,8 @@ extension Date {
     }
 }
 extension Results {
-    func toArray<T>(ofType _: T.Type) -> [T] {
-        var array = [T]()
-        for i in 0 ..< count {
-            if let result = self[i] as? T {
-                array.append(result)
-            }
-        }
-
-        return array
+    func toArray<T>(ofType: T.Type) -> [T] {
+        return compactMap { $0 as? T }
     }
 }
 
@@ -77,23 +63,99 @@ extension CALayer {
 }
 
 extension String {
-    // formatting text for currency textField
+    func getListSub(patterns: [String]) -> [String] {
+        var matchResults: [String] = []
+        for pattern in patterns {
+            if let regex = try? NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive) {
+                let uls = regex.matches(in: self, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSRange(location: 0, length: self.count))
+
+                for match in uls {
+                    matchResults.append((self as NSString).substring(with: match.range))
+                }
+            }
+        }
+        return matchResults
+    }
+
+    func trim(pattern: [String]) -> String {
+        var temp: String = self
+        for p in pattern {
+            temp = temp.replacingOccurrences(of: p, with: "", options: .regularExpression)
+        }
+        return temp
+    }
+
+    func removeScript() -> String {
+        return self.trim(pattern: ["</(.*)>", "<(.*)/>"])
+    }
+
     func currencyFormatting() -> String {
         if let value = Double(self) {
             let formatter = NumberFormatter()
-            // Cache this, NumberFormatter creation is expensive.
-            formatter.locale = Locale(identifier: "en_US") // Here indian locale with english language is used
             formatter.numberStyle = .currency
             formatter.currencySymbol = " ₹ "
-            //            formatter.minimumFractionDigits = 0
-
             formatter.maximumFractionDigits = 0
-            // Change to `.currency` if needed
             if let str = formatter.string(from: NSNumber(value: value)) {
                 return str
             }
         }
         return ""
+    }
+    func isValidEmail() -> Bool {
+        var returnValue = true
+        let emailRegEx = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" +
+            "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" +
+            "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" +
+            "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" +
+            "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" +
+            "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" +
+        "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+
+        do {
+            let regex = try NSRegularExpression(pattern: emailRegEx)
+            let nsString = self as NSString
+            let results = regex.matches(in: self, range: NSRange(location: 0, length: nsString.length))
+
+            if results.count == 0 {
+                returnValue = false
+            }
+
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+
+        return  returnValue
+    }
+
+    func isValidPassword() -> Bool {
+        var returnValue = true
+        if self.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).count < 6 || self.getListSub(patterns: ["</(.*)>", "<(.*)/>"]).count > 0 {
+            returnValue = false
+        }
+        if (self as NSString).substring(to: 0) == " " {
+            returnValue = false
+        }
+        return returnValue
+    }
+    func isValidOnlyNumber() -> Bool {
+        var returnValue = true
+        let numberRegex = "^[0-9]*$"
+        do {
+            let regex = try NSRegularExpression(pattern: numberRegex)
+            let nsString = self as NSString
+            let results = regex.matches(in: self, range: NSRange(location: 0, length: nsString.length))
+
+            if results.count == 0 {
+                returnValue = false
+            }
+
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            returnValue = false
+        }
+
+        return  returnValue
     }
 }
 
@@ -241,7 +303,11 @@ extension UIViewController {
             action?()
         }
         alert.addAction(action)
-        self.present(alert, animated: true)
+
+        self.present(alert, animated: true, completion: {Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: {_ in
+            self.dismiss(animated: true, completion: nil)
+        })})
+
     }
     func showActionDialog(message: String, actionTitle: String, action: (() -> Void)? = nil ) {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)

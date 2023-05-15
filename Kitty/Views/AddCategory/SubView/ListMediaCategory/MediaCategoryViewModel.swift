@@ -27,15 +27,12 @@ class MediaCategoryViewModel: MediaCategoryProtocol {
         self.getData()
     }
     func getData() {
-        categoryStorageServices.fetchMediaCategory { result in
-            switch result {
-            case .success(let resultMediaCategory):
-                listData = resultMediaCategory.toArray(ofType: MediaCategory.self)
-                didLoadListMediaCategorySuccess?()
-            case .failure(let error):
-                didLoadListMediaCategoryFail?(error)
-            }
-        }
+        categoryStorageServices.fetchMediaCategory(success: { results in
+            self.listData = results
+            self.didLoadListMediaCategorySuccess?()
+        }, failure: { error in
+            self.didLoadListMediaCategoryFail?(error)
+        })
     }
 
 }

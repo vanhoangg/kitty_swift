@@ -8,11 +8,10 @@
 import Foundation
 
 protocol AddCategoryProtocol {
-    var newCategory: Category { get set}
+
     func setMediaCategory(iconUrl: String?, backgroundColor: String?)
     func setCategoryName(categoryName: String?)
-    func createNewCategory(completion: (Bool, Error) -> Void)
-
+    func createNewCategory(success: (() -> Void)?, failure: ((Error) -> Void)?)
 }
 class AddCategoryViewModel: AddCategoryProtocol {
 
@@ -43,9 +42,15 @@ class AddCategoryViewModel: AddCategoryProtocol {
     //        }
     //        print("newCategory \(newCategory)")
     //    }
-    func createNewCategory(completion: (Bool, Error) -> Void) {
+    func createNewCategory(success: (() -> Void)?, failure: ((Error) -> Void)?) {
+        print("mediaCategory \(newCategory.media)")
+        print("categoryName \(newCategory.categoryName)")
+        categoryStorageServices.createNewCategory(category: newCategory) {
+            success?()
+        } failure: { error in
+            failure?(error)
+        }
 
-        categoryStorageServices.createNewCategory(category: newCategory, completion: completion)
     }
 
 }

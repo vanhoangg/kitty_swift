@@ -48,36 +48,31 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
         var listMonthlyExpense: [Money] = []
         var listDailyExpenseHistory: [DailyExpenseHistory] = []
         guard let filterDate = currentFilterDate?.toString(pattern: StringUtils.numMonthYearPatternDate) else { return }
-        storageService.fetchMoney { results in
-            switch results {
-            case .success(let listMoney):
-                /// Query table Money key : Month - Year
-                listMonthlyHistory = listMoney.filter { money in
-                        money.createAt?.contains(filterDate) ?? false
-                    }
-                /// Query Data Money Type
-                listMonthlyHistory.forEach { moneyElement in
-                    if moneyElement.type == MoneyEnum.expense {
-                        monthlyExpense += (moneyElement.value ?? 0)
-                        listMonthlyExpense.append(moneyElement)
-                    } else if moneyElement.type == MoneyEnum.income {
-                        monthlyIncome += (moneyElement.value ?? 0)
-                    }
+        storageService.fetchMoney(success: { listMoney in
+            listMonthlyHistory = listMoney.filter { money in
+                    money.createAt?.contains(filterDate) ?? false
                 }
-                let dictionary = Dictionary(grouping: listMonthlyExpense, by: { $0.createAt })
-                /// Convert Dictionary To Array
-                dictionary.forEach { (key: String?, value: [Money]) in
-                    listDailyExpenseHistory.append(DailyExpenseHistory(dayId: key, expenses: value))
+            /// Query Data Money Type
+            listMonthlyHistory.forEach { moneyElement in
+                if moneyElement.type == MoneyEnum.expense {
+                    monthlyExpense += (moneyElement.value ?? 0)
+                    listMonthlyExpense.append(moneyElement)
+                } else if moneyElement.type == MoneyEnum.income {
+                    monthlyIncome += (moneyElement.value ?? 0)
                 }
-                let monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance, listDailyExpenseHistory: listDailyExpenseHistory)
-                monthlyBalance = monthlyIncome - monthlyExpense
-
-                didLoadDataSuccess?(monthlyHistory)
-            case .failure(let error):
-                didloadDataFailed?(error)
             }
-        }
-        /// Create Dictionary to Group by createAt
+            let dictionary = Dictionary(grouping: listMonthlyExpense, by: { $0.createAt })
+            /// Convert Dictionary To Array
+            dictionary.forEach { (key: String?, value: [Money]) in
+                listDailyExpenseHistory.append(DailyExpenseHistory(dayId: key, expenses: value))
+            }
+            let monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance, listDailyExpenseHistory: listDailyExpenseHistory)
+            monthlyBalance = monthlyIncome - monthlyExpense
+
+            self.didLoadDataSuccess?(monthlyHistory)
+        }, failure: { error in
+            self.didloadDataFailed?(error)
+        })
 
     }
 }

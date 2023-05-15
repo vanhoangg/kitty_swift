@@ -70,7 +70,7 @@ extension HistoryTableView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: HistoryTableViewCell = (tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifer, for: indexPath)) as! HistoryTableViewCell
+        let cell: HistoryTableViewCell = (tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifer, for: indexPath)) as? HistoryTableViewCell ?? HistoryTableViewCell()
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = UIColor(named: AssetColor.borderColor)?.cgColor

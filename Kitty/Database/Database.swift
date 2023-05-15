@@ -30,9 +30,14 @@ struct DummyData {
         MediaCategory(iconUrl: AssetIcon.icVolunteer, backgroundColor: AssetColor.volunteerBackgroundColor)
     ]
 }
+protocol IDataManager {
+    func saveRecord<T: Object>(record: T, success: (() -> Void)?, failure: ((Error) -> Void)?)
+    func deleteRecord<T: Object>(record: T, success: (() -> Void)?, failure: ((Error) -> Void)?)
+    func getRecord<T: Object>(success: ((Results<T>) -> Void)?, failure: ((Error) -> Void)?)
+}
 
-final class DataManager {
-    static let instance: DataManager = {
+final class DataManager: IDataManager {
+    static var sharedInstance: DataManager = {
         let realm = try? Realm()
         let dataManager = DataManager(database: realm)
         print("File \(String(describing: realm?.configuration.fileURL))")
@@ -40,18 +45,53 @@ final class DataManager {
         dataManager.initDatabase(realm)
         return dataManager
     }()
-    // properties
-    var database: Realm?
+
+    var realm: Realm?
     init(database: Realm?) {
-        self.database = database
+        self.realm = database
     }
     // config database
     private func initDatabase(_ realm: Realm?) {
-        guard let notNullDatabase = database else {return}
+        guard let notNullDatabase = realm else {return}
         if notNullDatabase.objects(MediaCategory.self).isEmpty {
             try? notNullDatabase.write {
                 notNullDatabase.add(DummyData.listMediaCategory)
             }
         }
     }
+    func getRecord<T: Object>(success: ((Results<T>) -> Void)?, failure: ((Error) -> Void)?) {
+        print(T.self)
+
+        let results: Results<T>? =  realm?.objects(T.self)
+
+        if let notEmptyResults = results {
+            success?(notEmptyResults)
+        } else {
+            failure?(KTError.errorDataNotExist)
+        }
+
+    }
+    // properties
+    func saveRecord<T: Object>(record: T, success: (() -> Void)?, failure: ((Error) -> Void)?) {
+        do {
+            try realm?.write({
+                realm?.add(record)
+                success?()
+            })
+        } catch let error {
+            failure?(error)
+        }
+    }
+
+    func deleteRecord<T: Object>(record: T, success: (() -> Void)?, failure: ((Error) -> Void)?) {
+        do {
+            try realm?.write({
+                realm?.delete(record)
+                success?()
+            })
+        } catch let error {
+            failure?(error)
+        }
+    }
+
 }

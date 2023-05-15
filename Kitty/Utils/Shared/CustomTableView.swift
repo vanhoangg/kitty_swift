@@ -25,9 +25,9 @@ class BaseTable<T: BaseCell<U>, U>: UIView, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! T
-        cell.item = data[indexPath.row] // Truyền item vào cell, có index dựa vào indexPath
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? T
+        cell?.item = data[indexPath.row] // Truyền item vào cell, có index dựa vào indexPath
+        return cell ?? UITableViewCell()
     }
 
     private func addView() {

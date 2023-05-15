@@ -11,10 +11,7 @@ import RealmSwift
 class Category: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var categoryName: String?
-
     @Persisted var media: MediaCategory?
-
-    
 }
 
 enum CategoryEnum: String, PersistableEnum {

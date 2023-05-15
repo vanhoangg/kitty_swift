@@ -24,16 +24,12 @@ class CategoryViewModel: CategoryListProtocol {
     }
 
     func getCategoryData() {
-        categoryStorageServices.fetchCategory { result in
-            switch result {
-            case .success(let listCategory):
-                listData = listCategory.toArray(ofType: Category.self)
-                didLoadListCategorySuccess?()
-            case .failure(let error):
-                didLoadListCategoryFail?(error)
-            }
-
-        }
+        categoryStorageServices.fetchCategory(success: { listCategory in
+            self.listData = listCategory
+            self.didLoadListCategorySuccess?()
+        }, failure: { error in
+            self.didLoadListCategoryFail?(error)
+        })
     }
 
 }
