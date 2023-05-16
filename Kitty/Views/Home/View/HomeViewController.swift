@@ -74,7 +74,6 @@ extension HomeViewController {
 
     private func configCalendarView() {
         calendarView.cornerRadius = calendarView.frame.height * 0.375
-        print(calendarView.frame.height)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(onTapCalendarView))
         calendarView.addGestureRecognizer(gesture)
         gesture.numberOfTapsRequired = 1

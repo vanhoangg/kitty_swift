@@ -26,16 +26,17 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
     var didloadDataFailed: ((Error) -> Void)?
     let storageService: MoneyStorageProtocol
 
-    var currentFilterDate: Date? = Date()
+    var currentFilterDate: Date?
 
     // MARK: - Contructor
     init(service: MoneyStorageProtocol = StorageService()) {
         self.storageService = service
-//        loadApi()
+        self.setCurrentFilterDate(filterDate: Date())
     }
 
     // MARK: - Method
     func setCurrentFilterDate(filterDate: Date?) {
+        UserDefaultsHelper.setData(value: filterDate, key: .pickerDate)
         currentFilterDate = filterDate
         fetchListDataExpense()
     }

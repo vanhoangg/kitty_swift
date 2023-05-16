@@ -10,20 +10,26 @@ import UIKit
 class ReportViewController: UIViewController {
     var listItems: [Int] = [20, 30, 30, 10, 10]
 
+    @IBOutlet weak var datePickerLabel: UILabel!
     var overviewLabel = UILabel()
     var chartStackView = UIStackView()
 
     @IBOutlet var chartView: UIView!
+    lazy var reportViewModel = {
+        return ReportViewModel()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         configureChartView()
         configureChartStackView()
-
+        bindData()
         // Do any additional setup after loading the view.
     }
-
+    private func bindData() {
+        datePickerLabel.text = reportViewModel.pickerDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)
+    }
     private func configureChartView() {
 
         overviewLabel.text = "Overview"

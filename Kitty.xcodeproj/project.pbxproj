@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		731C48102A13201900B51897 /* CustomHorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C480F2A13201900B51897 /* CustomHorizontalChartView.swift */; };
+		731C48122A136B2900B51897 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C48112A136B2900B51897 /* UserDefaultService.swift */; };
+		731C48142A13773200B51897 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C48132A13773200B51897 /* ReportViewModel.swift */; };
 		732AE0152A0C9B720025093F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732AE0142A0C9B720025093F /* Error.swift */; };
 		733081852A03A4F80027A063 /* AddCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733081842A03A4F80027A063 /* AddCategoryViewModel.swift */; };
 		7360A1322A08E08B00AFEDD7 /* MonthYearPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */; };
@@ -75,6 +77,8 @@
 		2CE04161BD20CEAB213E3388 /* Pods_Kitty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kitty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4112B9695CB0386679A95D7F /* Pods-Kitty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.release.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.release.xcconfig"; sourceTree = "<group>"; };
 		731C480F2A13201900B51897 /* CustomHorizontalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHorizontalChartView.swift; sourceTree = "<group>"; };
+		731C48112A136B2900B51897 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		731C48132A13773200B51897 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		732AE0142A0C9B720025093F /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		733081842A03A4F80027A063 /* AddCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewModel.swift; sourceTree = "<group>"; };
 		7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerViewController.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				7EA34CC829ED270D001B51C9 /* View */,
+				731C48132A13773200B51897 /* ReportViewModel.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				7EB7D08029FA5AEE00F4E294 /* StorageService.swift */,
+				731C48112A136B2900B51897 /* UserDefaultService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -681,6 +687,7 @@
 				7EB7D06A29F8CC5500F4E294 /* DropDownView.swift in Sources */,
 				7360A1322A08E08B00AFEDD7 /* MonthYearPickerViewController.swift in Sources */,
 				7EB7D08329FB783200F4E294 /* MonthlyHistory.swift in Sources */,
+				731C48122A136B2900B51897 /* UserDefaultService.swift in Sources */,
 				7EA34CD429ED32C5001B51C9 /* LogoImageView.swift in Sources */,
 				7EB7D07A29FA276A00F4E294 /* MainViewController.swift in Sources */,
 				7E834F5529F269E500F3363E /* CustomTableView.swift in Sources */,
@@ -704,6 +711,7 @@
 				7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */,
 				7EB7D07E29FA2D9500F4E294 /* DefaultNavigationBar.swift in Sources */,
 				7EFABEF529F7CCCA00C1F9A9 /* Category.swift in Sources */,
+				731C48142A13773200B51897 /* ReportViewModel.swift in Sources */,
 				7EFABEF329F7CC9300C1F9A9 /* CategoryViewModel.swift in Sources */,
 				7E99F83729ECE83F00BDDF92 /* SceneDelegate.swift in Sources */,
 				7EFABF0429F8CA5800C1F9A9 /* User.swift in Sources */,
