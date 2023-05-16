@@ -8,6 +8,8 @@
 import UIKit
 
 class SettingViewController: UIViewController {
+    var listItems: [Int] = [20, 30, 30, 10, 10]
+
     let actionsNavigationBar: UIView = {
         let actionNavigationBar = UIView()
         let iconSearchImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
@@ -26,10 +28,10 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         let customNavigationBar = CustomNavigationBar(titleText: StringUtils.reportLabel, actions: actionsNavigationBar)
-
         view.addSubview(customNavigationBar)
         customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

@@ -25,6 +25,7 @@ class ReportViewController: UIViewController {
     }
 
     private func configureChartView() {
+
         overviewLabel.text = "Overview"
         overviewLabel.font = UIFont.customFont(.medium, size: 10)
         chartView.addSubview(overviewLabel)
@@ -32,48 +33,25 @@ class ReportViewController: UIViewController {
         NSLayoutConstraint.activate([
             overviewLabel.topAnchor.constraint(equalTo: chartView.topAnchor),
             overviewLabel.leadingAnchor
-                .constraint(equalTo: chartView.leadingAnchor
-                           )
+                .constraint(equalTo: chartView.leadingAnchor)
         ])
     }
 
     private func configureChartStackView() {
-        chartStackView.axis = .horizontal
-        chartStackView.distribution = .fill
-        chartStackView.spacing = 0
-        chartStackView.autoresizesSubviews = true
+        var customChartView = CustomHorizontalChartView(listPercentItems: listItems)
+        view.addSubview(customChartView)
 
         chartView.addSubview(chartStackView)
-        chartStackView.translatesAutoresizingMaskIntoConstraints = false
-        chartStackView.layer.cornerRadius = 8
-        chartStackView.layer.borderWidth = 1
-        chartStackView.layer.borderColor = UIColor(named: "B2EBF2")?.cgColor
-        chartStackView.clipsToBounds = true
+        customChartView.translatesAutoresizingMaskIntoConstraints = false
+        customChartView.layer.cornerRadius = 8
+        customChartView.layer.borderWidth = 1
+        customChartView.layer.borderColor = UIColor(named: "B2EBF2")?.cgColor
+        customChartView.clipsToBounds = true
         NSLayoutConstraint.activate([
-            chartStackView.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 8),
-            chartStackView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
-            chartStackView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
-            chartStackView.heightAnchor.constraint(equalTo: chartStackView.widthAnchor, multiplier: 36 / 328, constant: 8)
+            customChartView.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 8),
+            customChartView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
+            customChartView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
+            customChartView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 36 / 780, constant: 0)
         ])
-        for index in 0 ... listItems.count - 1 {
-            //            let itemView = UIView(frame: CGRect(x: 0, y: 0, width:chartStackView.bounds.width * (Double(listItems[index])/100), height: chartStackView.bounds.height))
-
-            let itemView = UIView(frame: CGRect.zero)
-            chartStackView.addArrangedSubview(itemView)
-
-            itemView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                itemView.widthAnchor.constraint(equalTo: chartView.widthAnchor, multiplier: Double(listItems[index]) / 100, constant: 0)
-
-            ])
-            itemView.backgroundColor = .random()
-            //                chartStackView.addSubview(itemView)
-
-            print("======= \(chartView.frame.width)")
-            print("======= \(index)")
-            print("======= \(itemView.bounds.width)")
-
-            print("======= \(Double(listItems[index]) / 100)")
-        }
     }
 }

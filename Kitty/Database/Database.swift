@@ -67,7 +67,7 @@ final class DataManager: IDataManager {
         if let notEmptyResults = results {
             success?(notEmptyResults)
         } else {
-            failure?(KTError.errorDataNotExist)
+            failure?(KTError.errorEmptyData)
         }
 
     }
