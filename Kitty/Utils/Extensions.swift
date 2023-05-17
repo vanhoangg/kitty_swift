@@ -121,7 +121,7 @@ extension String {
             }
 
         } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
+            Log.e("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }
 
@@ -151,7 +151,7 @@ extension String {
             }
 
         } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
+            Log.e("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }
 

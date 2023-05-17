@@ -15,20 +15,25 @@ class ReportViewController: UIViewController {
     var chartStackView = UIStackView()
 
     @IBOutlet var chartView: UIView!
-    lazy var reportViewModel = {
+    lazy var reportViewModel: MonthlyReportProtocol = {
         return ReportViewModel()
     }()
+    override func viewWillAppear(_ animated: Bool) {
+
+        bindData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         configureChartView()
         configureChartStackView()
-        bindData()
+
         // Do any additional setup after loading the view.
     }
     private func bindData() {
-        datePickerLabel.text = reportViewModel.pickerDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)
+        let pickerDate: Date? = reportViewModel.getPickerDate()
+        datePickerLabel.text = pickerDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)
     }
     private func configureChartView() {
 

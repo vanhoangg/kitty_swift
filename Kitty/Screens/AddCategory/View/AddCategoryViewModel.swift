@@ -43,8 +43,8 @@ class AddCategoryViewModel: AddCategoryProtocol {
     //        print("newCategory \(newCategory)")
     //    }
     func createNewCategory(success: (() -> Void)?, failure: ((Error) -> Void)?) {
-        print("mediaCategory \(newCategory.media)")
-        print("categoryName \(newCategory.categoryName)")
+        Log.i("mediaCategory \(newCategory.media)")
+        Log.i("categoryName \(newCategory.categoryName)")
         categoryStorageServices.createNewCategory(category: newCategory) {
             success?()
         } failure: { error in

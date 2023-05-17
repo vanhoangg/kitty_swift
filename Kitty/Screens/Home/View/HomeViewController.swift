@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
+        Log.i("Infomation")
         /// Build UI
         build()
         /// Configure
@@ -154,6 +155,6 @@ extension HomeViewController: UIPopoverPresentationControllerDelegate {
     }
 
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        print("Popover Dismissed!")
+        Log.w("Popover Dismissed!")
     }
 }

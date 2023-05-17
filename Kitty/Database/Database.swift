@@ -40,7 +40,7 @@ final class DataManager: IDataManager {
     static var sharedInstance: DataManager = {
         let realm = try? Realm()
         let dataManager = DataManager(database: realm)
-        print("File \(String(describing: realm?.configuration.fileURL))")
+        Log.d(realm?.configuration.fileURL?.debugDescription ?? "")
         // config
         dataManager.initDatabase(realm)
         return dataManager
@@ -60,7 +60,6 @@ final class DataManager: IDataManager {
         }
     }
     func getRecord<T: Object>(success: ((Results<T>) -> Void)?, failure: ((Error) -> Void)?) {
-        print(T.self)
 
         let results: Results<T>? =  realm?.objects(T.self)
 

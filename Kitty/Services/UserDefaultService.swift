@@ -9,7 +9,7 @@ import Foundation
 enum UserDefaultKeys: String, CaseIterable {
      case pickerDate
 }
-final class UserDefaultsHelper {
+final class UserDefaultsHelper: NSObject {
     private static var defaults = UserDefaults.standard
 
     static func setData<T>(value: T, key: UserDefaultKeys) {
@@ -28,4 +28,5 @@ final class UserDefaultsHelper {
     static func clearAll() {
         _ = UserDefaultKeys.allCases.map({ removeData(key: $0) })
     }
+
 }

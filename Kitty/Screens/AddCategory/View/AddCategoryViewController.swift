@@ -25,9 +25,10 @@ class AddCategoryViewController: UIViewController {
       // Do any additional setup after loading the view.
       build()
    }
+
    override func viewWillDisappear(_ animated: Bool) {
       super.viewWillDisappear(true)
-      print("Dismiss")
+      Log.i("Dismiss")
       self.navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
    }
 

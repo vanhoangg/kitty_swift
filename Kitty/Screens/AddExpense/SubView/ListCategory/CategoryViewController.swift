@@ -32,7 +32,6 @@ class CategoryViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        print("ABC")
     }
 }
 
@@ -114,7 +113,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
 
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         categoryViewModel.choosenCategoryCallBack?(categoryViewModel.listData?[indexPath.row])
-        print("===OnClick====")
         //        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }

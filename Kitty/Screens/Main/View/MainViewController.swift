@@ -35,7 +35,7 @@ class MainViewController: UITabBarController {
 }
 extension MainViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect _: UIViewController) {
-        print("Selected Tab : \(tabBarController.selectedIndex)")
+        Log.i("Selected Tab : \(tabBarController.selectedIndex)")
     }
 
     private func build() {

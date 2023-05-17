@@ -50,7 +50,6 @@ class MediaCategoryViewController: UIViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MediaCategoryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("bound width\(collectionView.bounds.width)" )
         let yourWidth = (collectionView.bounds.width ) / 4.0
         let yourHeight = yourWidth * 0.6
 
@@ -89,7 +88,7 @@ extension MediaCategoryViewController: UICollectionViewDelegate, UICollectionVie
 
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         mediaCategoryViewModel.chooseIconCategoryCallBack?(mediaCategoryViewModel.listData?[indexPath.row])
-        print("===OnClick====")
+        Log.d("===OnClick====")
         //        self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true)
 
