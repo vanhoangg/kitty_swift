@@ -10,9 +10,8 @@ import UIKit
 class ReportViewController: UIViewController {
     var listItems: [Int] = [20, 30, 30, 10, 10]
 
-    @IBOutlet weak var datePickerLabel: UILabel!
+    @IBOutlet weak var customHeaderView: CustomHeaderView!
     var overviewLabel = UILabel()
-    var chartStackView = UIStackView()
 
     @IBOutlet var chartView: UIView!
     lazy var reportViewModel: MonthlyReportProtocol = {
@@ -25,18 +24,17 @@ class ReportViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
         configureChartView()
         configureChartStackView()
+//        configureCustomHeaderView()
 
         // Do any additional setup after loading the view.
     }
+
     private func bindData() {
-        let pickerDate: Date? = reportViewModel.getPickerDate()
-        datePickerLabel.text = pickerDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)
+        customHeaderView.configureData(CustomHeaderView.ViewData(datePickerText: reportViewModel.datePickerText?.toString(pattern: StringUtils.stringMonthYearPatternDate)))
     }
     private func configureChartView() {
-
         overviewLabel.text = "Overview"
         overviewLabel.font = UIFont.customFont(.medium, size: 10)
         chartView.addSubview(overviewLabel)
@@ -47,12 +45,24 @@ class ReportViewController: UIViewController {
                 .constraint(equalTo: chartView.leadingAnchor)
         ])
     }
-
+    private func onTapCalendarView() {
+        let monthYearPicker = MonthYearPickerViewController()
+        monthYearPicker.modalPresentationStyle = .popover
+        monthYearPicker.preferredContentSize = CGSize(width: screenWidth, height: screenWidth * 0.8)
+        monthYearPicker.popoverPresentationController?.delegate = self
+        monthYearPicker.popoverPresentationController?.sourceView = customHeaderView.calendarView
+        self.present(monthYearPicker, animated: true, completion: nil)
+        monthYearPicker.monthYearPickerViewModel.selectedMonth = reportViewModel.datePickerText?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
+        monthYearPicker.monthYearPickerViewModel.callback = { [self] selectedMonth in
+            let filterDate: Date? = FunctionUtils.createDateFromMonth(monthRawValue: selectedMonth.rawValue)
+            homeViewModel.setCurrentFilterDate(filterDate: filterDate)
+            self.bindData()
+        }
+    }
     private func configureChartStackView() {
-        var customChartView = CustomHorizontalChartView(listPercentItems: listItems)
+        let customChartView = CustomHorizontalChartView(listPercentItems: listItems)
         view.addSubview(customChartView)
 
-        chartView.addSubview(chartStackView)
         customChartView.translatesAutoresizingMaskIntoConstraints = false
         customChartView.layer.cornerRadius = 8
         customChartView.layer.borderWidth = 1
@@ -64,5 +74,33 @@ class ReportViewController: UIViewController {
             customChartView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
             customChartView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 36 / 780, constant: 0)
         ])
+    }
+}
+// MARK: - UINavigationControllerDelegate
+
+extension ReportViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let hide = (viewController is ReportViewController)
+        navigationController.setNavigationBarHidden(hide, animated: animated)
+    }
+}
+
+// MARK: - UIPopoverPresentationControllerDelegate
+
+extension ReportViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+
+    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+        popoverPresentationController.permittedArrowDirections = .unknown
+    }
+
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
+    }
+
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        Log.w("Popover Dismissed!")
     }
 }

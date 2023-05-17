@@ -14,21 +14,18 @@ class HomeViewController: UIViewController {
 
     // MARK: - IBoutlet
 
-    @IBOutlet var icCalendarView: UIImageView!
-    @IBOutlet var calendarView: UIView!
+    @IBOutlet weak var customHeaderView: CustomHeaderView!
     @IBOutlet var homeStatStackView: UIStackView!
     @IBOutlet var historyTableView: HistoryTableView!
     @IBOutlet var expenseMonthlyReportView: ItemMonthlyReportView!
     @IBOutlet var incomeMonthlyReportView: ItemMonthlyReportView!
     @IBOutlet var balanceMonthlyReportView: ItemMonthlyReportView!
-    @IBOutlet var datePickerLabel: UILabel!
 
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
-        Log.i("Infomation")
         /// Build UI
         build()
         /// Configure
@@ -41,7 +38,6 @@ class HomeViewController: UIViewController {
 
     private func build() {
         configureMonthlyReportView()
-        configCalendarView()
         configHistoryTableView()
         configFloatingButton()
     }
@@ -72,16 +68,10 @@ extension HomeViewController {
         historyTableView.bounces = false
         historyTableView.sizeToFit()
     }
-
-    private func configCalendarView() {
-        calendarView.cornerRadius = calendarView.frame.height * 0.375
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(onTapCalendarView))
-        calendarView.addGestureRecognizer(gesture)
-        gesture.numberOfTapsRequired = 1
-        gesture.numberOfTouchesRequired = 1
-    }
     private func bindData() {
-        datePickerLabel.text = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)
+        customHeaderView.configureData(CustomHeaderView.ViewData(onTapGestureDetecture: {
+            self.onTapCalendarView()
+        }, datePickerText: homeViewModel.currentFilterDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)))
         homeViewModel.didLoadDataSuccess = { [weak self] monthlyHistory in
             self?.expenseMonthlyReportView.bind( value: String(-(monthlyHistory.monthlyExpense ?? 0)))
             self?.balanceMonthlyReportView.bind(value: String(monthlyHistory.monthlyBalance ?? 0) )
@@ -114,47 +104,19 @@ extension HomeViewController {
         navigationController?.pushViewController(addExpenseViewController, animated: true)
     }
 
-    @objc func onTapCalendarView() {
+    private func onTapCalendarView() {
         let monthYearPicker = MonthYearPickerViewController()
+        monthYearPicker.modalPresentationStyle = .popover
+        monthYearPicker.preferredContentSize = CGSize(width: screenWidth, height: screenWidth * 0.8)
+        monthYearPicker.popoverPresentationController?.delegate = self
+        monthYearPicker.popoverPresentationController?.sourceView = customHeaderView.calendarView
+        self.present(monthYearPicker, animated: true, completion: nil)
         monthYearPicker.monthYearPickerViewModel.selectedMonth = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
         monthYearPicker.monthYearPickerViewModel.callback = { [self] selectedMonth in
             let filterDate: Date? = FunctionUtils.createDateFromMonth(monthRawValue: selectedMonth.rawValue)
             homeViewModel.setCurrentFilterDate(filterDate: filterDate)
             self.bindData()
         }
-        monthYearPicker.modalPresentationStyle = .popover
-        monthYearPicker.preferredContentSize = CGSize(width: screenWidth, height: screenWidth * 0.8)
-        monthYearPicker.popoverPresentationController?.delegate = self
-        monthYearPicker.popoverPresentationController?.sourceView = calendarView
-        self.present(monthYearPicker, animated: true, completion: nil)
     }
 }
 
-// MARK: - UINavigationControllerDelegate
-
-extension HomeViewController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        let hide = (viewController is HomeViewController)
-        navigationController.setNavigationBarHidden(hide, animated: animated)
-    }
-}
-
-// MARK: - UIPopoverPresentationControllerDelegate
-
-extension HomeViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
-    }
-
-    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
-        popoverPresentationController.permittedArrowDirections = .unknown
-    }
-
-    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        return true
-    }
-
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        Log.w("Popover Dismissed!")
-    }
-}

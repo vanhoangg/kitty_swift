@@ -79,6 +79,8 @@ enum AssetIcon {
     static let icSearch: String = "ic_search"
     static let icAdd: String = "ic_add_circle"
     static let icArrowDown: String = "ic_arrow_down"
+    static let icArrowBack: String = "ic_arrow_back"
+    static let icArrowForward: String = "ic_arrow_forward"
 
     // MARK: - Tabbar Icon
     static let icHome: String = "ic_home"
