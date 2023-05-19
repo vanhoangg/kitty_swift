@@ -14,3 +14,4 @@ struct StringUtils {
     static var stringMonthYearPatternDate: String = "MMMM-YYYY"
     static var numMonthYearPatternDate: String = "MM-YYYY"
 }
+

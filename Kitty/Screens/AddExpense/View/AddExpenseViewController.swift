@@ -49,7 +49,7 @@ class AddExpenseViewController: UIViewController {
 
     }
     private func bindData() {
-        dropDownView.configure(viewData: DropDownView.ViewData( initValue: self.addExpenseViewModel.choosenMoneyType?.getTitle))
+        dropDownView.configure(viewData: DropDownView.ViewData( initValue: self.addExpenseViewModel.choosenMoneyType?.rawValue))
         dropDownView.choosenMonneyType = { [weak self] (result) in
             let type = result?.getMoneyEnum
             self?.addExpenseViewModel.setMoneyType(type: type)

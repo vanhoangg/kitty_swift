@@ -12,37 +12,38 @@ enum Months: Int {
     case October = 10
     case November = 11
     case December = 12
-
-}
-extension Months {
-    func title() -> String {
+    
+    var shortTitle: String {
         switch self {
-        case Months.January:
+        case .January:
             return "Jan"
-        case Months.February:
+        case .February:
             return "Feb"
-        case Months.March:
+        case .March:
             return "Mar"
-        case Months.April:
+        case .April:
             return "Apr"
-        case Months.May:
+        case .May:
             return "May"
-        case Months.June:
+        case .June:
             return "June"
-        case Months.July:
+        case .July:
             return "July"
-        case Months.August:
+        case .August:
             return "Aug"
-        case Months.September:
+        case .September:
             return "Sep"
-        case Months.October:
+        case .October:
             return "Oct"
-        case Months.November:
+        case .November:
             return "Nov"
-        case Months.December:
+        case .December:
             return "Dec"
         }
     }
+}
+extension Months {
+    
 
 }
 extension String {

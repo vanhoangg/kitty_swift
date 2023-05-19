@@ -8,13 +8,16 @@
 import UIKit
 
 class CustomHeaderView: UIView {
+    // MARK: - Properties
     @IBOutlet weak var calendarView: UIView!
     let nibName = "CustomHeaderView"
     var headerView: UIView = UIView()
     @IBOutlet weak var calendarLabel: UILabel!
+
     struct ViewData {
-        var onTapGestureDetecture: (() -> Void)?
-        let datePickerText: String?
+        var onTapGestureDetecture: ((_ monthYearPickerViewController: MonthYearPickerViewController) -> Void)?
+        let datePicker: Date?
+
     }
     var viewData: ViewData?
     override init(frame: CGRect) {
@@ -33,23 +36,30 @@ class CustomHeaderView: UIView {
         build()
         bindData()
     }
+    func loadViewFromNib() -> UIView {
 
-    private func build() {
-        configCalendarView()
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        return nib.instantiate(withOwner: self, options: nil).first as! UIView
     }
-    private func bindData() {
-        calendarLabel.text = viewData?.datePickerText
-//      Date().toString(pattern:StringUtils.stringMonthYearPatternDate)
 
-    }
     func configureData(_ viewData: ViewData?) {
         self.viewData = viewData
         bindData()
     }
+    // MARK: - Private func
+    private func build() {
+        configCalendarView()
+    }
+    private func bindData() {
+        calendarLabel.text = viewData?.datePicker?.toString(pattern: StringUtils.stringMonthYearPatternDate)
+
+//      Date().toString(pattern:StringUtils.stringMonthYearPatternDate)
+
+    }
     private func configCalendarView() {
         headerView = loadViewFromNib()
         headerView.frame = self.bounds
-
         headerView.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         addSubview(headerView)
         calendarView.cornerRadius = calendarView.frame.height * 0.375
@@ -58,13 +68,33 @@ class CustomHeaderView: UIView {
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1
     }
-    func loadViewFromNib() -> UIView {
 
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as! UIView
-    }
     @objc private func onTap() {
-        self.viewData?.onTapGestureDetecture?()
+        let monthYearPicker = MonthYearPickerViewController()
+        monthYearPicker.modalPresentationStyle = .popover
+        monthYearPicker.preferredContentSize = CGSize(width: screenWidth, height: screenWidth * 0.8)
+        monthYearPicker.popoverPresentationController?.delegate = self
+        monthYearPicker.popoverPresentationController?.sourceView = calendarView
+        self.viewData?.onTapGestureDetecture?(monthYearPicker)
+    }
+
+}
+// MARK: - UIPopoverPresentationControllerDelegate
+
+extension CustomHeaderView: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+
+    func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+        popoverPresentationController.permittedArrowDirections = .unknown
+    }
+
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
+    }
+
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        Log.w("Popover Dismissed!")
     }
 }

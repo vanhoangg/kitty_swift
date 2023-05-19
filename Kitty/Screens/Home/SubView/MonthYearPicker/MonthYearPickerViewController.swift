@@ -66,7 +66,7 @@ extension MonthYearPickerViewController: UICollectionViewDelegate, UICollectionV
         cell.borderColor = UIColor(named: AssetColor.borderColor)
         cell.borderWidth = 1
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: cell.bounds.size.width, height: cell.bounds.size.height))
-        title.text = monthYearPickerViewModel.listMonth[indexPath.row].title()
+        title.text = monthYearPickerViewModel.listMonth[indexPath.row].shortTitle
         title.textAlignment = .center
         cell.contentView.addSubview(title)
         return cell

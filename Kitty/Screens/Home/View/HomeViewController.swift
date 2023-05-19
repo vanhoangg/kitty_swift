@@ -22,7 +22,6 @@ class HomeViewController: UIViewController {
     @IBOutlet var balanceMonthlyReportView: ItemMonthlyReportView!
 
     // MARK: - LifeCycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
@@ -31,7 +30,8 @@ class HomeViewController: UIViewController {
         /// Configure
         bindData()
         /// Load Data
-        homeViewModel.fetchListDataExpense()
+        homeViewModel.getCurrentFilterDate()
+
     }
 
     // MARK: - Method
@@ -69,9 +69,9 @@ extension HomeViewController {
         historyTableView.sizeToFit()
     }
     private func bindData() {
-        customHeaderView.configureData(CustomHeaderView.ViewData(onTapGestureDetecture: {
-            self.onTapCalendarView()
-        }, datePickerText: homeViewModel.currentFilterDate?.toString(pattern: StringUtils.stringMonthYearPatternDate)))
+        customHeaderView.configureData(CustomHeaderView.ViewData(onTapGestureDetecture: { monthYearPickerViewController in
+            self.onTapCalendarView(monthYearPickerViewController)
+        }, datePicker: homeViewModel.currentFilterDate))
         homeViewModel.didLoadDataSuccess = { [weak self] monthlyHistory in
             self?.expenseMonthlyReportView.bind( value: String(-(monthlyHistory.monthlyExpense ?? 0)))
             self?.balanceMonthlyReportView.bind(value: String(monthlyHistory.monthlyBalance ?? 0) )
@@ -88,6 +88,10 @@ extension HomeViewController {
     private func reloadData() {
         self.historyTableView.reloadData()
     }
+    private func reloadDataAfterUpdateFilterDate(filterDate: Date?) {
+        self.homeViewModel.setCurrentFilterDate(filterDate: filterDate)
+        self.bindData()
+    }
 
     // MARK: - Action
 
@@ -95,24 +99,17 @@ extension HomeViewController {
         let addExpenseViewController = AddExpenseViewController()
         addExpenseViewController.refreshHomeData = { [weak self] result in
             if result {
-                self?.homeViewModel.fetchListDataExpense()
-                self?.homeViewModel.setCurrentFilterDate(filterDate: Date())
-                self?.bindData()
+                self?.reloadDataAfterUpdateFilterDate(filterDate: Date())
             }
         }
         addExpenseViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addExpenseViewController, animated: true)
     }
 
-    private func onTapCalendarView() {
-        let monthYearPicker = MonthYearPickerViewController()
-        monthYearPicker.modalPresentationStyle = .popover
-        monthYearPicker.preferredContentSize = CGSize(width: screenWidth, height: screenWidth * 0.8)
-        monthYearPicker.popoverPresentationController?.delegate = self
-        monthYearPicker.popoverPresentationController?.sourceView = customHeaderView.calendarView
-        self.present(monthYearPicker, animated: true, completion: nil)
-        monthYearPicker.monthYearPickerViewModel.selectedMonth = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
-        monthYearPicker.monthYearPickerViewModel.callback = { [self] selectedMonth in
+    private func onTapCalendarView(_ monthYearPickerViewController: MonthYearPickerViewController) {
+        self.present(monthYearPickerViewController, animated: true, completion: nil)
+        monthYearPickerViewController.monthYearPickerViewModel.selectedMonth = homeViewModel.currentFilterDate?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
+        monthYearPickerViewController.monthYearPickerViewModel.callback = { [self] selectedMonth in
             let filterDate: Date? = FunctionUtils.createDateFromMonth(monthRawValue: selectedMonth.rawValue)
             homeViewModel.setCurrentFilterDate(filterDate: filterDate)
             self.bindData()
@@ -120,3 +117,11 @@ extension HomeViewController {
     }
 }
 
+// MARK: - UINavigationControllerDelegate
+
+extension HomeViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let hide = (viewController is HomeViewController)
+        navigationController.setNavigationBarHidden(hide, animated: animated)
+    }
+}

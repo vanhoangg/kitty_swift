@@ -8,11 +8,11 @@
 import Foundation
 
 protocol MonthlyStatisticProtocol {
-
-    func fetchListDataExpense()
+    
+    func getCurrentFilterDate()
     var didLoadDataSuccess: ((MonthlyHistory) -> Void)? {get set}
     var didloadDataFailed: ((Error) -> Void)? {get set}
-
+    
 }
 
 protocol MonthPickerProtocol {
@@ -21,26 +21,35 @@ protocol MonthPickerProtocol {
 }
 
 class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
+    
     // MARK: - Properties
     var didLoadDataSuccess: ((MonthlyHistory) -> Void)?
     var didloadDataFailed: ((Error) -> Void)?
     let storageService: MoneyStorageProtocol
-
     var currentFilterDate: Date?
-
+    
     // MARK: - Contructor
     init(service: MoneyStorageProtocol = StorageService()) {
         self.storageService = service
-        self.setCurrentFilterDate(filterDate: Date())
+        self.currentFilterDate = Date()
+        NotificationCenterService.addObserver(selector: #selector(onListenUpdateHomeData), key: NotificationEventKey.updateHomeData)
     }
-
-    // MARK: - Method
-    func setCurrentFilterDate(filterDate: Date?) {
-        UserDefaultsHelper.setData(value: filterDate, key: .pickerDate)
-        currentFilterDate = filterDate
+    @objc private func onListenUpdateHomeData(_ notification: Notification) {
+        Log.i("notification.object\(notification.object)")
+        self.currentFilterDate = notification.object as? Date
         fetchListDataExpense()
     }
-
+    
+    // MARK: - Method
+    func getCurrentFilterDate() {
+        self.currentFilterDate = Date()
+        fetchListDataExpense()
+    }
+    func setCurrentFilterDate(filterDate: Date?) {
+        NotificationCenterService.post(key: NotificationEventKey.updateReportData, value: filterDate)
+        self.currentFilterDate = filterDate
+        fetchListDataExpense()
+    }
     func fetchListDataExpense() {
         var monthlyExpense = 0.0
         var monthlyIncome = 0.0
@@ -51,8 +60,8 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
         guard let filterDate = currentFilterDate?.toString(pattern: StringUtils.numMonthYearPatternDate) else { return }
         storageService.fetchMoney(success: { listMoney in
             listMonthlyHistory = listMoney.filter { money in
-                    money.createAt?.contains(filterDate) ?? false
-                }
+                money.createAt?.contains(filterDate) ?? false
+            }
             /// Query Data Money Type
             listMonthlyHistory.forEach { moneyElement in
                 if moneyElement.type == MoneyEnum.expense {
@@ -67,13 +76,13 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
             dictionary.forEach { (key: String?, value: [Money]) in
                 listDailyExpenseHistory.append(DailyExpenseHistory(dayId: key, expenses: value))
             }
-            let monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance, listDailyExpenseHistory: listDailyExpenseHistory)
             monthlyBalance = monthlyIncome - monthlyExpense
-
+            let monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance, listDailyExpenseHistory: listDailyExpenseHistory)
+            
             self.didLoadDataSuccess?(monthlyHistory)
         }, failure: { error in
             self.didloadDataFailed?(error)
         })
-
+        
     }
 }
