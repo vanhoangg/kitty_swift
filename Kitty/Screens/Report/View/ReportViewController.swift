@@ -19,12 +19,17 @@ class ReportViewController: UIViewController {
         return ReportViewModel()
     }()
     // MARK: - LifeCycle
-
+    override func viewWillAppear(_ animated: Bool) {
+        reportViewModel.getPickerDate()
+        /// Configure
+        bindData()
+    }
     override func viewDidLoad() {
         self.navigationController?.delegate = self
         super.viewDidLoad()
         configureChartView()
         configureChartStackView()
+        bindData()
     }
     // MARK: - Binding Data
     private func bindData() {
@@ -73,7 +78,7 @@ extension ReportViewController {
         self.present(viewController, animated: true, completion: nil)
         viewController.monthYearPickerViewModel.selectedMonth = reportViewModel.filterDate?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
         viewController.monthYearPickerViewModel.callback = { [self] selectedMonth in
-            Log.i("selectedMonth\(selectedMonth.rawValue)")
+
             let filterDate: Date? = FunctionUtils.createDateFromMonth(monthRawValue: selectedMonth.rawValue)
             reloadDataAfterUpdateFilterDate(filterDate: filterDate)
         }

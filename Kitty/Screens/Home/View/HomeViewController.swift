@@ -22,15 +22,17 @@ class HomeViewController: UIViewController {
     @IBOutlet var balanceMonthlyReportView: ItemMonthlyReportView!
 
     // MARK: - LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        homeViewModel.getCurrentFilterDate()
+        
+        /// Configure
+        bindData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
         /// Build UI
         build()
-        /// Configure
-        bindData()
-        /// Load Data
-        homeViewModel.getCurrentFilterDate()
 
     }
 

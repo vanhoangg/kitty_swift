@@ -18,6 +18,8 @@ protocol MonthlyStatisticProtocol {
 protocol MonthPickerProtocol {
     var currentFilterDate: Date? { get set }
     func setCurrentFilterDate(filterDate: Date?)
+    func getCurrentFilterDate()
+    
 }
 
 class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
@@ -31,23 +33,29 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
     // MARK: - Contructor
     init(service: MoneyStorageProtocol = StorageService()) {
         self.storageService = service
-        self.currentFilterDate = Date()
-        NotificationCenterService.addObserver(selector: #selector(onListenUpdateHomeData), key: NotificationEventKey.updateHomeData)
-    }
-    @objc private func onListenUpdateHomeData(_ notification: Notification) {
-        Log.i("notification.object\(notification.object)")
-        self.currentFilterDate = notification.object as? Date
-        fetchListDataExpense()
     }
     
     // MARK: - Method
+    func saveCurrentFilterDateToUserDefault(){
+        UserDefaultsHelper.setData(value: self.currentFilterDate, key: UserDefaultKeys.pickerDate)
+    }
     func getCurrentFilterDate() {
-        self.currentFilterDate = Date()
+        let currentFilterDateStorage = UserDefaultsHelper.getData(type: Date.self, forKey: .pickerDate)
+        guard let currentFilterDate = currentFilterDateStorage else {
+            
+             self.currentFilterDate = Date()
+            return saveCurrentFilterDateToUserDefault()
+        }
+        self.currentFilterDate = currentFilterDate
         fetchListDataExpense()
     }
     func setCurrentFilterDate(filterDate: Date?) {
-        NotificationCenterService.post(key: NotificationEventKey.updateReportData, value: filterDate)
-        self.currentFilterDate = filterDate
+        
+        guard let currentFilterDate = filterDate else {
+            return self.currentFilterDate = Date()
+        }
+        self.currentFilterDate = currentFilterDate
+        saveCurrentFilterDateToUserDefault()
         fetchListDataExpense()
     }
     func fetchListDataExpense() {
