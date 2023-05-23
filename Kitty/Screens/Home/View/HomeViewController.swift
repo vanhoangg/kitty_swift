@@ -74,14 +74,12 @@ extension HomeViewController {
         historyTableView.sizeToFit()
     }
     private func bindData() {
-    
         homeViewModel.didLoadingData = {
             self.showLoadingView()
         }
         homeViewModel.didLoadDataSuccess = { [weak self] monthlyHistory in
             DispatchQueue.main.async {
                 self?.dismissLoadingView()
-         
                 self?.expenseMonthlyReportView.bind( value: String(-(monthlyHistory.monthlyExpense ?? 0)))
                 self?.balanceMonthlyReportView.bind(value: String(monthlyHistory.monthlyBalance ?? 0) )
                 self?.incomeMonthlyReportView.bind(value: String(monthlyHistory.monthlyIncome ?? 0))

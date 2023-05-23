@@ -7,8 +7,8 @@
 
 import Foundation
 enum NotificationEventKey: String, CaseIterable {
-    case updateHomeData = "updateHomeData"
-    case updateReportData = "updateReportData"
+    case updateHomeData = "UPDATE_HOME_DATA"
+    case updateReportData = "UPDATE_REPORT_DATA"
 }
 final class NotificationCenterService {
     private static var defaults = NotificationCenter.default

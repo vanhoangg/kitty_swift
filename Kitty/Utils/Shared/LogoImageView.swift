@@ -23,7 +23,7 @@ class LogoView: UIView {
         logoImageView.contentMode = .scaleAspectFit
         logoImageView.clipsToBounds = true
         logoImageView.image = UIImage(named: AssetIcon.icLogo)
-        let logoLabel = LogoLabel()
+        let logoLabel = LogoLabel() 
         addSubview(logoImageView)
         addSubview(logoLabel)
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
