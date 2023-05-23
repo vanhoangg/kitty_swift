@@ -11,8 +11,8 @@ class ReportViewController: UIViewController {
     // MARK: - Properties
     var listItems: [Int] = [20, 30, 30, 10, 10]
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var customHeaderView: CustomHeaderView!
-    var overviewLabel = UILabel()
 
     @IBOutlet var chartView: UIView!
     lazy var reportViewModel: MonthlyReportProtocol = {
@@ -26,16 +26,18 @@ class ReportViewController: UIViewController {
     }
     override func viewDidLoad() {
         self.navigationController?.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "identiferTest")
         super.viewDidLoad()
         configureChartView()
-        configureChartStackView()
         bindData()
     }
     // MARK: - Binding Data
     private func bindData() {
         customHeaderView.configureData(CustomHeaderView.ViewData(onTapGestureDetecture: { monthYearPickerViewController in
             self.onTapCalendarView(monthYearPickerViewController)
-        }, datePicker: reportViewModel.filterDate))
+        }, datePicker: reportViewModel.currentFilterDate))
     }
     private func reloadDataAfterUpdateFilterDate(filterDate: Date?) {
         reportViewModel.setCurrentFilterDate(filterDate: filterDate)
@@ -45,26 +47,25 @@ class ReportViewController: UIViewController {
 // MARK: - Configure
 extension ReportViewController {
     private func configureChartView() {
-        overviewLabel.text = "Overview"
-        overviewLabel.font = UIFont.customFont(.medium, size: 10)
-        chartView.addSubview(overviewLabel)
+        // MARK: - Overview Label
+        let overviewLabel = UILabel()
+        overviewLabel.text = "Overview".uppercased()
+        overviewLabel.font = UIFont.customFont(.regular, size: 10)
+        overviewLabel.textColor = UIColor(named: AssetColor.SecondaryTextColor)
         overviewLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            overviewLabel.topAnchor.constraint(equalTo: chartView.topAnchor),
-            overviewLabel.leadingAnchor
-                .constraint(equalTo: chartView.leadingAnchor)
-        ])
-    }
-    private func configureChartStackView() {
+         // MARK: - Custom Chart
         let customChartView = CustomHorizontalChartView(listPercentItems: listItems)
-        view.addSubview(customChartView)
-
         customChartView.translatesAutoresizingMaskIntoConstraints = false
         customChartView.layer.cornerRadius = 8
         customChartView.layer.borderWidth = 1
         customChartView.layer.borderColor = UIColor(named: "B2EBF2")?.cgColor
         customChartView.clipsToBounds = true
+        chartView.addSubview(overviewLabel)
+        chartView.addSubview(customChartView)
         NSLayoutConstraint.activate([
+            overviewLabel.topAnchor.constraint(equalTo: chartView.topAnchor),
+            overviewLabel.leadingAnchor
+                .constraint(equalTo: chartView.leadingAnchor),
             customChartView.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 8),
             customChartView.leadingAnchor.constraint(equalTo: chartView.leadingAnchor),
             customChartView.trailingAnchor.constraint(equalTo: chartView.trailingAnchor),
@@ -76,7 +77,7 @@ extension ReportViewController {
 extension ReportViewController {
     private func onTapCalendarView(_ viewController: MonthYearPickerViewController) {
         self.present(viewController, animated: true, completion: nil)
-        viewController.monthYearPickerViewModel.selectedMonth = reportViewModel.filterDate?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
+        viewController.monthYearPickerViewModel.selectedMonth = reportViewModel.currentFilterDate?.toString(pattern: StringUtils.onlyMonthPatternDate).getMonthType()
         viewController.monthYearPickerViewModel.callback = { [self] selectedMonth in
 
             let filterDate: Date? = FunctionUtils.createDateFromMonth(monthRawValue: selectedMonth.rawValue)
@@ -92,4 +93,16 @@ extension ReportViewController: UINavigationControllerDelegate {
         let hide = (viewController is ReportViewController)
         navigationController.setNavigationBarHidden(hide, animated: animated)
     }
+}
+// MARK: - UITableViewDelegate && UITableViewDatasource
+extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        12
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = (tableView.dequeueReusableCell(withIdentifier: "identiferTest", for: indexPath))
+        return cell
+    }
+
 }

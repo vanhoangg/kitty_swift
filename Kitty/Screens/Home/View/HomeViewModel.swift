@@ -8,41 +8,43 @@
 import Foundation
 
 protocol MonthlyStatisticProtocol {
-    
+
     func getCurrentFilterDate()
     var didLoadDataSuccess: ((MonthlyHistory) -> Void)? {get set}
     var didloadDataFailed: ((Error) -> Void)? {get set}
-    
+    var didLoadingData: (() -> Void)? {get set}
+
 }
 
 protocol MonthPickerProtocol {
     var currentFilterDate: Date? { get set }
     func setCurrentFilterDate(filterDate: Date?)
     func getCurrentFilterDate()
-    
+
 }
 
 class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
-    
+
     // MARK: - Properties
     var didLoadDataSuccess: ((MonthlyHistory) -> Void)?
     var didloadDataFailed: ((Error) -> Void)?
+    var didLoadingData: (() -> Void)?
     let storageService: MoneyStorageProtocol
     var currentFilterDate: Date?
-    
+
     // MARK: - Contructor
     init(service: MoneyStorageProtocol = StorageService()) {
         self.storageService = service
     }
-    
+
     // MARK: - Method
-    func saveCurrentFilterDateToUserDefault(){
+    func saveCurrentFilterDateToUserDefault() {
         UserDefaultsHelper.setData(value: self.currentFilterDate, key: UserDefaultKeys.pickerDate)
     }
     func getCurrentFilterDate() {
         let currentFilterDateStorage = UserDefaultsHelper.getData(type: Date.self, forKey: .pickerDate)
         guard let currentFilterDate = currentFilterDateStorage else {
-            
+
              self.currentFilterDate = Date()
             return saveCurrentFilterDateToUserDefault()
         }
@@ -50,7 +52,7 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
         fetchListDataExpense()
     }
     func setCurrentFilterDate(filterDate: Date?) {
-        
+
         guard let currentFilterDate = filterDate else {
             return self.currentFilterDate = Date()
         }
@@ -66,6 +68,7 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
         var listMonthlyExpense: [Money] = []
         var listDailyExpenseHistory: [DailyExpenseHistory] = []
         guard let filterDate = currentFilterDate?.toString(pattern: StringUtils.numMonthYearPatternDate) else { return }
+        self.didLoadingData?()
         storageService.fetchMoney(success: { listMoney in
             listMonthlyHistory = listMoney.filter { money in
                 money.createAt?.contains(filterDate) ?? false
@@ -86,11 +89,13 @@ class HomeViewModel: MonthlyStatisticProtocol, MonthPickerProtocol {
             }
             monthlyBalance = monthlyIncome - monthlyExpense
             let monthlyHistory = MonthlyHistory(monthlyExpense: monthlyExpense, monthlyIncome: monthlyIncome, monthlyBalance: monthlyBalance, listDailyExpenseHistory: listDailyExpenseHistory)
-            
-            self.didLoadDataSuccess?(monthlyHistory)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.didLoadDataSuccess?(monthlyHistory)
+            }
+
         }, failure: { error in
             self.didloadDataFailed?(error)
         })
-        
+
     }
 }

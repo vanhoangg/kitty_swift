@@ -20,18 +20,18 @@ class Money: Object {
 }
 
 enum MoneyEnum: String, PersistableEnum {
-    case balance = "Balance"
-    case expense = "Expense"
-    case income = "Income"
+    case balance = "balance"
+    case expense = "expense"
+    case income = "income"
 }
 extension String {
     var getMoneyEnum: MoneyEnum {
         switch self {
-        case MoneyEnum.RawValue("Balance"):
+        case MoneyEnum.RawValue("balance"):
             return MoneyEnum.balance
-        case MoneyEnum.RawValue("Expense"):
+        case MoneyEnum.RawValue("expense"):
             return MoneyEnum.expense
-        case MoneyEnum.RawValue("Income"):
+        case MoneyEnum.RawValue("income"):
             return MoneyEnum.income
         default:
             return MoneyEnum.expense

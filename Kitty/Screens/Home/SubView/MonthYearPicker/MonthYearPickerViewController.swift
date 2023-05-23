@@ -74,9 +74,9 @@ extension MonthYearPickerViewController: UICollectionViewDelegate, UICollectionV
 
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Log.d("===OnClick====")
-        monthYearPickerViewModel.callback?(monthYearPickerViewModel.listMonth[indexPath.row])
 //                monthCollectionView.reloadData()
         dismiss(animated: true, completion: nil)
+        monthYearPickerViewModel.callback?(monthYearPickerViewModel.listMonth[indexPath.row])
     }
 }
 

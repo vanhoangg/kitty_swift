@@ -13,10 +13,10 @@ enum NotificationEventKey: String, CaseIterable {
 final class NotificationCenterService {
     private static var defaults = NotificationCenter.default
 
-    static func addObserver(_ observer:Any,selector: Selector, key: NotificationEventKey, _ value: Any? = nil) {
+    static func addObserver(_ observer: Any, selector: Selector, key: NotificationEventKey, _ value: Any? = nil) {
         defaults.addObserver(observer, selector: selector, name: NSNotification.Name(key.rawValue), object: value)
     }
-    static func removeObserver(_ observer:Any,key: NotificationEventKey, _ value: Any? = nil) {
+    static func removeObserver(_ observer: Any, key: NotificationEventKey, _ value: Any? = nil) {
         defaults.removeObserver(observer, name: NSNotification.Name(key.rawValue), object: value)
     }
     static func post(key: NotificationEventKey, value: Any? = nil) {

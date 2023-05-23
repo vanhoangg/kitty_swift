@@ -16,6 +16,8 @@
 		7360A1322A08E08B00AFEDD7 /* MonthYearPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */; };
 		7360A1332A08E08B00AFEDD7 /* MonthYearPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7360A1312A08E08B00AFEDD7 /* MonthYearPickerViewController.xib */; };
 		7360A1352A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7360A1342A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift */; };
+		739BE61D2A1B631C00219BC6 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739BE61C2A1B631C00219BC6 /* testing.swift */; };
+		739BE62D2A1C5F8400219BC6 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739BE62C2A1C5F8400219BC6 /* LoadingViewController.swift */; };
 		73BAAE382A14A88E00DC7879 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BAAE372A14A88E00DC7879 /* CustomHeaderView.swift */; };
 		73BAAE3B2A14B63E00DC7879 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73BAAE3A2A14B63E00DC7879 /* CustomHeaderView.xib */; };
 		73E3B2122A171C62009B64FE /* NotificationCenterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E3B2112A171C62009B64FE /* NotificationCenterService.swift */; };
@@ -89,6 +91,8 @@
 		7360A1302A08E08B00AFEDD7 /* MonthYearPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerViewController.swift; sourceTree = "<group>"; };
 		7360A1312A08E08B00AFEDD7 /* MonthYearPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthYearPickerViewController.xib; sourceTree = "<group>"; };
 		7360A1342A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerViewModel.swift; sourceTree = "<group>"; };
+		739BE61C2A1B631C00219BC6 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
+		739BE62C2A1C5F8400219BC6 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		73BAAE372A14A88E00DC7879 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		73BAAE3A2A14B63E00DC7879 /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
 		73E3B2112A171C62009B64FE /* NotificationCenterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterService.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 				7EB7D07B29FA2D6100F4E294 /* CustomNavigationBar.swift */,
 				7EB7D07D29FA2D9500F4E294 /* DefaultNavigationBar.swift */,
 				731C480F2A13201900B51897 /* CustomHorizontalChartView.swift */,
+				739BE62C2A1C5F8400219BC6 /* LoadingViewController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 		7EFABEC529F6541800C1F9A9 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				739BE61C2A1B631C00219BC6 /* testing.swift */,
 				7EFABEC629F6542900C1F9A9 /* Database.swift */,
 			);
 			path = Database;
@@ -727,9 +733,11 @@
 				7EFABEDE29F7BC0500C1F9A9 /* CustomTextField.swift in Sources */,
 				7EB7D08929FBAF3A00F4E294 /* AddCategoryViewController.swift in Sources */,
 				73BAAE382A14A88E00DC7879 /* CustomHeaderView.swift in Sources */,
+				739BE62D2A1C5F8400219BC6 /* LoadingViewController.swift in Sources */,
 				73F52E952A04DADF0080A1FD /* MediaCategoryViewController.swift in Sources */,
 				73E3B2122A171C62009B64FE /* NotificationCenterService.swift in Sources */,
 				7E99F83529ECE83F00BDDF92 /* AppDelegate.swift in Sources */,
+				739BE61D2A1B631C00219BC6 /* testing.swift in Sources */,
 				7EB7D07129F8CCDE00F4E294 /* AddExpenseViewController.swift in Sources */,
 				7EA34CC129ED26F5001B51C9 /* HomeViewController.swift in Sources */,
 				7EB7D07E29FA2D9500F4E294 /* DefaultNavigationBar.swift in Sources */,

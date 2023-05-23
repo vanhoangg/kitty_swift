@@ -20,24 +20,28 @@ class HomeViewController: UIViewController {
     @IBOutlet var expenseMonthlyReportView: ItemMonthlyReportView!
     @IBOutlet var incomeMonthlyReportView: ItemMonthlyReportView!
     @IBOutlet var balanceMonthlyReportView: ItemMonthlyReportView!
-
+    private lazy var loadingView: UIAlertController = {
+        return LoadingViewController(title: nil, message: "Please wait...", preferredStyle: .alert)
+    }()
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         homeViewModel.getCurrentFilterDate()
-        
-        /// Configure
-        bindData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
         /// Build UI
         build()
+        bindData()
 
     }
-
     // MARK: - Method
-
+    private func showLoadingView() {
+        present(loadingView, animated: true, completion: nil)
+    }
+    private func dismissLoadingView() {
+        dismiss(animated: false, completion: nil)
+    }
     private func build() {
         configureMonthlyReportView()
         configHistoryTableView()
@@ -60,7 +64,6 @@ extension HomeViewController {
             addButton.heightAnchor.constraint(equalTo: addButton.widthAnchor, multiplier: 48 / 130, constant: 0),
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32)
-
         ])
         addButton.configureStyle(cornerRadius: 22, borderWidth: 0, backgroundColor: UIColor(named: AssetColor.buttonBackgroundColor), textColor: .white)
         addButton.addTarget(self, action: #selector(onPressAddExpense), for: .touchUpInside)
@@ -71,28 +74,38 @@ extension HomeViewController {
         historyTableView.sizeToFit()
     }
     private func bindData() {
-        customHeaderView.configureData(CustomHeaderView.ViewData(onTapGestureDetecture: { monthYearPickerViewController in
-            self.onTapCalendarView(monthYearPickerViewController)
-        }, datePicker: homeViewModel.currentFilterDate))
+    
+        homeViewModel.didLoadingData = {
+            self.showLoadingView()
+        }
         homeViewModel.didLoadDataSuccess = { [weak self] monthlyHistory in
-            self?.expenseMonthlyReportView.bind( value: String(-(monthlyHistory.monthlyExpense ?? 0)))
-            self?.balanceMonthlyReportView.bind(value: String(monthlyHistory.monthlyBalance ?? 0) )
-            self?.incomeMonthlyReportView.bind(value: String(monthlyHistory.monthlyIncome ?? 0))
-            self?.historyTableView.loadData(viewData: HistoryTableView.ViewData(listDailyExpenseHistory: monthlyHistory.listDailyExpenseHistory))
-            self?.reloadData()
+            DispatchQueue.main.async {
+                self?.dismissLoadingView()
+         
+                self?.expenseMonthlyReportView.bind( value: String(-(monthlyHistory.monthlyExpense ?? 0)))
+                self?.balanceMonthlyReportView.bind(value: String(monthlyHistory.monthlyBalance ?? 0) )
+                self?.incomeMonthlyReportView.bind(value: String(monthlyHistory.monthlyIncome ?? 0))
+                self?.historyTableView.loadData(viewData: HistoryTableView.ViewData(listDailyExpenseHistory: monthlyHistory.listDailyExpenseHistory))
+                self?.reloadData()
+            }
         }
         homeViewModel.didloadDataFailed = { [weak self] error in
-            self?.showErrorAlert(message: error.localizedDescription, title: "Back") {
-                self?.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self?.dismissLoadingView()
+                self?.showErrorAlert(message: error.localizedDescription, title: "Back") {
+                    self?.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }
     private func reloadData() {
         self.historyTableView.reloadData()
+        self.customHeaderView.configureData(CustomHeaderView.ViewData(onTapGestureDetecture: { monthYearPickerViewController in
+            self.onTapCalendarView(monthYearPickerViewController)
+        }, datePicker: self.homeViewModel.currentFilterDate))
     }
     private func reloadDataAfterUpdateFilterDate(filterDate: Date?) {
         self.homeViewModel.setCurrentFilterDate(filterDate: filterDate)
-        self.bindData()
     }
 
     // MARK: - Action
@@ -114,7 +127,6 @@ extension HomeViewController {
         monthYearPickerViewController.monthYearPickerViewModel.callback = { [self] selectedMonth in
             let filterDate: Date? = FunctionUtils.createDateFromMonth(monthRawValue: selectedMonth.rawValue)
             homeViewModel.setCurrentFilterDate(filterDate: filterDate)
-            self.bindData()
         }
     }
 }

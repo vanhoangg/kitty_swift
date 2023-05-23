@@ -6,27 +6,60 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol MonthlyReportProtocol {
-    var filterDate: Date? { get }
+    var currentFilterDate: Date? { get }
     func setCurrentFilterDate(filterDate: Date?)
     func getPickerDate()
 }
 class ReportViewModel: MonthlyReportProtocol {
-
-    var filterDate: Date?
-
- 
+    let storageService: MoneyStorageProtocol
+    var currentFilterDate: Date?
+    init(service: MoneyStorageProtocol = StorageService()) {
+        self.storageService = service
+    }
      func getPickerDate() {
-         return self.filterDate = UserDefaultsHelper.getData(type: Date.self, forKey: .pickerDate)
+          self.currentFilterDate = UserDefaultsHelper.getData(type: Date.self, forKey: .pickerDate)
+         fetchListDataExpense()
     }
     func setCurrentFilterDate(filterDate: Date?) {
-        
 
         UserDefaultsHelper.setData(value: filterDate, key: .pickerDate)
-        
+        self.currentFilterDate = filterDate
+        fetchListDataExpense()
+    }
+    func fetchListDataExpense() {
+        var monthlyExpense = 0.0
 
-        self.filterDate = filterDate
-//        fetchListDataExpense()
+        var listMonthlyHistory: [Money] = []
+        var listMonthlyExpense: [Money] = []
+        var listDailyExpenseHistory: [DailyExpenseHistory] = []
+        guard let filterDate = self.currentFilterDate?.toString(pattern: StringUtils.numMonthYearPatternDate) else { return }
+        storageService.fetchMoney(success: { listMoney in
+            listMonthlyHistory = listMoney.filter { money in
+                money.createAt?.contains(filterDate) ?? false
+            }
+
+            /// Query Data Money Type
+            listMonthlyHistory.forEach { moneyElement in
+                Log.d("moneyElement.Type \(moneyElement.type)")
+
+                if moneyElement.type == MoneyEnum.expense {
+                    monthlyExpense += (moneyElement.value ?? 0)
+                    listMonthlyExpense.append(moneyElement)
+                }
+            }
+            let dictionary = Dictionary(grouping: listMonthlyExpense, by: { $0.category })
+
+            /// Convert Dictionary To Array
+            dictionary.forEach { (_: Category?, _: [Money]) in
+            }
+
+//            self.didLoadDataSuccess?(monthlyHistory)
+        }, failure: { _ in
+//            self.didloadDataFailed?(error)
+        })
+
     }
 }

@@ -13,12 +13,16 @@
         <array key="Inter-Bold.ttf">
             <string>Inter-Bold</string>
         </array>
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportViewController" customModule="Kitty" customModuleProvider="target">
             <connections>
                 <outlet property="chartView" destination="pG3-ef-gm0" id="yTd-A1-I5a"/>
                 <outlet property="customHeaderView" destination="VXq-RT-WqU" id="jhx-cS-3aQ"/>
+                <outlet property="tableView" destination="fvg-FV-MSa" id="bdq-XC-cHU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +35,7 @@
                     <rect key="frame" x="0.0" y="48" width="414" height="55"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xa-mT-XAg" userLabel="Logo Label">
-                            <rect key="frame" x="16" y="15.499999999999998" width="285.5" height="24"/>
+                            <rect key="frame" x="16" y="15.5" width="285.5" height="24"/>
                             <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="20"/>
                             <color key="textColor" name="42"/>
                             <nil key="highlightedColor"/>
@@ -70,21 +74,38 @@
                     <rect key="frame" x="16" y="170.5" width="382" height="68.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liW-NK-zfE">
+                    <rect key="frame" x="16" y="259" width="382" height="12.5"/>
+                    <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
+                    <color key="textColor" name="42"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fvg-FV-MSa">
+                    <rect key="frame" x="16" y="279.5" width="382" height="582.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pG3-ef-gm0" secondAttribute="trailing" constant="16" id="3VV-0Y-tqZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fvg-FV-MSa" secondAttribute="bottom" id="5OK-ay-Kkx"/>
                 <constraint firstItem="pG3-ef-gm0" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="60:780" id="HjT-ix-9Yi"/>
+                <constraint firstItem="liW-NK-zfE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="IBu-PO-YjQ"/>
                 <constraint firstItem="pG3-ef-gm0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="IEd-dF-Dun"/>
                 <constraint firstItem="SnL-00-qSZ" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="48:780" id="ISB-su-G1F"/>
+                <constraint firstItem="liW-NK-zfE" firstAttribute="top" secondItem="pG3-ef-gm0" secondAttribute="bottom" constant="20" id="VLP-V3-u5f"/>
+                <constraint firstItem="fvg-FV-MSa" firstAttribute="top" secondItem="liW-NK-zfE" secondAttribute="bottom" constant="8" id="VSw-JM-YQw"/>
                 <constraint firstItem="SnL-00-qSZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wb7-3X-BL5"/>
                 <constraint firstItem="SnL-00-qSZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="bLk-sW-5mw"/>
                 <constraint firstItem="VXq-RT-WqU" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eGF-y7-NQb"/>
                 <constraint firstItem="VXq-RT-WqU" firstAttribute="top" secondItem="SnL-00-qSZ" secondAttribute="bottom" id="gLs-qX-joo"/>
                 <constraint firstItem="VXq-RT-WqU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lxE-VT-OZO"/>
                 <constraint firstItem="VXq-RT-WqU" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="48:780" id="mVg-jE-4Xg"/>
+                <constraint firstItem="fvg-FV-MSa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="mtF-Va-MLq"/>
                 <constraint firstItem="pG3-ef-gm0" firstAttribute="top" secondItem="VXq-RT-WqU" secondAttribute="bottom" constant="12" id="pwf-RA-1dP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="liW-NK-zfE" secondAttribute="trailing" constant="16" id="qPc-Wx-7SK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fvg-FV-MSa" secondAttribute="trailing" constant="16" id="vvA-oR-x9j"/>
                 <constraint firstItem="SnL-00-qSZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zxm-Td-Udn"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="24.776785714285712"/>
