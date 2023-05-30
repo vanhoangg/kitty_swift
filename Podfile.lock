@@ -1,12 +1,12 @@
 PODS:
   - DropDown (2.3.13)
   - FloatingPanel (2.6.1)
-  - Realm (10.39.1):
-    - Realm/Headers (= 10.39.1)
-  - Realm/Headers (10.39.1)
-  - RealmSwift (10.39.1):
-    - Realm (= 10.39.1)
-  - SwiftLint (0.52.0)
+  - Realm (10.40.0):
+    - Realm/Headers (= 10.40.0)
+  - Realm/Headers (10.40.0)
+  - RealmSwift (10.40.0):
+    - Realm (= 10.40.0)
+  - SwiftLint (0.52.2)
 
 DEPENDENCIES:
   - DropDown
@@ -25,9 +25,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FloatingPanel: de6bb891912ede28da7b1140f7b583c474fec28a
-  Realm: 1f3157edf145f4d9036765ab550c8cb18f62b700
-  RealmSwift: 8a69a1cb788cd5865966f49667b130567e07bceb
-  SwiftLint: 13280e21cdda6786ad908dc6e416afe5acd1fcb7
+  Realm: 67e2bc963e693a787961bd81d0594f2410615d9e
+  RealmSwift: 39622fdcd18d54e0ba49a7d31e9662404595e998
+  SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
 PODFILE CHECKSUM: 82691b1f03acf98b866d03d20d2309ba5fb8df01
 

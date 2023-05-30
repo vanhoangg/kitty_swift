@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280E7ADF2A24B2FC006E84C6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280E7ADD2A24B2FC006E84C6 /* ProfileViewController.swift */; };
+		280E7AE22A25A864006E84C6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280E7AE12A25A864006E84C6 /* ProfileViewModel.swift */; };
 		731099342A1478FE0041FD98 /* CustomLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731099332A1478FE0041FD98 /* CustomLogger.swift */; };
 		731C48102A13201900B51897 /* CustomHorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C480F2A13201900B51897 /* CustomHorizontalChartView.swift */; };
 		731C48122A136B2900B51897 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731C48112A136B2900B51897 /* UserDefaultService.swift */; };
@@ -80,6 +82,8 @@
 
 /* Begin PBXFileReference section */
 		0DF36A7BB4BC78F14417D052 /* Pods-Kitty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.debug.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.debug.xcconfig"; sourceTree = "<group>"; };
+		280E7ADD2A24B2FC006E84C6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		280E7AE12A25A864006E84C6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		2CE04161BD20CEAB213E3388 /* Pods_Kitty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kitty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4112B9695CB0386679A95D7F /* Pods-Kitty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kitty.release.xcconfig"; path = "Target Support Files/Pods-Kitty/Pods-Kitty.release.xcconfig"; sourceTree = "<group>"; };
 		731099332A1478FE0041FD98 /* CustomLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogger.swift; sourceTree = "<group>"; };
@@ -166,6 +170,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		280E7AD32A24B09E006E84C6 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				280E7AD42A24B0AC006E84C6 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		280E7AD42A24B0AC006E84C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				280E7ADD2A24B2FC006E84C6 /* ProfileViewController.swift */,
+				280E7AE12A25A864006E84C6 /* ProfileViewModel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7360A12F2A08E06C00AFEDD7 /* MonthYearPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +279,7 @@
 		7E99F84929ECE8AF00BDDF92 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				280E7AD32A24B09E006E84C6 /* Profile */,
 				7EB7D08429FBAF0200F4E294 /* AddCategory */,
 				7EFABEC829F68B4500C1F9A9 /* AddExpense */,
 				7EA34CA229ED2081001B51C9 /* Home */,
@@ -720,6 +742,7 @@
 				7E834F5529F269E500F3363E /* CustomTableView.swift in Sources */,
 				7360A1352A08E1E700AFEDD7 /* MonthYearPickerViewModel.swift in Sources */,
 				7E1798C529F0EE5F0003C20E /* ItemExpenseViewController.swift in Sources */,
+				280E7ADF2A24B2FC006E84C6 /* ProfileViewController.swift in Sources */,
 				7EFABEC729F6542900C1F9A9 /* Database.swift in Sources */,
 				7E9A745B29EE705C0002051C /* HistoryTableView.swift in Sources */,
 				7EA34C9C29ECFEF4001B51C9 /* IconTextButton.swift in Sources */,
@@ -727,6 +750,7 @@
 				7EB7D08129FA5AEE00F4E294 /* StorageService.swift in Sources */,
 				731C48102A13201900B51897 /* CustomHorizontalChartView.swift in Sources */,
 				7E9A745129EE51F00002051C /* ItemMonthlyReportView.swift in Sources */,
+				280E7AE22A25A864006E84C6 /* ProfileViewModel.swift in Sources */,
 				7EDFC5CC29EF966700C8AE30 /* HistoryTableViewCell.swift in Sources */,
 				73F52E982A04DD580080A1FD /* MediaCategoryViewModel.swift in Sources */,
 				7EFABEE929F7C9DC00C1F9A9 /* CategoryViewController.swift in Sources */,
@@ -886,7 +910,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G63DVY8F89;
+				DEVELOPMENT_TEAM = B7289UDFM4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kitty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -914,7 +938,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G63DVY8F89;
+				DEVELOPMENT_TEAM = B7289UDFM4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kitty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

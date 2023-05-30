@@ -59,8 +59,12 @@ extension MainViewController: UITabBarControllerDelegate {
         let reportNavigationController = UINavigationController(rootViewController: reportViewController)
         //        reportViewController.hidesBottomBarWhenPushed = true
         reportNavigationController.tabBarItem = UITabBarItem(title: "Report", image: UIImage(named: AssetIcon.icReport), selectedImage: UIImage(named: AssetIcon.icReportActive))
+        //Profile
+        let profileViewController = ProfileViewController()
+        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: AssetIcon.icCoffee), selectedImage: UIImage(named: AssetIcon.icBank))
 
-        self.viewControllers = [homeNavigationController, settingNavigationController, reportNavigationController]
+        self.viewControllers = [homeNavigationController, settingNavigationController, reportNavigationController, profileNavigationController]
 
     }
 }
