@@ -1,3 +1,4 @@
+
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
@@ -7,7 +8,8 @@ target 'Kitty' do
 
   # Pods for Kitty
   pod 'RealmSwift'
+  pod 'SwiftLint'
   pod 'DropDown'
   pod 'FloatingPanel'
-  pod 'SwiftLint'
+
 end

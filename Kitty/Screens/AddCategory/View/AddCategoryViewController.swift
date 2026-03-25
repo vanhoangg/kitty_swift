@@ -37,7 +37,6 @@ class AddCategoryViewController: UIViewController {
       categoryNameTextField.addTarget(self, action: #selector(onChangeCategoryNameTextField), for: .editingChanged)
       configureIconButton()
       addSubmitAddCategoryButton()
-
    }
    private func configureIconButton() {
       let gesture = UITapGestureRecognizer(target: self, action: #selector(onTapChooseIconCategory))
